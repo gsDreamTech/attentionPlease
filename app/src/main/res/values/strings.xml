@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Attention Please</string>
+    <string name="four">four</string>
+    <string name="three">three</string>
+    <string name="two">two</string>
+    <string name="one">one</string>
+    <string name="todo">TODO</string>
+    <string name="attention_please">Attention Please</string>
+    <string name="sign_in">\u0020\u0020Sign in\u0020\u0020</string>
+    <string name="password">Password</string>
+
+    <string name="user_name">Your Name</string>
+    <string name="phone">Phone Number</string>
+    <string name="usn">USN</string>
+    <string name="address">Address</string>
+    <string name="college">College</string>
+    <string name="branch">Branch</string>
+    <string name="city">District</string>
+    <string name="state">State</string>
+    <string name="institution_type">Institution Type</string>
+    <string name="logout">Logout</string>
+    <string name="university">University</string>
+    <string name="email">Email</string>
+    <string name="check_toast">Position %1$d : %2$s</string>
+    <string name="subseribe_selected_topics">Subscribe Selected Topics</string>
+
+    <string name="action_profile">Profile</string>
+    <string name="action_sign_in">Log in</string>
+    <string name="display_name">Display Name</string>
+    <string name="title_activity_send_notification">SendNotification</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_news_feed">NewsFeed</string>
+
+    <string-array name="indicator_style">
+        <item>None</item>
+        <item>Circle</item>
+        <item>Icon</item>
+        <item>Count</item>
+    </string-array>
+    <string-array name="indicator_gravity_hor">
+        <item>Left</item>
+        <item>Right</item>
+        <item>Center</item>
+    </string-array>
+    <string-array name="indicator_gravity_ver">
+        <item>Top</item>
+        <item>Bottom</item>
+        <item>Center</item>
+    </string-array>
+
+
+</resources>

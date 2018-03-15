@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f27500</color>
+    <color name="colorPrimaryDark">#6e3e03</color>
+    <color name="colorAccent">#f96300</color>
+    <color name="backGroundColor">#fcfcfc</color>
+    <color name="lightGray">#ededed</color>
+    <color name="deepPurple">#7C4DFF</color>
+    <color name="yellow">#ffb300</color>
+    <color name="green">#00BFA5</color>
+    <color name="gray">#3c3f41</color>
+    <color name="primarylight">#ebb86a</color>
+    <color name="startBackground">#0a1d27</color>
+    <color name="asset1">#e58218</color>
+    <drawable name="highlight_pressed">#98dff3</drawable>
+    <drawable name="highlight_focused">#b9e6f3</drawable>
+
+    <color name="white">#ffffff</color>
+    <color name="disabled_color">#000000</color>
+    <color name="normal_color">#000000</color>
+    <color name="tablerowhead">#854008</color>
+    <color name="tableheader">#337391</color>
+    <color name="tableRow1">#c7d9e2</color>
+    <color name="tableRow2">#e9f3f9</color>
+
+
+</resources>

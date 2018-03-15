@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.admin.attention.startActivity.choose">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="match_parent"
+        android:layout_height="154dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="101dp"
+        android:src="@android:color/white" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="103dp"
+        android:src="@mipmap/ic_launcher" />
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/layoutChoose">
+       <ru.katso.livebutton.LiveButton xmlns:livebutton="http://schemas.android.com/apk/res-auto"
+           android:id="@+id/buttonNewUser"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentBottom="true"
+           android:layout_centerHorizontal="true"
+           android:layout_marginBottom="154dp"
+           android:freezesText="false"
+           android:padding="5dp"
+           android:text="   New User !  "
+           android:textColor="@color/colorPrimaryDark"
+           android:textIsSelectable="false"
+           android:textSize="28sp"
+           livebutton:backgroundColor="@android:color/white"
+           livebutton:shadowColor="@color/colorPrimaryDark" />
+
+       <ru.katso.livebutton.LiveButton xmlns:livebutton="http://schemas.android.com/apk/res-auto"
+           android:id="@+id/buttonLogIn"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignTop="@+id/buttonNewUser"
+           android:layout_centerHorizontal="true"
+           android:layout_marginTop="69dp"
+           android:padding="5dp"
+           android:text="  Log in  "
+
+           android:textSize="28sp"
+           android:textColor="@color/colorPrimaryDark"
+           livebutton:backgroundColor="@android:color/white"
+           livebutton:shadowColor="@color/colorPrimaryDark" />
+
+
+   </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

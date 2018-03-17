@@ -8,8 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.dd.processbutton.iml.ActionProcessButton;
 
 import com.example.admin.attention.MainActivity;
+import com.example.admin.attention.ProgressGenerator;
 import com.example.admin.attention.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,13 +24,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class SubscribeTopics extends AppCompatActivity {
+public class SubscribeTopics extends AppCompatActivity implements ProgressGenerator.OnCompleteListener{
     private ArrayList<Row> rows;
     private DatabaseReference mUserRef;
     private ListView listView;
@@ -42,6 +47,20 @@ public class SubscribeTopics extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subscribe_topics);
+
+
+        final ProgressGenerator progressGenerator = new ProgressGenerator(this);
+        final ActionProcessButton bt = findViewById(R.id.buttonSubscribe);
+        bt.setMode(ActionProcessButton.Mode.ENDLESS);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressGenerator.start(bt);
+                bt.setEnabled(false);
+            }
+        });
+
+
         mTopicRef=FirebaseDatabase.getInstance().getReference().child("Colleges")
                 .child(MainActivity.topicsSubscribed.getString("CollegeCode","")).child("topics");
         mTopicRef.keepSynced(true);
@@ -162,5 +181,10 @@ public class SubscribeTopics extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    public void onComplete() {
+        Toast.makeText(this, "Loading_Complete", Toast.LENGTH_LONG).show();
     }
 }

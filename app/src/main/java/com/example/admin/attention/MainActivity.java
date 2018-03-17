@@ -225,13 +225,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         Set<String> sUser = mapUser.keySet();
                         listUser = new ArrayList<>(sUser);
 
-
+                        for (int i = 0; i < listUser.size(); i++) {
+                            //FirebaseMessaging.getInstance().subscribeToTopic(getIntent().getExtras().getString("topic"+i));
+                            FirebaseMessaging.getInstance().subscribeToTopic(mapUser.get(listUser.get(i)).get("title"));
+                            Log.i("topics" + i, mapUser.get(listUser.get(i)).get("title"));
+                        }
                         try{
-                            for (int i = 0; i < listUser.size(); i++) {
-                                //FirebaseMessaging.getInstance().subscribeToTopic(getIntent().getExtras().getString("topic"+i));
-                                FirebaseMessaging.getInstance().subscribeToTopic(mapUser.get(listUser.get(i)).get("title"));
-                                Log.i("topics" + i, mapUser.get(listUser.get(i)).get("title"));
-                            }
+//                            for (int i = 0; i < listUser.size(); i++) {
+//                                //FirebaseMessaging.getInstance().subscribeToTopic(getIntent().getExtras().getString("topic"+i));
+//                                FirebaseMessaging.getInstance().subscribeToTopic(mapUser.get(listUser.get(i)).get("title"));
+//                                Log.i("topics" + i, mapUser.get(listUser.get(i)).get("title"));
+//                            }
                         }catch(Exception e)
                         {
                             Log.i("error",e.getMessage());

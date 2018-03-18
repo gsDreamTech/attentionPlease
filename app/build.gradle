@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -16,7 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
+
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -46,11 +50,13 @@ dependencies {
     compile 'id.zelory:compressor:2.0.0'
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
 
+
     compile('com.alibaba.android:ultraviewpager:1.0.6.1@aar') {
         transitive = true
     }
 
     implementation 'com.android.support:design:26.1.0'
+
 }
 
 

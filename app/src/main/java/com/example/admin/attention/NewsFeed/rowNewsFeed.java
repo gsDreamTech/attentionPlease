@@ -9,17 +9,17 @@ public class rowNewsFeed {
     public String one_line_desc;
     public String detail_desc;
     public String ccode;
-    public String topics;
+    //public String topics;
     public String links;
     public String thumb_image;
     public String image;
     public rowNewsFeed(){}
-    public rowNewsFeed(String title, String one_line_desc, String detail_desc, String ccode, String topics, String links, String thumb_image, String image) {
+    public rowNewsFeed(String title, String one_line_desc, String detail_desc, String ccode,  String links, String thumb_image, String image) {
         this.title = title;
         this.one_line_desc = one_line_desc;
         this.detail_desc = detail_desc;
         this.ccode = ccode;
-        this.topics = topics;
+        //this.topics = topics;
         this.links = links;
         this.thumb_image = thumb_image;
         this.image = image;
@@ -57,9 +57,6 @@ public class rowNewsFeed {
         return ccode;
     }
 
-    public String getTopics() {
-        return topics;
-    }
 
     public String getLinks() {
         return links;
@@ -81,9 +78,6 @@ public class rowNewsFeed {
         this.ccode = ccode;
     }
 
-    public void setTopics(String topics) {
-        this.topics = topics;
-    }
 
     public void setLinks(String links) {
         this.links = links;

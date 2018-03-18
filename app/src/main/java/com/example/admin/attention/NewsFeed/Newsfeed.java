@@ -35,10 +35,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Newsfeed extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -81,7 +87,8 @@ public class Newsfeed extends AppCompatActivity
         pd.setTitle("Getting news list!");
         pd.setMessage("Please wait...");
         mAuth= FirebaseAuth.getInstance();
-        mNotiDatabase= FirebaseDatabase.getInstance().getReference().child("Notifications");
+        mNotiDatabase= FirebaseDatabase.getInstance().getReference().child("Colleges")
+                .child(MainActivity.topicsSubscribed.getString("CollegeCode","")).child("notifications");
         mNotiDatabase.keepSynced(true);
         mNewsList=findViewById(R.id.newsList);
         mNewsList.setHasFixedSize(true);
@@ -104,46 +111,50 @@ public class Newsfeed extends AppCompatActivity
                 getRef(position).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        Log.i("topics list",dataSnapshot.child("topics").getValue().toString());
-                        layout =viewHolder.mView.findViewById(R.id.linearLayoutNewsFeed);
-                        params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                        try {
+                            //Log.i("topics list",dataSnapshot.child("topics").getValue().toString());
+                            layout = viewHolder.mView.findViewById(R.id.linearLayoutNewsFeed);
+                            params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT);
+                            GenericTypeIndicator<List<String>> gs = new GenericTypeIndicator<List<String>>() {
+                            };
+                            List<String> list = dataSnapshot.child("topics").getValue(gs);
+                            for (int i = 0; i < list.size(); i++)
+                                if (MainActivity.topicsSubscribed.getBoolean(list.get(i), false)) {
 
+                                    viewHolder.setNewsTitle(model.getTitle());
+                                    viewHolder.setNewsInfo(model.getOne_line_desc());
+                                    Picasso p = Picasso.with(getApplicationContext());
+                                    viewHolder.setNewsImage(model.getThumb_image(), p);
+                                    if (i < 5) {
+                                        MainActivity.topicsSubscribed.edit().putString(String.valueOf(i), model.getThumb_image()).apply();
+                                        i = i + 1;
+                                    }
+                                    viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            rowNewsData.edit().putString("title", model.getTitle()).apply();
+                                            rowNewsData.edit().putString("oneline", model.getOne_line_desc()).apply();
+                                            rowNewsData.edit().putString("detail", model.getDetail_desc()).apply();
+                                            rowNewsData.edit().putString("links", model.getLinks()).apply();
+                                            rowNewsData.edit().putString("image", model.getImage()).apply();
+                                            rowNewsData.edit().putString("thumbimage", model.getThumb_image()).apply();
 
+                                            bottomSheetDialogFragment.show(getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
 
-                        if(MainActivity.topicsSubscribed.getBoolean(dataSnapshot.child("topics").getValue().toString(),false))
-                        {
-
-                            viewHolder.setNewsTitle(model.getTitle());
-                            viewHolder.setNewsInfo(model.getOne_line_desc());
-                            Picasso p=Picasso.with(getApplicationContext());
-                            viewHolder.setNewsImage(model.getThumb_image(),p);
-                            if(i<5)
-                            {
-                                MainActivity.topicsSubscribed.edit().putString(String.valueOf(i),model.getThumb_image()).apply();
-                                i=i+1;
-                            }
-                            viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    rowNewsData.edit().putString("title",model.getTitle()).apply();
-                                    rowNewsData.edit().putString("oneline",model.getOne_line_desc()).apply();
-                                    rowNewsData.edit().putString("detail",model.getDetail_desc()).apply();
-                                    rowNewsData.edit().putString("links",model.getLinks()).apply();
-                                    rowNewsData.edit().putString("image",model.getImage()).apply();
-                                    rowNewsData.edit().putString("thumbimage",model.getThumb_image()).apply();
-
-                                    bottomSheetDialogFragment.show(getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
-
+                                        }
+                                    });
+                                    break;
                                 }
-                            });
-                        }
-                        else
+//                                else {
+//        //                            viewHolder.mView.setVisibility(View.GONE);
+//        //                            viewHolder.mView.setSystemUiVisibility(View.GONE);
+//                                    viewHolder.Layout_hide();
+//
+//                                }
+                        }catch(Exception e)
                         {
-//                            viewHolder.mView.setVisibility(View.GONE);
-//                            viewHolder.mView.setSystemUiVisibility(View.GONE);
-                            viewHolder.Layout_hide();
-
+                            Log.i("error in populate",e.getMessage());
                         }
                     }
 

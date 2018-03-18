@@ -12,6 +12,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.admin.attention.MainActivity;
 import com.example.admin.attention.R;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -31,24 +32,33 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
 
 
-        try{
-            Log.i("data",remoteMessage.getData().get("topics"));
-        }catch(Exception e){
 
+        if(remoteMessage.getData().size()>0){
+            int cid;
+            cid=Integer.parseInt(remoteMessage.getData().get("customid"));
+            if(String.valueOf(cid).length()==8)
+            {
+                sendNotification(cid, remoteMessage.getNotification().getBody(), "Attention Please");
+            }
         }
+
+
+
 
         // Check if message contains a notification payload.
-        if (remoteMessage.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-            sendNotification(remoteMessage.getNotification().getBody(),"Attention Please");
-
-        }
+//        if (remoteMessage.getNotification() != null) {
+//            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+//            if(MainActivity.topicsSubscribed.getInt("customid",0)!=Integer.parseInt(remoteMessage.getData().get("customid"))) {
+//                MainActivity.topicsSubscribed.edit().putInt("customid", Integer.parseInt(remoteMessage.getData().get("customid"))).apply();
+//                sendNotification(Integer.parseInt(remoteMessage.getData().get("customid")), remoteMessage.getNotification().getBody(), "Attention Please");
+//            }
+//        }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
     }
 
-    private void sendNotification(String body, String Title) {
+    private void sendNotification(int id, String body, String Title) {
         //Intent intent=new Intent(this,ProfileActivity.class);
         //intent.putExtra("user_id",user_id1);
         //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -62,7 +72,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
 
         final String NOTIFICATION_CHANNEL_ID = "my_notification_channel";
-
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_DEFAULT);
@@ -77,7 +86,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 //        }
         NotificationCompat.Builder notifiBuilder=new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(Title)
+                .setContentTitle("Attention Please")
                 .setContentText(body)
                 .setAutoCancel(true)
                 .setSound(notificationTone)
@@ -91,10 +100,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         int notification_id=(int)System.currentTimeMillis();
         NotificationManager mNotifyMgr=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        mNotifyMgr.notify(notification_id,notifiBuilder.build());
-
-
-
+        mNotifyMgr.notify(id,notifiBuilder.build());
 
 
     }

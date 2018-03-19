@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f27500</color>
-    <color name="colorPrimaryDark">#6e3e03</color>
-    <color name="colorAccent">#f96300</color>
+    <color name="colorPrimary">#0cadc3</color>
+    <color name="colorPrimaryDark">#273c3e</color>
+    <color name="colorAccent">#FFFFFF</color>
     <color name="backGroundColor">#fcfcfc</color>
-    <color name="lightGray">#ededed</color>
+    <color name="lightGray">#a8adb2</color>
     <color name="deepPurple">#7C4DFF</color>
-    <color name="yellow">#ffb300</color>
+    <color name="lightBlue">#a9cbd4</color>
     <color name="green">#00BFA5</color>
     <color name="gray">#3c3f41</color>
-    <color name="primarylight">#ebb86a</color>
+    <color name="primarylight">#0f3f8d</color>
     <color name="startBackground">#0a1d27</color>
     <color name="asset1">#e58218</color>
     <drawable name="highlight_pressed">#98dff3</drawable>
@@ -22,6 +22,9 @@
     <color name="tableheader">#337391</color>
     <color name="tableRow1">#c7d9e2</color>
     <color name="tableRow2">#e9f3f9</color>
+    <color name="trans">#00000000</color>
+    <color name="loginBackground">#043940</color>
+    <color name="texthint">#b2b7bb</color>
 
 
 </resources>

@@ -4,24 +4,18 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AutoCompleteTextView;
+import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -38,10 +32,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import ru.katso.livebutton.LiveButton;
-
 public class choose extends AppCompatActivity {
-    private LiveButton fab,fab1;
+    private Button fab,fab1;
     private RelativeLayout rv;
     private FirebaseAuth mAuth;
     private ProgressDialog pd;
@@ -49,6 +41,7 @@ public class choose extends AppCompatActivity {
     private FirebaseUser mCurrentUser;
     private View dialogView;
     private Dialog dialog;
+    private AlphaAnimation ap;
 
 
 
@@ -60,7 +53,7 @@ public class choose extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
 
-
+        ap=new AlphaAnimation(1f,0.5f);
 
         pd=new ProgressDialog(this);
 
@@ -74,15 +67,19 @@ public class choose extends AppCompatActivity {
 
         rv=findViewById(R.id.layoutChoose);
         fab =  findViewById(R.id.buttonLogIn);
+        fab.setAnimation(ap);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rv.setVisibility(View.GONE);
-                showDiag();
+                //rv.setVisibility(View.GONE);
+                //showDiag();
+                startActivity(new Intent(choose.this, alogin.class));
+                finish();
             }
         });
 
         fab1 =  findViewById(R.id.buttonNewUser);
+        fab1.setAnimation(ap);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,80 +93,81 @@ public class choose extends AppCompatActivity {
 
     private void showDiag() {
 
-        dialogView = View.inflate(this,R.layout.login,null);
-
-        dialog = new Dialog(this,R.style.MyAlertDialogStyle);
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(dialogView);
-        //dialog.setCanceledOnTouchOutside(false);
-
-
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onShow(DialogInterface dialogInterface) {
-                revealShow(dialogView, true, null, R.id.login_form);
-            }
-        });
-
-        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
-                if (i == KeyEvent.KEYCODE_BACK){
-
-                    revealShow(dialogView, false, dialog, R.id.login_form);
-                    return true;
-                }
-
-                return false;
-            }
-        });
-
-            pd.setTitle("Loging in");
-            pd.setMessage("Wait for a while...");
-            FloatingActionButton imageView = dialogView.findViewById(R.id.backDialogImage);
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-                @Override
-                public void onClick(View v) {
-
-                    revealShow(dialogView, false, dialog, R.id.login_form);
-                }
-            });
-            LiveButton loginButton=dialogView.findViewById(R.id.buttonLLogin);
-            loginButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.i("dialog","login clicked");
-                    AutoCompleteTextView emailAuto=dialogView.findViewById(R.id.editTextLoginEmail);
-                    AutoCompleteTextView passwordAuto=dialogView.findViewById(R.id.editTextLoginPassword);
-                    String email=emailAuto.getText().toString();
-                    String password=passwordAuto.getText().toString();
-                    if(email.isEmpty())
-                        Snackbar.make(dialogView,"Invalid Email...",Snackbar.LENGTH_LONG).setAction("Action",null).show();
-                    else if(password.isEmpty() || password.length()<6)
-                        Snackbar.make(dialogView,"Invalid Password...",Snackbar.LENGTH_LONG).setAction("Action",null).show();
-                    else
-                    {
-                        pd.show();
-                        signIn(email,password, dialogView);
-                    }
-                }
-            });
-
-
-
-
-
-
-        dialog.getWindow().setGravity(Gravity.BOTTOM);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-        dialog.show();
+//        dialogView = View.inflate(this,R.layout.login,null);
+//
+//        dialog = new Dialog(this,R.style.MyAlertDialogStyle);
+//        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+//        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+//
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setContentView(dialogView);
+//        //dialog.setCanceledOnTouchOutside(false);
+//
+//
+//        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//            @Override
+//            public void onShow(DialogInterface dialogInterface) {
+//                revealShow(dialogView, true, null, R.id.login_form);
+//            }
+//        });
+//
+//        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//            @Override
+//            public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+//                if (i == KeyEvent.KEYCODE_BACK){
+//
+//                    revealShow(dialogView, false, dialog, R.id.login_form);
+//                    return true;
+//                }
+//
+//                return false;
+//            }
+//        });
+//
+//            pd.setTitle("Loging in");
+//            pd.setMessage("Wait for a while...");
+//            FloatingActionButton imageView = dialogView.findViewById(R.id.backDialogImage);
+//            imageView.setOnClickListener(new View.OnClickListener() {
+//                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//                @Override
+//                public void onClick(View v) {
+//
+//                    revealShow(dialogView, false, dialog, R.id.login_form);
+//                }
+//            });
+//            Button loginButton=dialogView.findViewById(R.id.buttonLLogin);
+//
+//            loginButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Log.i("dialog","login clicked");
+//                    AutoCompleteTextView emailAuto=dialogView.findViewById(R.id.editTextLoginEmail);
+//                    AutoCompleteTextView passwordAuto=dialogView.findViewById(R.id.editTextLoginPassword);
+//                    String email=emailAuto.getText().toString();
+//                    String password=passwordAuto.getText().toString();
+//                    if(email.isEmpty())
+//                        Snackbar.make(dialogView,"Invalid Email...",Snackbar.LENGTH_LONG).setAction("Action",null).show();
+//                    else if(password.isEmpty() || password.length()<6)
+//                        Snackbar.make(dialogView,"Invalid Password...",Snackbar.LENGTH_LONG).setAction("Action",null).show();
+//                    else
+//                    {
+//                        pd.show();
+//                        signIn(email,password, dialogView);
+//                    }
+//                }
+//            });
+//
+//
+//
+//
+//
+//
+//        dialog.getWindow().setGravity(Gravity.BOTTOM);
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//
+//        dialog.show();
     }
 
 

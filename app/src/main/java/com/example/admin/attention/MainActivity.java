@@ -4,7 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,9 +17,12 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.admin.attention.NewsFeed.Newsfeed;
@@ -32,16 +38,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.special.ResideMenu.ResideMenu;
+import com.special.ResideMenu.ResideMenuItem;
 import com.tmall.ultraviewpager.UltraViewPager;
 import com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer;
+import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
+import com.yalantis.contextmenu.lib.MenuObject;
+import com.yalantis.contextmenu.lib.MenuParams;
+import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
+public class MainActivity extends AppCompatActivity implements OnMenuItemClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     private FirebaseUser mUser;
     private ProgressDialog pd;
@@ -54,44 +67,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private List<String> listUser;
     private  Map<String,Map<String,String>> mapUser;
-
+    private ResideMenu resideMenu;
+    private ContextMenuDialogFragment mMenuDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         topicsSubscribed=this.getSharedPreferences("com.example.admin.attentionplease", Context.MODE_PRIVATE);
-
-//        // attach to current activity;
-//        resideMenu = new ResideMenu(this);
-//        resideMenu.setBackground(R.drawable.menu_background);
-//        resideMenu.attachToActivity(this);
-//
-//        // create menu items;
-//        String titles[] = { "Home", "Profile", "Calendar", "Settings" };
-//        int icon[] = { R.drawable.icon_home, R.drawable.icon_profile, R.drawable.icon_calendar, R.drawable.icon_settings };
-//
-//        for (int i = 0; i < titles.length; i++){
-//            ResideMenuItem item = new ResideMenuItem(this, icon[i], titles[i]);
-//            item.setOnClickListener(this);
-//            resideMenu.addMenuItem(item,  ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
-//        }
-
-//        resideMenu.setMenuListener(menuListener);
-//        private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
+//        Button bt=findViewById(R.id.testing);
+//        bt.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void openMenu() {
-//                Toast.makeText(mContext, "Menu is opened!", Toast.LENGTH_SHORT).show();
+//            public void onClick(View view) {
+//                Map<String, Object> updateHashmap=new HashMap<>();
+//                updateHashmap.put("title","sdg");
+//                updateHashmap.put("one_line_desc","dgav");
+////                updateHashmap.put("topics",mTopics.getText().toString());
+//                updateHashmap.put("detail_desc","gdafajafs");
+//                updateHashmap.put("ccode","C-1297");
+//                updateHashmap.put("links","");
+//                updateHashmap.put("image","default");
+//                updateHashmap.put("thumb_image","");
+//                FirebaseDatabase.getInstance().getReference().child("Colleges").child("C-1297").child("notifications").push().setValue(updateHashmap);
 //            }
-//
-//            @Override
-//            public void closeMenu() {
-//                Toast.makeText(mContext, "Menu is closed!", Toast.LENGTH_SHORT).show();
-//            }
-//        };
-
-//        resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
-
+//        });
 
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -127,28 +126,128 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
 
-        UltraViewPager ultraViewPager = (UltraViewPager)findViewById(R.id.ultra_viewpager);
-        ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-        adapter = new UltraPagerAdapter(true);
-        ultraViewPager.setAdapter(adapter);
-        ultraViewPager.setMultiScreen(0.6f);
-        ultraViewPager.setItemRatio(1.0f);
-//                ultraViewPager.setRatio(2.0f);
-//                ultraViewPager.setMaxHeight(800);
-        ultraViewPager.setAutoMeasureHeight(true);
-        gravity_indicator = UltraViewPager.Orientation.HORIZONTAL;
-        ultraViewPager.setPageTransformer(false, new UltraDepthScaleTransformer());
+//        UltraViewPager ultraViewPager = (UltraViewPager)findViewById(R.id.ultra_viewpager);
+//        ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
+//        adapter = new UltraPagerAdapter(true);
+//        ultraViewPager.setAdapter(adapter);
+//        ultraViewPager.setMultiScreen(0.6f);
+//        ultraViewPager.setItemRatio(1.0f);
+////                ultraViewPager.setRatio(2.0f);
+////                ultraViewPager.setMaxHeight(800);
+//        ultraViewPager.setAutoMeasureHeight(true);
+//        gravity_indicator = UltraViewPager.Orientation.HORIZONTAL;
+//        ultraViewPager.setPageTransformer(false, new UltraDepthScaleTransformer());
         //initUI();
 
 
+
+//        =======  reside menu===================
+        // attach to current activity;
+        resideMenu = new ResideMenu(this);
+        resideMenu.setBackground(R.drawable.menu_background);
+        resideMenu.attachToActivity(this);
+
+        ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
+            @Override
+            public void openMenu() {
+                Toast.makeText(getApplicationContext(), "Menu is opened!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void closeMenu() {
+                Toast.makeText(getApplicationContext(), "Menu is closed!", Toast.LENGTH_SHORT).show();
+            }
+        };
+        resideMenu.setMenuListener(menuListener);
+        resideMenu.setScaleValue(0.7f);
+        resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
+        // create menu items;
+        String titles[] = { "Home", "Profile", "Calendar", "Settings" };
+        int icon[] = { R.drawable.icon_home, R.drawable.icon_profile, R.drawable.icon_calendar, R.drawable.icon_settings };
+
+        for (int i = 0; i < titles.length; i++){
+            ResideMenuItem item = new ResideMenuItem(this, icon[i], titles[i]);
+            item.setOnClickListener(this);
+            resideMenu.addMenuItem(item,  ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
+        }
+
+        //=====end reside menu======
+
+        //====== context menu =======
+        MenuObject close = new MenuObject();
+        close.setResource(R.drawable.icon_home);
+
+        MenuObject send = new MenuObject("Send message");
+        send.setResource(R.drawable.icon_profile);
+
+        List<MenuObject> menuObjects = new ArrayList<>();
+        menuObjects.add(close);
+        menuObjects.add(send);
+
+        MenuParams menuParams = new MenuParams();
+        menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.nav_header_height));
+        menuParams.setMenuObjects(getMenuObjects());
+        menuParams.setClosableOutside(true);
+        // set other settings to meet your needs
+        mMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
+        mMenuDialogFragment.setItemClickListener(this);
+
+
     }
-//
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        return resideMenu.dispatchTouchEvent(ev);
-//    }
 
 
+    private List<MenuObject> getMenuObjects() {
+        // You can use any [resource, bitmap, drawable, color] as image:
+        // item.setResource(...)
+        // item.setBitmap(...)
+        // item.setDrawable(...)
+        // item.setColor(...)
+        // You can set image ScaleType:
+        // item.setScaleType(ScaleType.FIT_XY)
+        // You can use any [resource, drawable, color] as background:
+        // item.setBgResource(...)
+        // item.setBgDrawable(...)
+        // item.setBgColor(...)
+        // You can use any [color] as text color:
+        // item.setTextColor(...)
+        // You can set any [color] as divider color:
+        // item.setDividerColor(...)
+
+        List<MenuObject> menuObjects = new ArrayList<>();
+
+        MenuObject close = new MenuObject();
+        close.setResource(R.drawable.icon_profile);
+
+        MenuObject send = new MenuObject("Send message");
+        send.setResource(R.drawable.icon_home);
+
+        MenuObject like = new MenuObject("Like profile");
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.icon_home);
+        like.setBitmap(b);
+
+        MenuObject addFr = new MenuObject("Add to friends");
+        BitmapDrawable bd = new BitmapDrawable(getResources(),
+                BitmapFactory.decodeResource(getResources(), R.drawable.icon_home));
+        addFr.setDrawable(bd);
+
+        MenuObject addFav = new MenuObject("Add to favorites");
+        addFav.setResource(R.drawable.icon_home);
+
+        MenuObject block = new MenuObject("Block user");
+        block.setResource(R.drawable.icon_home);
+
+        menuObjects.add(close);
+        menuObjects.add(send);
+        menuObjects.add(like);
+        menuObjects.add(addFr);
+        menuObjects.add(addFav);
+        menuObjects.add(block);
+        return menuObjects;
+    }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return resideMenu.dispatchTouchEvent(ev);
+    }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -165,32 +264,32 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-    private void defaultUltraViewPager(){
-        UltraViewPager ultraViewPager = (UltraViewPager)findViewById(R.id.ultra_viewpager);
-        ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-        //initialize UltraPagerAdapter，and add child view to UltraViewPager
-        PagerAdapter adapter = new UltraPagerAdapter(false);
-        ultraViewPager.setAdapter(adapter);
-
-        //initialize built-in indicator
-        ultraViewPager.initIndicator();
-        //set style of indicators
-        ultraViewPager.getIndicator()
-                .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
-                .setFocusColor(Color.GREEN)
-                .setNormalColor(Color.WHITE)
-                .setRadius((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()));
-        //set the alignment
-        ultraViewPager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
-        //construct built-in indicator, and add it to  UltraViewPager
-        ultraViewPager.getIndicator().build();
-
-        //set an infinite loop
-        ultraViewPager.setInfiniteLoop(true);
-        //enable auto-scroll mode
-        ultraViewPager.setAutoScroll(2000);
-
-    }
+//    private void defaultUltraViewPager(){
+//        UltraViewPager ultraViewPager = (UltraViewPager)findViewById(R.id.ultra_viewpager);
+//        ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
+//        //initialize UltraPagerAdapter，and add child view to UltraViewPager
+//        PagerAdapter adapter = new UltraPagerAdapter(false);
+//        ultraViewPager.setAdapter(adapter);
+//
+//        //initialize built-in indicator
+//        ultraViewPager.initIndicator();
+//        //set style of indicators
+//        ultraViewPager.getIndicator()
+//                .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
+//                .setFocusColor(Color.GREEN)
+//                .setNormalColor(Color.WHITE)
+//                .setRadius((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()));
+//        //set the alignment
+//        ultraViewPager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
+//        //construct built-in indicator, and add it to  UltraViewPager
+//        ultraViewPager.getIndicator().build();
+//
+//        //set an infinite loop
+//        ultraViewPager.setInfiniteLoop(true);
+//        //enable auto-scroll mode
+//        ultraViewPager.setAutoScroll(2000);
+//
+//    }
 
 
     @Override
@@ -283,8 +382,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public void onClick(View view) {
-//
-//    }
+    @Override
+    public void onClick(View view) {
+
+    }
+
+    @Override
+    public void onMenuItemClick(View clickedView, int position) {
+
+    }
 }

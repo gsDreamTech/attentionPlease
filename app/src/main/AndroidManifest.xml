@@ -55,7 +55,9 @@
             android:name=".NewsFeed.Newsfeed"
             android:label="@string/title_activity_news_feed"
             android:theme="@style/AppTheme3" />
-        <activity android:name=".TimeTable.timeTableHome"></activity>
+        <activity android:name=".TimeTable.timeTableHome" />
+        <activity android:name=".startActivity.alogin"
+            android:theme="@style/AppTheme2"/>
     </application>
 
 </manifest>

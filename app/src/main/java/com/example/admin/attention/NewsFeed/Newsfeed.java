@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,11 +21,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cleveroad.fanlayoutmanager.FanLayoutManager;
+import com.cleveroad.fanlayoutmanager.FanLayoutManagerSettings;
 import com.example.admin.attention.MainActivity;
 import com.example.admin.attention.R;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
@@ -40,11 +45,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.stone.vega.library.VegaLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static java.security.AccessController.getContext;
 
 public class Newsfeed extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -58,13 +66,28 @@ public class Newsfeed extends AppCompatActivity
     private BottomSheetDialogFragment bottomSheetDialogFragment;
     private BottomSheetBehavior mBottomSheetBehavior;
     private int flag=0,i=0;
-
+    private AutoCompleteTextView aTitle,aOneLine,aDetail,aLink;
+    private TextView tt;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsfeed);
+
+        tt=findViewById(R.id.tvdis);
+
+        aTitle=findViewById(R.id.editTextTitle);
+        aOneLine=findViewById(R.id.editTextOneLine);
+        aDetail=findViewById(R.id.editTextDetail);
+        aLink=findViewById(R.id.editTextLinks);
+
+        aTitle.setEnabled(false);
+        aOneLine.setEnabled(false);
+        aDetail.setEnabled(false);
+        aLink.setEnabled(false);
+
+
         flag=0;
         i=0;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -92,10 +115,35 @@ public class Newsfeed extends AppCompatActivity
         mNotiDatabase.keepSynced(true);
         mNewsList=findViewById(R.id.newsList);
         mNewsList.setHasFixedSize(true);
+        mNewsList.setItemAnimator(new DefaultItemAnimator());
+        FanLayoutManagerSettings fanLayoutManagerSettings = FanLayoutManagerSettings
+                .newBuilder(this)
+                .withFanRadius(true)
+                .withAngleItemBounce(5)
+                .withViewWidthDp(140)
+                .withViewHeightDp(190)
+                .build();
+
+        FanLayoutManager fn=new FanLayoutManager(this,fanLayoutManagerSettings);
+
+
+        VegaLayoutManager vg=new VegaLayoutManager();
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
-        mNewsList.setLayoutManager(linearLayoutManager);
+        mNewsList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                Log.i("state"," "+newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+        mNewsList.setLayoutManager(fn);
 
 
         //-------------------------newsfeed logic-----------------------------
@@ -120,7 +168,7 @@ public class Newsfeed extends AppCompatActivity
                             };
                             List<String> list = dataSnapshot.child("topics").getValue(gs);
                             for (int i = 0; i < list.size(); i++)
-                                if (MainActivity.topicsSubscribed.getBoolean(list.get(i), false)) {
+                                if (MainActivity.topicsSubscribed.getBoolean(list.get(i), true)) {
 
                                     viewHolder.setNewsTitle(model.getTitle());
                                     viewHolder.setNewsInfo(model.getOne_line_desc());
@@ -133,14 +181,49 @@ public class Newsfeed extends AppCompatActivity
                                     viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            rowNewsData.edit().putString("title", model.getTitle()).apply();
-                                            rowNewsData.edit().putString("oneline", model.getOne_line_desc()).apply();
-                                            rowNewsData.edit().putString("detail", model.getDetail_desc()).apply();
-                                            rowNewsData.edit().putString("links", model.getLinks()).apply();
-                                            rowNewsData.edit().putString("image", model.getImage()).apply();
-                                            rowNewsData.edit().putString("thumbimage", model.getThumb_image()).apply();
+//                                            rowNewsData.edit().putString("title", model.getTitle()).apply();
+//                                            rowNewsData.edit().putString("oneline", model.getOne_line_desc()).apply();
+//                                            rowNewsData.edit().putString("detail", model.getDetail_desc()).apply();
+//                                            rowNewsData.edit().putString("links", model.getLinks()).apply();
+//                                            rowNewsData.edit().putString("image", model.getImage()).apply();
+//                                            rowNewsData.edit().putString("thumbimage", model.getThumb_image()).apply();
 
-                                            bottomSheetDialogFragment.show(getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
+                                            ScrollView sl=findViewById(R.id.sview);
+                                            sl.setScrollY(0);
+                                            sl.setVisibility(View.VISIBLE);
+                                            tt.setVisibility(View.GONE);
+
+                                            aTitle.setEnabled(false);
+                                            aOneLine.setEnabled(false);
+                                            aDetail.setEnabled(false);
+                                            aLink.setEnabled(false);
+
+                                            aTitle.setText(model.getTitle());
+                                            aOneLine.setText(model.getOne_line_desc());
+                                            aDetail.setText(model.getDetail_desc());
+                                            aLink.setText(model.getLinks());
+                                            final ImageView imageView=findViewById(R.id.imageViewBottomSheet);
+                                            if(model.getThumb_image().equals("default") || model.getThumb_image().equals(""))
+                                                Picasso.with(getApplicationContext()).load(R.drawable.noti1).into(imageView);
+                                            else {
+                                                Picasso.with(getApplicationContext()).load(model.getThumb_image()).placeholder(R.drawable.noti1)
+                                                        .networkPolicy(NetworkPolicy.OFFLINE).fit().into(imageView, new Callback() {
+                                                    @Override
+                                                    public void onSuccess() {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onError() {
+                                                        Picasso.with(getApplicationContext()).load(model.getThumb_image())
+                                                                .placeholder(R.drawable.noti1).fit().into(imageView);
+                                                    }
+                                                });
+                                            }
+
+
+                                            //===uncoment xml file in bottom sheet and comment in content_news_feed.xml===
+                                            //bottomSheetDialogFragment.show(getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
 
                                         }
                                     });

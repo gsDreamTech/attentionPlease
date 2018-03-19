@@ -7,12 +7,12 @@
     android:background="@color/colorPrimary"
     tools:context="com.example.admin.attention.startActivity.choose">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <!--de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="match_parent"
         android:layout_height="154dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="101dp"
+        android:layout_marginTop="121dp"
         android:src="@android:color/white" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -20,50 +20,104 @@
         android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="103dp"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_marginTop="123dp"
+        android:src="@mipmap/ic_launcher" /-->
 
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:id="@+id/layoutChoose">
-       <ru.katso.livebutton.LiveButton xmlns:livebutton="http://schemas.android.com/apk/res-auto"
-           android:id="@+id/buttonNewUser"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentBottom="true"
-           android:layout_centerHorizontal="true"
-           android:layout_marginBottom="154dp"
-           android:freezesText="false"
-           android:padding="5dp"
-           android:text="   New User !  "
-           android:textColor="@color/colorPrimaryDark"
-           android:textIsSelectable="false"
-           android:textSize="28sp"
-           livebutton:backgroundColor="@android:color/white"
-           livebutton:shadowColor="@color/colorPrimaryDark" />
-
-       <ru.katso.livebutton.LiveButton xmlns:livebutton="http://schemas.android.com/apk/res-auto"
-           android:id="@+id/buttonLogIn"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignTop="@+id/buttonNewUser"
-           android:layout_centerHorizontal="true"
-           android:layout_marginTop="69dp"
-           android:padding="5dp"
-           android:text="  Log in  "
-
-           android:textSize="28sp"
-           android:textColor="@color/colorPrimaryDark"
-           livebutton:backgroundColor="@android:color/white"
-           livebutton:shadowColor="@color/colorPrimaryDark" />
+    <RelativeLayout
+        android:id="@+id/layoutChoose"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
 
-   </RelativeLayout>
+        <Button
+            android:id="@+id/buttonNewUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="74dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/backgroundwhite"
+            android:paddingEnd="50dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingStart="50dp"
+            android:text="New  User !"
+            android:textColor="@color/colorPrimary"
+            android:textIsSelectable="false"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
 
+        <Button
+            android:id="@+id/buttonLogIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/buttonNewUser"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="38dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/circlemarginbackground"
+            android:paddingEnd="50dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingStart="50dp"
+            android:text="  Log in  "
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tvAp"
+            android:layout_toLeftOf="@+id/tvAp"
+            android:layout_toStartOf="@+id/tvAp"
+            android:src="@drawable/ic_notifications_active_black_24dp" />
+
+        <TextView
+            android:id="@+id/tvAp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="37dp"
+            android:layout_marginRight="37dp"
+            android:layout_marginTop="94dp"
+            android:fontFamily="monospace"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:text="Attention\nPlease"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="33sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:alpha="0.09"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/images" />
 
 
+    </RelativeLayout>
 
 
 </RelativeLayout>

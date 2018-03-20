@@ -60,7 +60,7 @@ dependencies {
     compile 'com.specyci:residemenu:1.6+'
 
     //context - menu
-    compile 'com.yalantis:contextmenu:1.0.7'
+//    compile 'com.yalantis:contextmenu:1.0.7'
 
     compile 'com.google.firebase:firebase-core:11.8.0' //Added this line
 
@@ -71,6 +71,7 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
 
 }
+
 
 
 

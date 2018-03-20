@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.admin.attention.main.MainActivity;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override

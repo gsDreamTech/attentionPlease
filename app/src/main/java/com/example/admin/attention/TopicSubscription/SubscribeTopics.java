@@ -12,9 +12,9 @@ import android.widget.Toast;
 
 import com.dd.processbutton.iml.ActionProcessButton;
 
-import com.example.admin.attention.MainActivity;
 import com.example.admin.attention.ProgressGenerator;
 import com.example.admin.attention.R;
+import com.example.admin.attention.main.MainActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

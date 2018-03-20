@@ -51,6 +51,7 @@
         <item>Bottom</item>
         <item>Center</item>
     </string-array>
+    <string name="title_activity_main">MainActivity</string>
 
 
 </resources>

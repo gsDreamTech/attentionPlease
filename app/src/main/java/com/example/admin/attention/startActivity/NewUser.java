@@ -19,9 +19,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
-import com.example.admin.attention.MainActivity;
 import com.example.admin.attention.R;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
+import com.example.admin.attention.main.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;

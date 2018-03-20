@@ -30,9 +30,9 @@ import android.widget.Toast;
 
 import com.cleveroad.fanlayoutmanager.FanLayoutManager;
 import com.cleveroad.fanlayoutmanager.FanLayoutManagerSettings;
-import com.example.admin.attention.MainActivity;
 import com.example.admin.attention.R;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
+import com.example.admin.attention.main.MainActivity;
 import com.example.admin.attention.profileActivity.ProfileActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,12 +47,7 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.stone.vega.library.VegaLayoutManager;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import static java.security.AccessController.getContext;
 
 public class Newsfeed extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

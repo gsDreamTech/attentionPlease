@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dashboard.iml" filepath="$PROJECT_DIR$/dashboard.iml" />
+      <module fileurl="file://S:\android studio\smart india hackathon\attention please\attentionPlease\app\app.iml" filepath="S:\android studio\smart india hackathon\attention please\attentionPlease\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/attentionPlease.iml" filepath="$PROJECT_DIR$/attentionPlease.iml" />
+      <module fileurl="file://S:\android studio\smart india hackathon\attention please\attentionPlease\dashboard.iml" filepath="S:\android studio\smart india hackathon\attention please\attentionPlease\dashboard.iml" />
     </modules>
   </component>
 </project>

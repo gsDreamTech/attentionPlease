@@ -44,7 +44,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.special.ResideMenu.ResideMenu;
+//import com.special.ResideMenu.ResideMenu;
 import com.tmall.ultraviewpager.UltraViewPager;
 
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
 
     private List<String> listUser;
     private  Map<String,Map<String,String>> mapUser;
-    private ResideMenu resideMenu;
+    //private ResideMenu resideMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

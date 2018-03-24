@@ -28,8 +28,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cleveroad.fanlayoutmanager.FanLayoutManager;
-import com.cleveroad.fanlayoutmanager.FanLayoutManagerSettings;
+//import com.cleveroad.fanlayoutmanager.FanLayoutManager;
+//import com.cleveroad.fanlayoutmanager.FanLayoutManagerSettings;
 import com.example.admin.attention.R;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
 import com.example.admin.attention.main.MainActivity;
@@ -42,7 +42,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;

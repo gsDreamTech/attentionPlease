@@ -68,7 +68,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".SeatAllotment.setaAllotment"></activity>
+        <activity android:name=".SeatAllotment.seatAllotment"></activity>
     </application>
 
 </manifest>

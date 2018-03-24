@@ -31,4 +31,11 @@
     <color name="daystab">#034860</color>
     <color name="daystabback">#154979</color>
 
+    <color name="columnHeader">#1f68a4</color>
+    <color name="evenRow">#FFC7D9E2</color>
+    <color name="oddRow">#FFE9F3F9</color>
+    <color name="button_background">#4f95ce</color>
+    <color name="button_background_pressed">#2382ce</color>
+
+
 </resources>

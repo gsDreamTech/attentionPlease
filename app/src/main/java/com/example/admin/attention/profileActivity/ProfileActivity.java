@@ -67,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
         mName=findViewById(R.id.settingsDiplayName);
         mEmail=findViewById(R.id.textViewEmail);
         mPhone=findViewById(R.id.textViewPhone);
-        mAddress=findViewById(R.id.textViewAddress);
+        //mAddress=findViewById(R.id.textViewAddress);
         mCollege=findViewById(R.id.textViewCollege);
         mBranch=findViewById(R.id.textViewBranch);
         mUSN=findViewById(R.id.textViewUSN);

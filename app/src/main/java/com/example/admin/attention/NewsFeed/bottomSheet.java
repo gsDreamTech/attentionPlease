@@ -53,7 +53,7 @@ public class bottomSheet extends BottomSheetDialogFragment {
     @SuppressLint("RestrictedApi")
     @Override
     public void setupDialog(Dialog dialog, int style) {
-        /*super.setupDialog(dialog, style);
+        super.setupDialog(dialog, style);
         final View contentView = View.inflate(getContext(), R.layout.activity_news_feed_bottom_sheet, null);
         dialog.setContentView(contentView);
 
@@ -106,7 +106,7 @@ public class bottomSheet extends BottomSheetDialogFragment {
         if (behavior != null && behavior instanceof BottomSheetBehavior) {
             ((BottomSheetBehavior) behavior).setBottomSheetCallback(mBottomSheetBehaviorCallback);
         }
-        */
+
     }
 
 }

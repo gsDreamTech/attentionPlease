@@ -159,6 +159,7 @@ public class SubscribeTopics extends AppCompatActivity implements ProgressGenera
                         mUserRef.push().setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+                                MainActivity.topicsSubscribed.edit().putBoolean(rows.get(j).getTitle(),true).apply();
                                 if(j==rows.size()-1)
                                 {
                                     startActivity(new Intent(SubscribeTopics.this,MainActivity.class));

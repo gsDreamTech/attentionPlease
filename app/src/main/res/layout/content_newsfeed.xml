@@ -9,7 +9,7 @@
     tools:showIn="@layout/app_bar_newsfeed">
 
 
-    <ScrollView
+    <!--ScrollView
         android:id="@+id/sview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -100,18 +100,18 @@
                     android:textSize="22sp" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
-    </ScrollView>
+    </ScrollView-->
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/newsList"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
+    <!--TextView
         android:id="@+id/tvdis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,6 +120,6 @@
         android:layout_marginTop="139dp"
         android:text="Select to know more details"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" /-->
 
 </RelativeLayout>

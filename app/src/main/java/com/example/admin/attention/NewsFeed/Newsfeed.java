@@ -42,6 +42,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -70,17 +71,17 @@ public class Newsfeed extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsfeed);
 
-        tt=findViewById(R.id.tvdis);
+        //tt=findViewById(R.id.tvdis);
 
-        aTitle=findViewById(R.id.editTextTitle);
-        aOneLine=findViewById(R.id.editTextOneLine);
-        aDetail=findViewById(R.id.editTextDetail);
-        aLink=findViewById(R.id.editTextLinks);
-
-        aTitle.setEnabled(false);
-        aOneLine.setEnabled(false);
-        aDetail.setEnabled(false);
-        aLink.setEnabled(false);
+//        aTitle=findViewById(R.id.editTextTitle);
+//        aOneLine=findViewById(R.id.editTextOneLine);
+//        aDetail=findViewById(R.id.editTextDetail);
+//        aLink=findViewById(R.id.editTextLinks);
+//
+//        aTitle.setEnabled(false);
+//        aOneLine.setEnabled(false);
+//        aDetail.setEnabled(false);
+//        aLink.setEnabled(false);
 
 
         flag=0;
@@ -138,7 +139,7 @@ public class Newsfeed extends AppCompatActivity
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
-        mNewsList.setLayoutManager(fn);
+        mNewsList.setLayoutManager(vg);
 
 
         //-------------------------newsfeed logic-----------------------------
@@ -163,7 +164,7 @@ public class Newsfeed extends AppCompatActivity
                             };
                             List<String> list = dataSnapshot.child("topics").getValue(gs);
                             for (int i = 0; i < list.size(); i++)
-                                if (MainActivity.topicsSubscribed.getBoolean(list.get(i), true)) {
+                                if ( MainActivity.topicsSubscribed.getBoolean(list.get(i), false)) {
 
                                     viewHolder.setNewsTitle(model.getTitle());
                                     viewHolder.setNewsInfo(model.getOne_line_desc());
@@ -173,63 +174,67 @@ public class Newsfeed extends AppCompatActivity
                                         MainActivity.topicsSubscribed.edit().putString(String.valueOf(i), model.getThumb_image()).apply();
                                         i = i + 1;
                                     }
-                                    viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                                            layout.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-//                                            rowNewsData.edit().putString("title", model.getTitle()).apply();
-//                                            rowNewsData.edit().putString("oneline", model.getOne_line_desc()).apply();
-//                                            rowNewsData.edit().putString("detail", model.getDetail_desc()).apply();
-//                                            rowNewsData.edit().putString("links", model.getLinks()).apply();
-//                                            rowNewsData.edit().putString("image", model.getImage()).apply();
-//                                            rowNewsData.edit().putString("thumbimage", model.getThumb_image()).apply();
+                                            Log.i("title",model.getTitle());
+                                            Log.i("titleId", getRef(position).getKey());
 
-                                            ScrollView sl=findViewById(R.id.sview);
-                                            sl.setScrollY(0);
-                                            sl.setVisibility(View.VISIBLE);
-                                            tt.setVisibility(View.GONE);
+                                            rowNewsData.edit().putString("notiid", getRef(position).getKey()).apply();
+                                            rowNewsData.edit().putString("title", model.getTitle()).apply();
+                                            rowNewsData.edit().putString("oneline", model.getOne_line_desc()).apply();
+                                            rowNewsData.edit().putString("detail", model.getDetail_desc()).apply();
+                                            rowNewsData.edit().putString("links", model.getLinks()).apply();
+                                            rowNewsData.edit().putString("image", model.getImage()).apply();
+                                            rowNewsData.edit().putString("thumbimage", model.getThumb_image()).apply();
 
-                                            aTitle.setEnabled(false);
-                                            aOneLine.setEnabled(false);
-                                            aDetail.setEnabled(false);
-                                            aLink.setEnabled(false);
-
-                                            aTitle.setText(model.getTitle());
-                                            aOneLine.setText(model.getOne_line_desc());
-                                            aDetail.setText(model.getDetail_desc());
-                                            aLink.setText(model.getLinks());
-                                            final ImageView imageView=findViewById(R.id.imageViewBottomSheet);
-                                            if(model.getThumb_image().equals("default") || model.getThumb_image().equals(""))
-                                                Picasso.with(getApplicationContext()).load(R.drawable.noti1).into(imageView);
-                                            else {
-                                                Picasso.with(getApplicationContext()).load(model.getThumb_image()).placeholder(R.drawable.noti1)
-                                                        .networkPolicy(NetworkPolicy.OFFLINE).fit().into(imageView, new Callback() {
-                                                    @Override
-                                                    public void onSuccess() {
-
-                                                    }
-
-                                                    @Override
-                                                    public void onError() {
-                                                        Picasso.with(getApplicationContext()).load(model.getThumb_image())
-                                                                .placeholder(R.drawable.noti1).fit().into(imageView);
-                                                    }
-                                                });
-                                            }
+//                                            ScrollView sl=findViewById(R.id.sview);
+//                                            sl.setScrollY(0);
+//                                            sl.setVisibility(View.VISIBLE);
+//                                            tt.setVisibility(View.GONE);
+//
+//                                            aTitle.setEnabled(false);
+//                                            aOneLine.setEnabled(false);
+//                                            aDetail.setEnabled(false);
+//                                            aLink.setEnabled(false);
+//
+//                                            aTitle.setText(model.getTitle());
+//                                            aOneLine.setText(model.getOne_line_desc());
+//                                            aDetail.setText(model.getDetail_desc());
+//                                            aLink.setText(model.getLinks());
+//                                            final ImageView imageView=findViewById(R.id.imageViewBottomSheet);
+//                                            if(model.getThumb_image().equals("default") || model.getThumb_image().equals(""))
+//                                                Picasso.with(getApplicationContext()).load(R.drawable.noti1).into(imageView);
+//                                            else {
+//                                                Picasso.with(getApplicationContext()).load(model.getThumb_image()).placeholder(R.drawable.noti1)
+//                                                        .networkPolicy(NetworkPolicy.OFFLINE).fit().into(imageView, new Callback() {
+//                                                    @Override
+//                                                    public void onSuccess() {
+//
+//                                                    }
+//
+//                                                    @Override
+//                                                    public void onError() {
+//                                                        Picasso.with(getApplicationContext()).load(model.getThumb_image())
+//                                                                .placeholder(R.drawable.noti1).fit().into(imageView);
+//                                                    }
+//                                                });
+//                                            }
 
 
                                             //===uncoment xml file in bottom sheet and comment in content_news_feed.xml===
-                                            //bottomSheetDialogFragment.show(getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
+                                            bottomSheetDialogFragment.show(getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
 
                                         }
                                     });
                                     break;
                                 }
-//                                else {
-//        //                            viewHolder.mView.setVisibility(View.GONE);
-//        //                            viewHolder.mView.setSystemUiVisibility(View.GONE);
-//                                    viewHolder.Layout_hide();
-//
-//                                }
+                                else {
+        //                            viewHolder.mView.setVisibility(View.GONE);
+        //                            viewHolder.mView.setSystemUiVisibility(View.GONE);
+                                    viewHolder.Layout_hide();
+
+                                }
                         }catch(Exception e)
                         {
                             Log.i("error in populate",e.getMessage());

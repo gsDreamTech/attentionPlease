@@ -10,6 +10,7 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -35,8 +37,11 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import id.zelory.compressor.Compressor;
@@ -101,8 +106,20 @@ public class ProfileActivity extends AppCompatActivity {
                    mBranch.setText(dataSnapshot.child("branch").getValue().toString());
                    mUSN.setText(dataSnapshot.child("usn").getValue().toString());
                    mPhone.setText(dataSnapshot.child("phone").getValue().toString());
-                   if(dataSnapshot.hasChild("topics_subscribed"))
-                        mTopics.setText(dataSnapshot.child("topics_subscribed").getValue().toString().replace("~~",","));
+
+
+                   if(dataSnapshot.hasChild("topics"))
+                   {
+                       Map<String,Map<String,String>> map= (Map<String ,Map< String,String >>)dataSnapshot.child("topics").getValue();
+                       List<String> list = new ArrayList<>(map.keySet());
+                       StringBuilder topicsString= new StringBuilder();
+                       for(int i=0;i<list.size();i++)
+                       {
+                           topicsString = new StringBuilder("" + topicsString + map.get(list.get(i)).get("title") + "\n");
+                       }
+                       Log.i("topics", topicsString.toString());
+                       mTopics.setText(topicsString.toString());
+                   }
                    if(dataSnapshot.child("image").getValue().toString().equals("default") || dataSnapshot.child("image").getValue().toString().equals(""))
                        Picasso.with(getApplicationContext()).load(R.drawable.people3).into(mImage);
                    else
@@ -189,7 +206,7 @@ public class ProfileActivity extends AppCompatActivity {
                                         Map<String, Object> updateHashmap=new HashMap<>();
                                         updateHashmap.put("image",downloadUrl);
                                         updateHashmap.put("thumb_image",thumb_downloadUrl);
-                                        FirebaseDatabase.getInstance().getReference().child("USERS LIST").child(current_user_id).updateChildren(updateHashmap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        FirebaseDatabase.getInstance().getReference().child("users").child(current_user_id).updateChildren(updateHashmap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 pd.dismiss();

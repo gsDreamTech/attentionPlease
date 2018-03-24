@@ -39,6 +39,8 @@ public class alogin extends AppCompatActivity {
         ap=new AlphaAnimation(1f,0.5f);
 
         pd=new ProgressDialog(this);
+        pd.setTitle("Logging in....");
+        pd.setMessage("Pleaase wait....");
 
         pd.setCanceledOnTouchOutside(false);
 

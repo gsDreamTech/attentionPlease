@@ -22,7 +22,9 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/settingsImage2"
@@ -40,23 +42,22 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/profile_pic" />
+                    android:src="@drawable/people3" />
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/floatingActionButtonSettingsImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_alignBottom="@+id/settingsImage"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginBottom="11dp"
-                    android:layout_marginEnd="93dp"
-                    android:layout_marginRight="93dp"
+                    android:layout_marginEnd="92dp"
+                    android:layout_marginRight="92dp"
                     android:clickable="true"
                     android:focusable="true"
-                    app:backgroundTint="@color/asset1"
-                    app:fabSize="normal"
-                    android:src="@drawable/ic_menu_camera" />
+                    android:src="@drawable/ic_menu_camera"
+                    app:backgroundTint="@color/lightBlue"
+                    app:fabSize="normal" />
             </RelativeLayout>
 
             <TextView

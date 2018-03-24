@@ -112,15 +112,15 @@ public class Newsfeed extends AppCompatActivity
         mNewsList=findViewById(R.id.newsList);
         mNewsList.setHasFixedSize(true);
         mNewsList.setItemAnimator(new DefaultItemAnimator());
-        FanLayoutManagerSettings fanLayoutManagerSettings = FanLayoutManagerSettings
-                .newBuilder(this)
-                .withFanRadius(true)
-                .withAngleItemBounce(5)
-                .withViewWidthDp(140)
-                .withViewHeightDp(190)
-                .build();
-
-        FanLayoutManager fn=new FanLayoutManager(this,fanLayoutManagerSettings);
+//        FanLayoutManagerSettings fanLayoutManagerSettings = FanLayoutManagerSettings
+//                .newBuilder(this)
+//                .withFanRadius(true)
+//                .withAngleItemBounce(5)
+//                .withViewWidthDp(140)
+//                .withViewHeightDp(190)
+//                .build();
+//
+//        FanLayoutManager fn=new FanLayoutManager(this,fanLayoutManagerSettings);
 
 
         VegaLayoutManager vg=new VegaLayoutManager();

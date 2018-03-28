@@ -96,165 +96,194 @@
     </LinearLayout>
 
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="42dp"
         android:layout_below="@+id/spinnerLayout"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-        <LinearLayout
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerLayout"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:tabGravity="fill"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="#FFFFFF" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginTop="104dp"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout_id" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:ignore="UselessParent">
 
-                <LinearLayout
-                    android:id="@+id/timeLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
-                    <!--LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/time_table_back_ground"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/spinnerLayout"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:baselineAligned="false">-->
 
-                        <TextView
-                            android:id="@+id/textView2"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="monospace"
-                            android:paddingLeft="5dp"
-                            android:text="08:00"
-                            android:textSize="26sp"
-                            android:textStyle="bold" />
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:orientation="vertical">-->
 
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="hel"
-                            android:textAlignment="center"
-                            android:textSize="26sp"
-                            android:textStyle="bold" />
-                    </LinearLayout-->
+            <!--<ScrollView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--tools:ignore="UselessParent">-->
 
-                </LinearLayout>
-            </ScrollView>
-        </LinearLayout>
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/timeLinearLayout"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
 
-        <ScrollView
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                    <!--&lt;!&ndash;LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="60dp"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:background="@drawable/time_table_back_ground"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:orientation="horizontal">-->
 
-            <LinearLayout
-                android:id="@+id/dayslayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="3dp"
-                android:paddingStart="3dp">
+                        <!--<TextView-->
+                            <!--android:id="@+id/textView2"-->
+                            <!--android:layout_width="200dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:fontFamily="monospace"-->
+                            <!--android:paddingLeft="5dp"-->
+                            <!--android:text="08:00"-->
+                            <!--android:textSize="26sp"-->
+                            <!--android:textStyle="bold" />-->
 
-                <Button
-                    android:id="@+id/buttonMonday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/days_background"
-                    android:text="MON"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                        <!--<TextView-->
+                            <!--android:id="@+id/textView3"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:text="hel"-->
+                            <!--android:textAlignment="center"-->
+                            <!--android:textSize="26sp"-->
+                            <!--android:textStyle="bold" />-->
+                    <!--</LinearLayout&ndash;&gt;-->
 
-                <Button
-                    android:id="@+id/buttonTuesday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/days_background"
-                    android:text="TUE"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                <!--</LinearLayout>-->
+            <!--</ScrollView>-->
+        <!--</LinearLayout>-->
 
-                <Button
-                    android:id="@+id/buttonWednesday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/days_background"
-                    android:text="WED"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+        <!--<ScrollView-->
+            <!--android:layout_width="130dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1">-->
 
-                <Button
-                    android:id="@+id/buttonThursday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/days_background"
-                    android:text="THU"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+            <!--<LinearLayout-->
+                <!--android:id="@+id/dayslayout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:paddingLeft="3dp"-->
+                <!--android:paddingStart="3dp">-->
 
-                <Button
-                    android:id="@+id/buttonFriday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/days_background"
-                    android:text="FRI"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                <!--<Button-->
+                    <!--android:id="@+id/buttonMonday"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="5dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:background="@drawable/days_background"-->
+                    <!--android:text="MON"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="18sp"-->
+                    <!--android:textStyle="bold" />-->
 
-                <Button
-                    android:id="@+id/buttonSaturday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/days_background"
-                    android:text="SAT"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                <!--<Button-->
+                    <!--android:id="@+id/buttonTuesday"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="5dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:background="@drawable/days_background"-->
+                    <!--android:text="TUE"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="18sp"-->
+                    <!--android:textStyle="bold" />-->
 
-                <Button
-                    android:id="@+id/buttonSunday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/days_background"
-                    android:text="SUN"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </ScrollView>
+                <!--<Button-->
+                    <!--android:id="@+id/buttonWednesday"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="5dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:background="@drawable/days_background"-->
+                    <!--android:text="WED"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="18sp"-->
+                    <!--android:textStyle="bold" />-->
 
-    </LinearLayout>
+                <!--<Button-->
+                    <!--android:id="@+id/buttonThursday"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="5dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:background="@drawable/days_background"-->
+                    <!--android:text="THU"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="18sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/buttonFriday"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="5dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:background="@drawable/days_background"-->
+                    <!--android:text="FRI"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="18sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/buttonSaturday"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="5dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:background="@drawable/days_background"-->
+                    <!--android:text="SAT"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="18sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/buttonSunday"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="5dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:background="@drawable/days_background"-->
+                    <!--android:text="SUN"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="18sp"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</LinearLayout>-->
+        <!--</ScrollView>-->
+
+    <!--</LinearLayout>-->
 </RelativeLayout>
 
 

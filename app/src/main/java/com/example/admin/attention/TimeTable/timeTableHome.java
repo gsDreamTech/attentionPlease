@@ -5,8 +5,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -40,6 +43,10 @@ public class timeTableHome extends AppCompatActivity implements View.OnClickList
     private List<List<String>> list;
     private LinearLayout rowLayout,timeLinear,dayslayout;
     private SharedPreferences timeSharedPreference;
+
+    TabLayout tabLayout;
+    ViewPager viewPager;
+
     Button button[];
     @SuppressLint("NewApi")
     @Override
@@ -49,7 +56,7 @@ public class timeTableHome extends AppCompatActivity implements View.OnClickList
         timeSharedPreference=this.getSharedPreferences("com.example.admin.attention.TimeTable", Context.MODE_PRIVATE);
 
 
-        timeLinear=findViewById(R.id.timeLinearLayout);
+        //timeLinear=findViewById(R.id.timeLinearLayout);
         String branch[]={"CSE", "MECH", "EEE", "EC", "IS", "IT", "ARCHI", "BT"};
         String section[]={"A","B","C","D","E","F","G","H","I","J","K","L","M"};
         String sem[]={"1","2","3","4"};
@@ -64,24 +71,52 @@ public class timeTableHome extends AppCompatActivity implements View.OnClickList
         sectionSpinner.setAdapter(sectionAdapter);
 
 
-        LayoutTransition lt=new LayoutTransition();
-        lt.enableTransitionType(LayoutTransition.CHANGING);
-        lt.setDuration(500);
+//        LayoutTransition lt=new LayoutTransition();
+//        lt.enableTransitionType(LayoutTransition.CHANGING);
+//        lt.setDuration(500);
+//
+//        dayslayout=findViewById(R.id.dayslayout);
+//        dayslayout.setLayoutTransition(lt);
+//
+//
+//        button=new Button[7];
+//        button[0]=findViewById(R.id.buttonMonday);
+//        button[1]=findViewById(R.id.buttonTuesday);
+//        button[2]=findViewById(R.id.buttonWednesday);
+//        button[3]=findViewById(R.id.buttonThursday);
+//        button[4]=findViewById(R.id.buttonFriday);
+//        button[5]=findViewById(R.id.buttonSaturday);
+//        button[6]=findViewById(R.id.buttonSunday);
+//        for(int i=0;i<7;i++)
+//            button[i].setOnClickListener(this);
 
-        dayslayout=findViewById(R.id.dayslayout);
-        dayslayout.setLayoutTransition(lt);
 
 
-        button=new Button[7];
-        button[0]=findViewById(R.id.buttonMonday);
-        button[1]=findViewById(R.id.buttonTuesday);
-        button[2]=findViewById(R.id.buttonWednesday);
-        button[3]=findViewById(R.id.buttonThursday);
-        button[4]=findViewById(R.id.buttonFriday);
-        button[5]=findViewById(R.id.buttonSaturday);
-        button[6]=findViewById(R.id.buttonSunday);
-        for(int i=0;i<7;i++)
-            button[i].setOnClickListener(this);
+
+
+
+        viewPager = (ViewPager) findViewById(R.id.viewPager_id);
+
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        adapter.addFragment(new mondayFragment(),"Monday");
+        adapter.addFragment(new tuesdayFragment(),"Tuesday");
+        adapter.addFragment(new wednesdayFragment(),"Wednesday");
+        adapter.addFragment(new thursdayFragment(),"Thursday");
+        adapter.addFragment(new fridayFragment(),"Friday");
+        adapter.addFragment(new saturdayFragment(),"Saturday");
+        adapter.addFragment(new sundayFragment(),"Sunday");
+
+        viewPager.setAdapter(adapter);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout_id);
+
+        tabLayout.setupWithViewPager(viewPager);
+
+
+
+
+
 
 
         branchSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -150,8 +185,8 @@ public class timeTableHome extends AppCompatActivity implements View.OnClickList
                     GenericTypeIndicator<List<List<String>>> genericTypeIndicator = new GenericTypeIndicator<List<List<String>>>() {
                     };
                     list = dataSnapshot.getValue(genericTypeIndicator);
-                    setbutton(timeSharedPreference.getInt("day",1));
-                    init(timeSharedPreference.getInt("day",1));
+//                    setbutton(timeSharedPreference.getInt("day",1));
+//                    init(timeSharedPreference.getInt("day",1));
 
                 }
 
@@ -222,55 +257,55 @@ public class timeTableHome extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch( view.getId() ){
-            case R.id.buttonMonday:
-                if(timeSharedPreference.getInt("day",0)==1)
-                    break;
-                setbutton(1);
-                timeSharedPreference.edit().putInt("day",1).apply();
-                fetch();
-                break;
-            case R.id.buttonTuesday:
-                if(timeSharedPreference.getInt("day",0)==2)
-                    break;
-                setbutton(2);
-                timeSharedPreference.edit().putInt("day",2).apply();
-                fetch();
-                break;
-            case R.id.buttonWednesday:
-                if(timeSharedPreference.getInt("day",0)==3)
-                    break;
-                setbutton(3);
-                timeSharedPreference.edit().putInt("day",3).apply();
-                fetch();
-                break;
-            case R.id.buttonThursday:
-                if(timeSharedPreference.getInt("day",0)==4)
-                    break;
-                setbutton(4);
-                timeSharedPreference.edit().putInt("day",4).apply();
-                fetch();
-                break;
-            case R.id.buttonFriday:
-                if(timeSharedPreference.getInt("day",0)==5)
-                    break;
-                setbutton(5);
-                timeSharedPreference.edit().putInt("day",5).apply();
-                fetch();
-                break;
-            case R.id.buttonSaturday:
-                if(timeSharedPreference.getInt("day",0)==6)
-                    break;
-                setbutton(6);
-                timeSharedPreference.edit().putInt("day",6).apply();
-                fetch();
-                break;
-            case R.id.buttonSunday:
-                if(timeSharedPreference.getInt("day",0)==7)
-                    break;
-                setbutton(7);
-                timeSharedPreference.edit().putInt("day",7).apply();
-                fetch();
-                break;
+//            case R.id.buttonMonday:
+//                if(timeSharedPreference.getInt("day",0)==1)
+//                    break;
+//                setbutton(1);
+//                timeSharedPreference.edit().putInt("day",1).apply();
+//                fetch();
+//                break;
+//            case R.id.buttonTuesday:
+//                if(timeSharedPreference.getInt("day",0)==2)
+//                    break;
+//                setbutton(2);
+//                timeSharedPreference.edit().putInt("day",2).apply();
+//                fetch();
+//                break;
+//            case R.id.buttonWednesday:
+//                if(timeSharedPreference.getInt("day",0)==3)
+//                    break;
+//                setbutton(3);
+//                timeSharedPreference.edit().putInt("day",3).apply();
+//                fetch();
+//                break;
+//            case R.id.buttonThursday:
+//                if(timeSharedPreference.getInt("day",0)==4)
+//                    break;
+//                setbutton(4);
+//                timeSharedPreference.edit().putInt("day",4).apply();
+//                fetch();
+//                break;
+//            case R.id.buttonFriday:
+//                if(timeSharedPreference.getInt("day",0)==5)
+//                    break;
+//                setbutton(5);
+//                timeSharedPreference.edit().putInt("day",5).apply();
+//                fetch();
+//                break;
+//            case R.id.buttonSaturday:
+//                if(timeSharedPreference.getInt("day",0)==6)
+//                    break;
+//                setbutton(6);
+//                timeSharedPreference.edit().putInt("day",6).apply();
+//                fetch();
+//                break;
+//            case R.id.buttonSunday:
+//                if(timeSharedPreference.getInt("day",0)==7)
+//                    break;
+//                setbutton(7);
+//                timeSharedPreference.edit().putInt("day",7).apply();
+//                fetch();
+//                break;
         }
     }
 

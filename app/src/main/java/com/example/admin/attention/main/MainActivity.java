@@ -23,12 +23,15 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.example.admin.attention.NewsFeed.Newsfeed;
+import com.example.admin.attention.Result.chooseresultdata;
+import com.example.admin.attention.Result.result;
 import com.example.admin.attention.SeatAllotment.seatAllotment;
 import com.example.admin.attention.R;
 import com.example.admin.attention.TimeTable.timeTableHome;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
 import com.example.admin.attention.profileActivity.ProfileActivity;
 import com.example.admin.attention.startActivity.choose;
+import com.example.admin.attention.subadmin.SubAdmin;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -147,6 +150,22 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, seatAllotment.class));
+            }
+        });
+
+        CardView res=findViewById(R.id.resultcard);
+        res.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, chooseresultdata.class));
+            }
+        });
+
+        CardView subadmin=findViewById(R.id.subadminCard);
+        subadmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SubAdmin.class));
             }
         });
 

@@ -1,123 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.example.admin.attention.startActivity.choose">
+    tools:context="com.example.admin.attention.startActivity.choose"
+    android:id="@+id/layoutChoose">
 
-    <!--de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="match_parent"
-        android:layout_height="154dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp"
-        android:src="@android:color/white" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="123dp"
-        android:src="@mipmap/ic_launcher" /-->
+    <ImageView
+        android:layout_width="385dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="128dp"
+        android:background="@drawable/bg_image"
+        android:scaleX="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="0dp"
+        android:layout_marginRight="128dp"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/todo" />
 
-    <RelativeLayout
-        android:id="@+id/layoutChoose"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:background="@color/colorPrimary"
+        android:alpha="0.85"/>
+
+    <ImageView
+        android:layout_width="282dp"
+        android:layout_height="84dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/todo" />
+
+    <Button
+        android:id="@+id/buttonLogIn"
+        android:layout_width="280dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/borderbutton"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:text="LOGIN"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNewUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonNewUser"
+        android:layout_width="280dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="88dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:background="@drawable/whitebutton"
+        android:text="REGISTER"
+        android:textColor="@color/colorPrimary"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
 
 
-        <Button
-            android:id="@+id/buttonNewUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="74dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginStart="50dp"
-            android:background="@drawable/backgroundwhite"
-            android:paddingEnd="50dp"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:paddingStart="50dp"
-            android:text="New  User !"
-            android:textColor="@color/colorPrimary"
-            android:textIsSelectable="false"
-            android:textSize="28sp"
-            android:textStyle="bold" />
 
 
-        <Button
-            android:id="@+id/buttonLogIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/buttonNewUser"
 
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="38dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginStart="50dp"
-            android:background="@drawable/circlemarginbackground"
-            android:paddingEnd="50dp"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:paddingStart="50dp"
-            android:text="  Log in  "
-            android:textColor="@color/white"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tvAp"
-            android:layout_toLeftOf="@+id/tvAp"
-            android:layout_toStartOf="@+id/tvAp"
-            android:src="@drawable/ic_notifications_active_black_24dp" />
-
-        <TextView
-            android:id="@+id/tvAp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="37dp"
-            android:layout_marginRight="37dp"
-            android:layout_marginTop="94dp"
-            android:fontFamily="monospace"
-            android:paddingLeft="10dp"
-            android:paddingStart="10dp"
-            android:text="Attention\nPlease"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="33sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:alpha="0.09"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/images" />
-
-
-    </RelativeLayout>
-
-
-</RelativeLayout>

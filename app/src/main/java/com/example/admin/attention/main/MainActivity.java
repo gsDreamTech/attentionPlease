@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import com.example.admin.attention.R;
 import com.example.admin.attention.TimeTable.timeTableHome;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
 import com.example.admin.attention.profileActivity.ProfileActivity;
+import com.example.admin.attention.resultsheet.result_layout;
 import com.example.admin.attention.startActivity.choose;
 import com.example.admin.attention.subadmin.SubAdmin;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,6 +61,9 @@ public class MainActivity extends AppCompatActivity
     public static SharedPreferences topicsSubscribed;
     public static DatabaseReference mDatabaseRef;
     private PagerAdapter adapter;
+
+
+    private Button results_button;
 
     private UltraViewPager.Orientation gravity_indicator;
 
@@ -95,6 +100,33 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
+
+
+
+        results_button=findViewById(R.id.Results);
+        results_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,result_layout.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         topicsSubscribed=this.getSharedPreferences("com.example.admin.attentionplease", Context.MODE_PRIVATE);
 //        Button bt=findViewById(R.id.testing);
 //        bt.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +144,12 @@ public class MainActivity extends AppCompatActivity
 //                FirebaseDatabase.getInstance().getReference().child("Colleges").child("C-1297").child("notifications").push().setValue(updateHashmap);
 //            }
 //        });
+
+
+
+
+
+
 
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();

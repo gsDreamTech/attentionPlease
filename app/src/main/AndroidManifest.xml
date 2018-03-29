@@ -70,7 +70,10 @@
 
         <activity android:name=".SeatAllotment.seatAllotment" />
         <activity android:name=".Result.chooseresultdata" />
-        <activity android:name=".subadmin.SubAdmin"></activity>
+        <activity android:name=".subadmin.SubAdmin" />
+        <activity android:name=".resultsheet.result_layout" />
+        <activity android:name=".resultsheet.individualResult" />
+        <activity android:name=".notificationHistory.NotificationHistory"></activity>
     </application>
 
 </manifest>

@@ -116,7 +116,7 @@ public class SubscribeTopics extends AppCompatActivity implements ProgressGenera
                                 listView.setAdapter(new CustomArrayAdapter(SubscribeTopics.this, rows));
 
                             } catch (Exception e) {
-                                Log.i("error", e.getMessage());
+                                Log.i("error1", e.getMessage());
                             }
                         }
 
@@ -126,7 +126,7 @@ public class SubscribeTopics extends AppCompatActivity implements ProgressGenera
                         }
                     });
                 }catch (Exception e){
-                    Log.i("error",e.getMessage());
+                    Log.i("error2",e.getMessage());
                 }
             }
 

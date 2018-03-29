@@ -104,11 +104,12 @@ public class SubscribeTopics extends AppCompatActivity implements ProgressGenera
                                     row.setTitle(map.get(list.get(i)).get("title"));
                                     row.setSubtitle(map.get(list.get(i)).get("desc"));
                                     //=================condition for already subscribed topic============================
-
-                                    for (int j = 0; j < listUser.size(); j++) {
-                                        if (mapUser.get(listUser.get(j)).get("title").equals(map.get(list.get(i)).get("title"))) {
-                                            row.setChecked(true);
-                                            break;
+                                    if(Snapshot.hasChild("topics")) {
+                                        for (int j = 0; j < listUser.size(); j++) {
+                                            if (mapUser.get(listUser.get(j)).get("title").equals(map.get(list.get(i)).get("title"))) {
+                                                row.setChecked(true);
+                                                break;
+                                            }
                                         }
                                     }
                                     rows.add(row);
@@ -141,7 +142,7 @@ public class SubscribeTopics extends AppCompatActivity implements ProgressGenera
             @Override
             public void onClick(View view) {
 
-                mUserRef.setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
+                mUserRef.child("topics").setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
 
@@ -156,7 +157,7 @@ public class SubscribeTopics extends AppCompatActivity implements ProgressGenera
                         map.put("title",rows.get(i).getTitle());
                         map.put("desc",rows.get(i).getSubtitle());
                         final int j=i;
-                        mUserRef.push().setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        mUserRef.child("topics").push().setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 MainActivity.topicsSubscribed.edit().putBoolean(rows.get(j).getTitle(),true).apply();
@@ -174,6 +175,7 @@ public class SubscribeTopics extends AppCompatActivity implements ProgressGenera
                         finish();
                     }
                 }
+
             }
         });
     }

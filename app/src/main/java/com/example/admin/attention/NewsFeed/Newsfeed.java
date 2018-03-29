@@ -31,6 +31,9 @@ import android.widget.Toast;
 //import com.cleveroad.fanlayoutmanager.FanLayoutManager;
 //import com.cleveroad.fanlayoutmanager.FanLayoutManagerSettings;
 import com.example.admin.attention.R;
+import com.example.admin.attention.Result.result;
+import com.example.admin.attention.SeatAllotment.seatAllotment;
+import com.example.admin.attention.TimeTable.timeTableHome;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
 import com.example.admin.attention.main.MainActivity;
 import com.example.admin.attention.profileActivity.ProfileActivity;
@@ -42,6 +45,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -376,16 +380,40 @@ public class Newsfeed extends AppCompatActivity
 
         if (id == R.id.notification_id) {
 
+
+
         } else if (id == R.id.timetable_id) {
+
+            startActivity(new Intent(Newsfeed.this,timeTableHome.class));
+            finish();
 
         } else if (id == R.id.settings_id) {
 
+
         } else if (id == R.id.results_id) {
 
+            startActivity(new Intent(Newsfeed.this,result.class));
+            finish();
         } else if (id == R.id.seatallotment_id) {
 
+            startActivity(new Intent(Newsfeed.this,seatAllotment.class));
+            finish();
         } else if (id == R.id.newsfeed_id) {
 
+            startActivity(new Intent(Newsfeed.this,Newsfeed.class));
+            finish();
+        } else if ( id == R.id.logout_navigation_button){
+            pd.setTitle("Logging out");
+            pd.setMessage("Please wait for a while...");
+            pd.show();
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(MainActivity.topicsSubscribed.getString("CollegeCode",""));
+            mAuth.signOut();
+            Toast.makeText(getApplicationContext(),"Signed out Sucessfully",Toast.LENGTH_LONG).show();
+            pd.dismiss();
+            Intent intent=new Intent(Newsfeed.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

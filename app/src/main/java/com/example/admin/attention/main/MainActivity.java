@@ -306,6 +306,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, choose.class));
             finish();
         } else {
+            FirebaseMessaging.getInstance().subscribeToTopic(topicsSubscribed.getString("CollegeCode",""));
             mDatabaseRef.child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -396,6 +397,7 @@ public class MainActivity extends AppCompatActivity
             pd.setTitle("Logging out");
             pd.setMessage("Please wait for a while...");
             pd.show();
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(topicsSubscribed.getString("CollegeCode",""));
             mAuth.signOut();
             Toast.makeText(getApplicationContext(),"Signed out Sucessfully",Toast.LENGTH_LONG).show();
             pd.dismiss();

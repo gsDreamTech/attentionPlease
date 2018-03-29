@@ -81,9 +81,9 @@ public class bottomSheet extends BottomSheetDialogFragment {
         aDetail.setText(Newsfeed.rowNewsData.getString("detail",""));
         aLink.setText(Newsfeed.rowNewsData.getString("links",""));
         if(Newsfeed.rowNewsData.getString("thumbimage","").equals("default") || Newsfeed.rowNewsData.getString("thumbimage","").equals(""))
-            Picasso.with(getContext()).load(R.drawable.noti1).into(imageView);
+            Picasso.with(getContext()).load(R.drawable.notific).into(imageView);
         else {
-            Picasso.with(getContext()).load(Newsfeed.rowNewsData.getString("thumbimage", "")).placeholder(R.drawable.noti1)
+            Picasso.with(getContext()).load(Newsfeed.rowNewsData.getString("thumbimage", "")).placeholder(R.drawable.notific)
                     .networkPolicy(NetworkPolicy.OFFLINE).fit().into(imageView, new Callback() {
                 @Override
                 public void onSuccess() {
@@ -93,7 +93,7 @@ public class bottomSheet extends BottomSheetDialogFragment {
                 @Override
                 public void onError() {
                     Picasso.with(getContext()).load(Newsfeed.rowNewsData.getString("image", ""))
-                            .placeholder(R.drawable.noti1).fit().into(imageView);
+                            .placeholder(R.drawable.notific).fit().into(imageView);
                 }
             });
         }

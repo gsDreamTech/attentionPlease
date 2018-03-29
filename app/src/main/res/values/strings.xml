@@ -91,5 +91,19 @@
     <string name="sunday">Sunday</string>
     <string name="saturday">Saturday</string>
 
+    <string name="monkey_d_luffy">Monkey D Luffy</string>
+    <string name="roronoa_zoro">Roronoa Zoro</string>
+    <string name="notification">Notification</string>
+    <string name="news_feed">News Feed</string>
+    <string name="time_table">Time Table</string>
+    <string name="results">Results</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="log_out">LOG OUT</string>
+    <string name="seat_allotment">Seat Allotment</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
 
 </resources>

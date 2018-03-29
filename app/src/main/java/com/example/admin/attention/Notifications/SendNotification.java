@@ -32,7 +32,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.admin.attention.NewsFeed.Newsfeed;
 import com.example.admin.attention.R;
+import com.example.admin.attention.Result.result;
+import com.example.admin.attention.SeatAllotment.seatAllotment;
+import com.example.admin.attention.TimeTable.timeTableHome;
+import com.example.admin.attention.main.MainActivity;
+import com.example.admin.attention.startActivity.choose;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -78,7 +84,7 @@ public class SendNotification extends AppCompatActivity
     private boolean flag=false;
     private Uri resultUri=null;
     private String notificationId;
-
+    private Button  logoutNavigationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +127,22 @@ public class SendNotification extends AppCompatActivity
         pd.setTitle("Sending notification!");
         pd.setMessage("Please wait...");
         pd.setCanceledOnTouchOutside(false);
+
+        logoutNavigationButton=findViewById(R.id.logout_navigation_button);
+        logoutNavigationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pd.setTitle("Logging out");
+                pd.setMessage("Please wait for a while...");
+                pd.show();
+                mAuth.signOut();
+                Toast.makeText(getApplicationContext(),"Signed out Sucessfully",Toast.LENGTH_LONG).show();
+                pd.dismiss();
+                Intent intent=new Intent(SendNotification.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
         //mCurrentUser=FirebaseAuth.getInstance().getCurrentUser();
         mAuth=FirebaseAuth.getInstance();
         mDatabaseRef= FirebaseDatabase.getInstance().getReference().child("users");
@@ -347,27 +369,7 @@ public class SendNotification extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -375,11 +377,45 @@ public class SendNotification extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
 
+        if (id == R.id.notification_id) {
+
+
+
+        } else if (id == R.id.timetable_id) {
+
+            startActivity(new Intent(SendNotification.this,timeTableHome.class));
+            finish();
+
+        } else if (id == R.id.settings_id) {
+
+
+        } else if (id == R.id.results_id) {
+
+            startActivity(new Intent(SendNotification.this,result.class));
+            finish();
+        } else if (id == R.id.seatallotment_id) {
+
+            startActivity(new Intent(SendNotification.this,seatAllotment.class));
+            finish();
+        } else if (id == R.id.newsfeed_id) {
+
+            startActivity(new Intent(SendNotification.this,Newsfeed.class));
+            finish();
+        } else if ( id == R.id.logout_navigation_button){
+            pd.setTitle("Logging out");
+            pd.setMessage("Please wait for a while...");
+            pd.show();
+            mAuth.signOut();
+            Toast.makeText(getApplicationContext(),"Signed out Sucessfully",Toast.LENGTH_LONG).show();
+            pd.dismiss();
+            Intent intent=new Intent(SendNotification.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

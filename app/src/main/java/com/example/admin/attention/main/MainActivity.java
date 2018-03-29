@@ -24,6 +24,7 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.example.admin.attention.NewsFeed.Newsfeed;
+import com.example.admin.attention.Notifications.SendNotification;
 import com.example.admin.attention.Result.chooseresultdata;
 import com.example.admin.attention.Result.result;
 import com.example.admin.attention.SeatAllotment.seatAllotment;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity
 
     private List<String> listUser;
     private  Map<String,Map<String,String>> mapUser;
+    private Button  logoutNavigationButton;
     //private ResideMenu resideMenu;
 
     @Override
@@ -80,14 +82,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -97,8 +92,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
 
 
 
@@ -128,24 +121,6 @@ public class MainActivity extends AppCompatActivity
 
 
         topicsSubscribed=this.getSharedPreferences("com.example.admin.attentionplease", Context.MODE_PRIVATE);
-//        Button bt=findViewById(R.id.testing);
-//        bt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Map<String, Object> updateHashmap=new HashMap<>();
-//                updateHashmap.put("title","sdg");
-//                updateHashmap.put("one_line_desc","dgav");
-////                updateHashmap.put("topics",mTopics.getText().toString());
-//                updateHashmap.put("detail_desc","gdafajafs");
-//                updateHashmap.put("ccode","C-1297");
-//                updateHashmap.put("links","");
-//                updateHashmap.put("image","default");
-//                updateHashmap.put("thumb_image","");
-//                FirebaseDatabase.getInstance().getReference().child("Colleges").child("C-1297").child("notifications").push().setValue(updateHashmap);
-//            }
-//        });
-
-
 
 
 
@@ -157,6 +132,27 @@ public class MainActivity extends AppCompatActivity
         pd=new ProgressDialog(this);
 
         pd.setCanceledOnTouchOutside(false);
+
+
+
+        logoutNavigationButton=findViewById(R.id.logout_navigation_button);
+        logoutNavigationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pd.setTitle("Logging out");
+                pd.setMessage("Please wait for a while...");
+                pd.show();
+                mAuth.signOut();
+                Toast.makeText(getApplicationContext(),"Signed out Sucessfully",Toast.LENGTH_LONG).show();
+                pd.dismiss();
+                Intent intent=new Intent(MainActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
+
+
 
         mDatabaseRef= FirebaseDatabase.getInstance().getReference().child("users");
         mDatabaseRef.keepSynced(true);
@@ -338,14 +334,17 @@ public class MainActivity extends AppCompatActivity
 
 
                     } else {
-                        startActivity(new Intent(MainActivity.this, SubscribeTopics.class));
+
+                        // to automatically entering into topics if user is not subscribed to any topics
+//                        startActivity(new Intent(MainActivity.this, SubscribeTopics.class));
                         Toast.makeText(MainActivity.this, "Please subscribe atleast one topic...", Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    startActivity(new Intent(MainActivity.this, SubscribeTopics.class));
+                    // to automatically entering into topics if user is not subscribed to any topics
+  //                  startActivity(new Intent(MainActivity.this, SubscribeTopics.class));
                 }
             });
         }
@@ -356,37 +355,6 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_profile) {
-            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-        }
-        if (id == R.id.action_topics) {
-            startActivity(new Intent(MainActivity.this, SubscribeTopics.class));
-        }
-        if (id == R.id.action_logout) {
-            pd.setTitle("Logging out");
-            pd.setMessage("Please wait for a while...");
-            pd.show();
-            mAuth.signOut();
-            Toast.makeText(getApplicationContext(),"Signed out Sucessfully",Toast.LENGTH_LONG).show();
-            pd.dismiss();
-            Intent intent=new Intent(MainActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onClick(View view) {
@@ -400,19 +368,43 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
+        if (id == R.id.notification_id) {
+
+
+
+        } else if (id == R.id.timetable_id) {
+
+            startActivity(new Intent(MainActivity.this,timeTableHome.class));
+            //finish();
+
+        } else if (id == R.id.settings_id) {
+
+
+        } else if (id == R.id.results_id) {
+
+            startActivity(new Intent(MainActivity.this,result.class));
+            //finish();
+        } else if (id == R.id.seatallotment_id) {
+
+            startActivity(new Intent(MainActivity.this,seatAllotment.class));
+            //finish();
+        } else if (id == R.id.newsfeed_id) {
+
+            startActivity(new Intent(MainActivity.this,Newsfeed.class));
+            //finish();
+        } else if ( id == R.id.logout_navigation_button){
+            pd.setTitle("Logging out");
+            pd.setMessage("Please wait for a while...");
+            pd.show();
+            mAuth.signOut();
+            Toast.makeText(getApplicationContext(),"Signed out Sucessfully",Toast.LENGTH_LONG).show();
+            pd.dismiss();
+            Intent intent=new Intent(MainActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            //finish();
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

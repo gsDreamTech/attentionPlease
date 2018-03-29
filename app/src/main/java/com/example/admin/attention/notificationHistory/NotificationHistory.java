@@ -212,7 +212,7 @@ public class NotificationHistory extends AppCompatActivity {
             final ImageView userImageView=mView.findViewById(R.id.newsImage);
             if(thumb_image.equals("default") || thumb_image.equals(""))
             {
-                picasso.load(R.drawable.noti1).fit().into(userImageView);
+                picasso.load(R.drawable.notific).fit().into(userImageView);
             }
             else{
                 picasso.load(thumb_image).networkPolicy(NetworkPolicy.OFFLINE)

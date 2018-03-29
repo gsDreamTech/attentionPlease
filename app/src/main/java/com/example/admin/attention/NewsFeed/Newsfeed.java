@@ -121,8 +121,8 @@ public class Newsfeed extends AppCompatActivity
 //
 //        FanLayoutManager fn=new FanLayoutManager(this,fanLayoutManagerSettings);
 
-
-        VegaLayoutManager vg=new VegaLayoutManager();
+//        for layout animation uncomment this and set layout manager as vg
+        //VegaLayoutManager vg=new VegaLayoutManager();
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
@@ -138,7 +138,7 @@ public class Newsfeed extends AppCompatActivity
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
-        mNewsList.setLayoutManager(vg);
+        mNewsList.setLayoutManager(linearLayoutManager);
 
 
         //-------------------------newsfeed logic-----------------------------
@@ -299,7 +299,7 @@ public class Newsfeed extends AppCompatActivity
             final ImageView userImageView=mView.findViewById(R.id.newsImage);
             if(thumb_image.equals("default") || thumb_image.equals(""))
             {
-                picasso.load(R.drawable.noti1).fit().into(userImageView);
+                picasso.load(R.drawable.notific).fit().into(userImageView);
             }
             else{
                 picasso.load(thumb_image).networkPolicy(NetworkPolicy.OFFLINE)
@@ -334,44 +334,38 @@ public class Newsfeed extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_profile) {
-            startActivity(new Intent(Newsfeed.this, ProfileActivity.class));
-        }
-        if (id == R.id.action_topics) {
-            startActivity(new Intent(Newsfeed.this, SubscribeTopics.class));
-        }
-        if (id == R.id.action_logout) {
-            pd.setTitle("Logging out");
-            pd.setMessage("Please wait for a while...");
-            pd.show();
-            mAuth.signOut();
-            Toast.makeText(getApplicationContext(),"Signed out Sucessfully",Toast.LENGTH_LONG).show();
-            pd.dismiss();
-            Intent intent=new Intent(Newsfeed.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-
-        }
-
-
-        return super.onOptionsItemSelected(item);
-    }
+//    side tool bar options menu selection
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_profile) {
+//            startActivity(new Intent(Newsfeed.this, ProfileActivity.class));
+//        }
+//        if (id == R.id.action_topics) {
+//            startActivity(new Intent(Newsfeed.this, SubscribeTopics.class));
+//        }
+//        if (id == R.id.action_logout) {
+//            pd.setTitle("Logging out");
+//            pd.setMessage("Please wait for a while...");
+//            pd.show();
+//            mAuth.signOut();
+//            Toast.makeText(getApplicationContext(),"Signed out Sucessfully",Toast.LENGTH_LONG).show();
+//            pd.dismiss();
+//            Intent intent=new Intent(Newsfeed.this, MainActivity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(intent);
+//            finish();
+//
+//        }
+//
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -379,11 +373,19 @@ public class Newsfeed extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if(id==R.id.nav_newsFeed){
 
-        }
-        if(id==R.id.nav_home){
-            startActivity(new Intent(Newsfeed.this, MainActivity.class));
+        if (id == R.id.notification_id) {
+
+        } else if (id == R.id.timetable_id) {
+
+        } else if (id == R.id.settings_id) {
+
+        } else if (id == R.id.results_id) {
+
+        } else if (id == R.id.seatallotment_id) {
+
+        } else if (id == R.id.newsfeed_id) {
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

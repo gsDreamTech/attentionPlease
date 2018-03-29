@@ -29,7 +29,7 @@
                 android:id="@+id/notiImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/noti1"
+                app:srcCompat="@drawable/notific"
                 android:contentDescription="@string/todo" />
 
             <EditText

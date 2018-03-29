@@ -17,8 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashActivity"
-            android:theme="@style/AppTheme1">
+            android:name=".main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,10 +58,10 @@
         <activity
             android:name=".startActivity.alogin"
             android:theme="@style/AppTheme2" />
-        <activity
-            android:name=".main.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <!--<activity-->
+            <!--android:name=".main.MainActivity"-->
+            <!--android:label="@string/title_activity_main"-->
+            <!--android:theme="@style/AppTheme.NoActionBar" />-->
         <activity android:name=".Result.result" />
 
         <meta-data

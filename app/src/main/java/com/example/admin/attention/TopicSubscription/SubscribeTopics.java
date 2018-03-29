@@ -67,7 +67,7 @@ public class SubscribeTopics extends AppCompatActivity implements ProgressGenera
 
         mAuth=FirebaseAuth.getInstance();
 
-        mUserRef=FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getUid()).child("topics");
+        mUserRef=FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getUid());
         mUserRef.keepSynced(true);
 
         listView = findViewById(R.id.listView);
@@ -80,16 +80,16 @@ public class SubscribeTopics extends AppCompatActivity implements ProgressGenera
                         @Override
                         public void onDataChange(DataSnapshot Snapshot) {
                             //==================getting the list of topics subscribed by the user========================
-
-                            try {
-                                mapUser = (Map<String, Map<String, String>>) Snapshot.getValue();
-                                Set<String> sUser = mapUser.keySet();
-                                listUser = new ArrayList<>(sUser);
-                                Log.i("sets", listUser.get(0));
-                            } catch (Exception e) {
-                                Log.i("error user", e.getMessage());
+                            if(Snapshot.hasChild("topics")) {
+                                try {
+                                    mapUser = (Map<String, Map<String, String>>) Snapshot.child("topics").getValue();
+                                    Set<String> sUser = mapUser.keySet();
+                                    listUser = new ArrayList<>(sUser);
+                                    Log.i("sets", listUser.get(0));
+                                } catch (Exception e) {
+                                    Log.i("error user", e.getMessage());
+                                }
                             }
-
                             //==================getting the total topics provided by the college===========================
                             try {
                                 Map<String, Map<String, String>> map = (Map<String, Map<String, String>>) dataSnapshot.getValue();

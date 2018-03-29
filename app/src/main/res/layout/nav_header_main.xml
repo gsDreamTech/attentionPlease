@@ -12,24 +12,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center_horizontal"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@mipmap/ic_launcher_round" />
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:fontFamily="monospace"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Android Studio"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:text="@string/monkey_d_luffy"
+        android:layout_gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>

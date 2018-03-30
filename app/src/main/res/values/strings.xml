@@ -109,6 +109,21 @@
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="college_id_number">College ID Number</string>
     <string name="name">Name</string>
+    <string name="seat">SEAT ALLOTMENT</string>
+    <string name="next_subject">Next Subject</string>
+    <string name="sub">sub</string>
+    <string name="block">block</string>
+    <string name="room">room</string>
+    <string name="seatseat">seat</string>
+    <string name="time">time</string>
+    <string name="timetime">Time</string>
+    <string name="seatno">Seat No.</string>
+    <string name="rooom">Room</string>
+    <string name="blockb">Block</string>
+    <string name="subject">Subject</string>
+    <string name="go_back">Go Back</string>
+    <string name="enter_your_college_id">Enter Your College ID</string>
+    <string name="check">Check</string>
 
 
 </resources>

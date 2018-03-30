@@ -32,6 +32,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.admin.attention.NewsFeed.Newsfeed;
 import com.example.admin.attention.R;
 import com.example.admin.attention.Result.result;
@@ -53,8 +54,6 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
@@ -347,7 +346,7 @@ public class SendNotification extends AppCompatActivity
             if(resultCode==RESULT_OK)
             {
                 resultUri=result.getUri();
-                Picasso.with(this).load(resultUri).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.people3).fit().into(mImage);
+                Glide.with(this).load(resultUri).into(mImage);
                 flag=true;
             }
             else if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)

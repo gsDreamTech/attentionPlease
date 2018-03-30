@@ -41,6 +41,8 @@ public class chooseresultdata extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chooseresultdata);
+        Log.i("ccode",MainActivity.topicsSubscribed.getString("CollegeCode",""));
+
 
         String[] semester={"1","2","3","4","5","6","7","8"};
         String[] branches={"CSE","MECH","IS","EEE","EC"};
@@ -58,33 +60,55 @@ public class chooseresultdata extends AppCompatActivity {
         resQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
+            try {
+                Log.i("cicked1",resSpinner.getSelectedItem().toString());
 
-                    Log.i("cicked1",resSpinner.getSelectedItem().toString());
-                    resData.child("results").child(resSpinner.getSelectedItem().toString()).child(resSemS.getSelectedItem().toString())
-                            .child(resBranchS.getSelectedItem().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            GenericTypeIndicator<List<String>> gs = new GenericTypeIndicator<List<String>>() {
-                            };
-                            colHeading = dataSnapshot.child("heading").getValue(gs);
-                            Map<String, List<List<String>>> mapUser = (Map<String, List<List<String>>>) dataSnapshot.child("data").getValue();
-                            Set<String> sUser = mapUser.keySet();
-                            rowHeading = new ArrayList<>(sUser);
-                            GenericTypeIndicator<List<List<String>>> gs1 = new GenericTypeIndicator<List<List<String>>>() {
-                            };
-                            cellValue = dataSnapshot.child("data").getValue(gs1);
-                        }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                resData=FirebaseDatabase.getInstance().getReference().child("Colleges")
+                        .child(MainActivity.topicsSubscribed.getString("CollegeCode","")).child("results");
+                resData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Log.i("map  error",dataSnapshot.getValue().toString());
+                    }
 
-                        }
-                    });
-                }catch (Exception e)
-                {
-                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
-                }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
+//                resData.child("results").child(resSpinner.getSelectedItem().toString()).child(resSemS.getSelectedItem().toString())
+//                        .child(resBranchS.getSelectedItem().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        GenericTypeIndicator<List<String>> gs = new GenericTypeIndicator<List<String>>() {
+//                        };
+//                        colHeading = dataSnapshot.child("headings").getValue(gs);
+//                        Log.i("map  error",dataSnapshot.getValue().toString());
+//                        try {
+//                            Map<String, List<String>> mapUser = (Map<String, List<String>>) dataSnapshot.child("data").getValue();
+//                            rowHeading = new ArrayList<>(mapUser.keySet());
+//                        }catch (Exception e)
+//                        {
+//                            Log.i("map  error",e.getMessage());
+//                        }
+//
+//                        GenericTypeIndicator<List<List<String>>> gs1 = new GenericTypeIndicator<List<List<String>>>() {
+//                        };
+//                        cellValue = dataSnapshot.child("data").getValue(gs1);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
+            }catch (Exception e)
+            {
+                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+            }
             }
         });
 

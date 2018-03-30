@@ -45,13 +45,13 @@ dependencies {
     compile 'com.stone.vega.library:VegaLayoutManager:1.0.6'
 
     compile 'com.daimajia.slider:library:1.1.5@aar'     //one
-    compile 'com.squareup.picasso:picasso:2.5.2'    //two
+    //compile 'com.squareup.picasso:picasso:2.5.2'    //two
     //compile 'com.nineoldandroids:library:2.4.0'     //three
 
     compile 'com.github.dakatso:livebutton:1.0.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.theartofdev.edmodo:android-image-cropper:2.4.7'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    //compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'id.zelory:compressor:2.0.0'
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
@@ -71,6 +71,13 @@ dependencies {
     compile 'com.github.jd-alexander:LikeButton:0.2.3'
 
     implementation 'com.android.support:design:26.1.0'
+
+
+
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
 
 }
 

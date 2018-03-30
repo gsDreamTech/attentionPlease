@@ -71,14 +71,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/relativeLayout"
-        android:layout_marginLeft="70dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
         android:drawableLeft="@drawable/ic_settings_blue"
         android:drawablePadding="20dp"
         android:drawableStart="@drawable/ic_settings_blue"
         android:text="@string/branch"
-        android:textSize="20sp"
+        android:textSize="16sp"
         tools:layout_editor_absoluteX="183dp"
         tools:layout_editor_absoluteY="342dp" />
 
@@ -86,8 +86,8 @@
         android:id="@+id/textViewPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="70dp"
-        android:layout_marginStart="70dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
         android:layout_below="@id/textViewBranch"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -95,7 +95,7 @@
         android:drawableLeft="@drawable/ic_phone_blue"
         android:layout_marginTop="10dp"
         android:text="@string/phone"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:drawableStart="@drawable/ic_phone_blue" />
 
     <TextView
@@ -105,11 +105,11 @@
         android:layout_below="@id/textViewPhone"
         android:drawablePadding="20dp"
         android:drawableLeft="@drawable/ic_mail_blue"
-        android:layout_marginLeft="70dp"
-        android:layout_marginStart="70dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:text="@string/email"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:drawableStart="@drawable/ic_mail_blue" />
 
     <TextView
@@ -117,14 +117,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewEmail"
-        android:layout_marginLeft="70dp"
-        android:layout_marginStart="70dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/ic_college_blue"
         android:drawablePadding="20dp"
         android:drawableStart="@drawable/ic_college_blue"
         android:text="@string/college"
-        android:textSize="20sp"
+        android:textSize="16sp"
         tools:layout_editor_absoluteX="182dp"
         tools:layout_editor_absoluteY="452dp" />
 
@@ -141,7 +141,9 @@
         android:focusable="true"
         android:src="@drawable/ic_camera_white"
         app:fabSize="normal"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        tools:targetApi="lollipop" />
 
 
 </RelativeLayout>

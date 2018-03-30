@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.dd.processbutton.iml.ActionProcessButton;
 import com.example.admin.attention.R;
+import com.example.admin.attention.main.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,12 +47,12 @@ public class seatAllotment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seta_allotment);
+        setContentView(R.layout.seat_allotment_usn);
 
 
         timeShared=this.getSharedPreferences("com.example.lenovo.seatallotment", Context.MODE_PRIVATE);
         Button submit = findViewById(R.id.button);
-        usnText = findViewById(R.id.usnInput);
+//        usnText = findViewById(R.id.usnInput);
         //tl = findViewById(R.id.table_head);
         pd= new ProgressDialog(this);
         pd.setTitle("Fetching data!");
@@ -59,7 +61,7 @@ public class seatAllotment extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //pd.show();
+                pd.show();
                 if( usnText.getText().toString().equals("") )
                 {
                     Toast.makeText(getApplicationContext(),"Please enter a valid data...",Toast.LENGTH_LONG).show();
@@ -68,8 +70,8 @@ public class seatAllotment extends AppCompatActivity {
                 else {
 
                     try{
-                        mSeat= FirebaseDatabase.getInstance().getReference().child("Colleges").child("C-1297").child("Seat")
-//                                .child(branchtext.getText().toString().toLowerCase().replace(" ",""))
+                        mSeat= FirebaseDatabase.getInstance().getReference().child("Colleges")
+                                .child(MainActivity.topicsSubscribed.getString("CollegeCode","")).child("Seat")
                                 .child(usnText.getText().toString().toLowerCase().replace(" ",""));
                         mSeat.addValueEventListener(new ValueEventListener() {
                             @Override
@@ -81,11 +83,10 @@ public class seatAllotment extends AppCompatActivity {
                                     if(list==null||list.size()==0)
                                     {
                                         Toast.makeText(getApplicationContext(),"USN not found",Toast.LENGTH_LONG).show();
+                                        popuperror();
                                         pd.dismiss();
-
                                     }
                                     else{
-
                                         popupdisplay();
                                         //display();
                                         pd.dismiss();
@@ -117,7 +118,12 @@ public class seatAllotment extends AppCompatActivity {
 
 
 
-
+    void popuperror(){
+        View view= View.inflate(this,R.layout.error_layout,null);
+        Dialog dg=new Dialog(this);
+        dg.setContentView(view);
+        dg.show();
+    }
 
 
     void popupdisplay(){

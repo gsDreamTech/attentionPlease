@@ -14,10 +14,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.admin.attention.R;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 
 
 public class bottomSheet extends BottomSheetDialogFragment {
@@ -25,7 +23,6 @@ public class bottomSheet extends BottomSheetDialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
     }
@@ -81,21 +78,10 @@ public class bottomSheet extends BottomSheetDialogFragment {
         aDetail.setText(Newsfeed.rowNewsData.getString("detail",""));
         aLink.setText(Newsfeed.rowNewsData.getString("links",""));
         if(Newsfeed.rowNewsData.getString("thumbimage","").equals("default") || Newsfeed.rowNewsData.getString("thumbimage","").equals(""))
-            Picasso.with(getContext()).load(R.drawable.notific).into(imageView);
+            Glide.with(this).load(R.drawable.notific).into(imageView);
         else {
-            Picasso.with(getContext()).load(Newsfeed.rowNewsData.getString("thumbimage", "")).placeholder(R.drawable.notific)
-                    .networkPolicy(NetworkPolicy.OFFLINE).fit().into(imageView, new Callback() {
-                @Override
-                public void onSuccess() {
-
-                }
-
-                @Override
-                public void onError() {
-                    Picasso.with(getContext()).load(Newsfeed.rowNewsData.getString("image", ""))
-                            .placeholder(R.drawable.notific).fit().into(imageView);
-                }
-            });
+            Glide.with(getContext()).load(Newsfeed.rowNewsData.getString("image", ""))
+                    .into(imageView);
         }
 
 

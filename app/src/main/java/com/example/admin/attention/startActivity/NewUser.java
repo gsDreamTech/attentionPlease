@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
 import com.example.admin.attention.R;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
 import com.example.admin.attention.main.MainActivity;
@@ -33,7 +34,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import org.json.JSONArray;
@@ -109,22 +109,25 @@ public class NewUser extends AppCompatActivity {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
                 startActivityForResult(Intent.createChooser(intent,"Select Image"),GALLERY_PICK);
-
             }
         });
+
 
         List<String> Year=Arrays.asList("Year","1st Year","2nd Year","3rd Year","4th Year");
         List<String> Degree=Arrays.asList("Degree","BE","MTECH","MSC","MBA","MCA");
         List<String> Sem=Arrays.asList("Semester","1","2","3","4","5","6","7","8");
         List<String> Sec=Arrays.asList("Section","A","B","C","D","E","F","G");
 
+
 //        List<String> Branch= Arrays.asList("Computer Science and Engineering",
 //                "Mechanical Engineering", "civil Engineering", "Electrical Engineering",
 //                "Electronics and Electrical Engineering", "Chemical Engineering", "Telecommunication", "Chemical Engineering",
 //                "Industrial Engineering and Management", "Instrumentation", "Information Science and Engineering",
 //                "Architecture", "Biotechnology");
+
         List<String> Branch= Arrays.asList("CSE", "MECH", "CIVIL", "EEE", "EC", "CHEM", "TC",
                 "IM", "IT", "IS", "ARCH", "BIOTECH");
+
 
         stateArrayAdapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,getStatesFromJson());
         branchArrayAdapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,Branch);
@@ -132,6 +135,8 @@ public class NewUser extends AppCompatActivity {
         degreeArrayAdapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,Degree);
         semArrayAdapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,Sem);
         secArrayAdapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,Sec);
+
+
         city.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -273,7 +278,7 @@ public class NewUser extends AppCompatActivity {
             if(resultCode==RESULT_OK)
             {
                 resultUri=result.getUri();
-                Picasso.with(this).load(resultUri).placeholder(R.drawable.people3).into(circleImageView);
+                Glide.with(this).load(resultUri).into(circleImageView);
             }
         }
     }

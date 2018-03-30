@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.admin.attention.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,9 +32,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
@@ -124,22 +122,10 @@ public class ProfileActivity extends AppCompatActivity {
 //                   }
 
                    if(dataSnapshot.child("image").getValue().toString().equals("default") || dataSnapshot.child("image").getValue().toString().equals(""))
-                       Picasso.with(getApplicationContext()).load(R.drawable.people3).into(mImage);
+                       Glide.with(getApplicationContext()).load(R.drawable.people3).into(mImage);
                    else
                    {
-                       Picasso.with(getApplicationContext()).load(dataSnapshot.child("image").getValue().toString())
-                               .networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.loading1).into(mImage, new Callback() {
-                           @Override
-                           public void onSuccess() {
-
-                           }
-
-                           @Override
-                           public void onError() {
-                               Picasso.with(getApplicationContext()).load(dataSnapshot.child("image").getValue().toString())
-                                       .placeholder(R.drawable.loading1).into(mImage);
-                           }
-                       });
+                       Glide.with(getApplicationContext()).load(dataSnapshot.child("image").getValue().toString()).into(mImage);
                    }
                }
                catch (Exception e){

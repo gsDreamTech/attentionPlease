@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,8 +50,8 @@ import id.zelory.compressor.Compressor;
 public class ProfileActivity extends AppCompatActivity {
     FirebaseUser mCurrentUser;
     DatabaseReference mUserDatabase;
-    private CircleImageView mImage;
-    private TextView mName,mEmail,mPhone,mAddress,mUSN,mCollege,mBranch,mTopics;
+    private ImageView mImage;
+    private TextView mName,mEmail,mPhone,mUSN,mCollege,mBranch,mTopics;
     private static final int GALLERY_PICK=1;
     private StorageReference mImageStorage;
     private ProgressDialog pd;
@@ -59,12 +60,13 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_profile);
         getSupportActionBar().setTitle("Settings");
         profileFloat=findViewById(R.id.floatingActionButtonSettingsImage);
         pd=new ProgressDialog(this);
         pd.setTitle("Saving Profile Picture!");
-        pd.setMessage("Wait for a while, we are processing...");
+        pd.setMessage("Processing ...");
         pd.setCanceledOnTouchOutside(false);
         mImageStorage= FirebaseStorage.getInstance().getReference();
 
@@ -76,7 +78,7 @@ public class ProfileActivity extends AppCompatActivity {
         mCollege=findViewById(R.id.textViewCollege);
         mBranch=findViewById(R.id.textViewBranch);
         mUSN=findViewById(R.id.textViewUSN);
-        mTopics=findViewById(R.id.textViewTopics);
+//        mTopics=findViewById(R.id.textViewTopics);
         final AlphaAnimation buttonAnimation=new AlphaAnimation(1f,0.5f);
 
 
@@ -108,18 +110,19 @@ public class ProfileActivity extends AppCompatActivity {
                    mPhone.setText(dataSnapshot.child("phone").getValue().toString());
 
 
-                   if(dataSnapshot.hasChild("topics"))
-                   {
-                       Map<String,Map<String,String>> map= (Map<String ,Map< String,String >>)dataSnapshot.child("topics").getValue();
-                       List<String> list = new ArrayList<>(map.keySet());
-                       StringBuilder topicsString= new StringBuilder();
-                       for(int i=0;i<list.size();i++)
-                       {
-                           topicsString = new StringBuilder("" + topicsString + map.get(list.get(i)).get("title") + "\n");
-                       }
-                       Log.i("topics", topicsString.toString());
-                       mTopics.setText(topicsString.toString());
-                   }
+//                   if(dataSnapshot.hasChild("topics"))
+//                   {
+//                       Map<String,Map<String,String>> map= (Map<String ,Map< String,String >>)dataSnapshot.child("topics").getValue();
+//                       List<String> list = new ArrayList<>(map.keySet());
+//                       StringBuilder topicsString= new StringBuilder();
+//                       for(int i=0;i<list.size();i++)
+//                       {
+//                           topicsString = new StringBuilder("" + topicsString + map.get(list.get(i)).get("title") + "\n");
+//                       }
+//                       Log.i("topics", topicsString.toString());
+//                       mTopics.setText(topicsString.toString());
+//                   }
+
                    if(dataSnapshot.child("image").getValue().toString().equals("default") || dataSnapshot.child("image").getValue().toString().equals(""))
                        Picasso.with(getApplicationContext()).load(R.drawable.people3).into(mImage);
                    else
@@ -177,8 +180,8 @@ public class ProfileActivity extends AppCompatActivity {
                 final String current_user_id=FirebaseAuth.getInstance().getCurrentUser().getUid();
                 final File thumb_filePath=new File(resultUri.getPath());
                 Bitmap thumb_bitmap =new Compressor(this)
-                        .setMaxWidth(200)
-                        .setMaxHeight(200)
+                        .setMaxWidth(400)
+                        .setMaxHeight(240)
                         .setQuality(75)
                         .compressToBitmap(thumb_filePath);
 

@@ -67,8 +67,6 @@ dependencies {
         transitive = true
     }
 
-
-
     //like share and subscribe
     compile 'com.github.jd-alexander:LikeButton:0.2.3'
 
@@ -82,6 +80,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
 
 }
+
 
 
 

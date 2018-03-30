@@ -31,6 +31,7 @@ import com.example.admin.attention.SeatAllotment.seatAllotment;
 import com.example.admin.attention.R;
 import com.example.admin.attention.TimeTable.timeTableHome;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
+import com.example.admin.attention.admin.admin;
 import com.example.admin.attention.parent_activity.parent;
 import com.example.admin.attention.profileActivity.ProfileActivity;
 import com.example.admin.attention.resultsheet.result_layout;
@@ -212,6 +213,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        CardView adminview=findViewById(R.id.admincard);
+        adminview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, admin.class));
+            }
+        });
+
 //        UltraViewPager ultraViewPager = (UltraViewPager)findViewById(R.id.ultra_viewpager);
 //        ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
 //        adapter = new UltraPagerAdapter(true);
@@ -379,7 +388,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.notification_id) {
 
-
+            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
 
         } else if (id == R.id.timetable_id) {
 

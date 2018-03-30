@@ -88,6 +88,8 @@
                             android:inputType="textCapWords"
                             android:maxLines="1"
                             android:singleLine="true"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textColorLink="@color/colorAccent"
                             android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
@@ -116,6 +118,8 @@
                             android:drawableStart="@drawable/ic_email_black_24dp"
                             android:hint="@string/email"
                             android:inputType="textEmailAddress"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
@@ -143,6 +147,8 @@
                             android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_lock_black_24dp"
                             android:hint="@string/password"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
@@ -171,6 +177,8 @@
                             android:drawableStart="@drawable/ic_phone_android_black_24dp"
                             android:hint="@string/phone"
                             android:inputType="phone"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
@@ -200,6 +208,8 @@
                             android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_assignment_black_24dp"
                             android:hint="@string/college_id_number"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
@@ -229,6 +239,8 @@
                             android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_state_black_24dp"
                             android:hint="@string/state"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
@@ -257,6 +269,8 @@
                             android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_location_city_black_24dp"
                             android:hint="@string/city"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
@@ -285,6 +299,8 @@
                             android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_school_black_24dp"
                             android:hint="@string/college"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
@@ -313,6 +329,8 @@
                             android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_settings"
                             android:hint="@string/branch"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 

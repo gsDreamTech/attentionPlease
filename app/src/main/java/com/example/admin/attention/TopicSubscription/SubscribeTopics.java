@@ -75,59 +75,69 @@ public class SubscribeTopics extends AppCompatActivity implements ProgressGenera
         mTopicRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
-                try {
-                    mUserRef.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot Snapshot) {
-                            //==================getting the list of topics subscribed by the user========================
-                            if(Snapshot.hasChild("topics")) {
-                                try {
-                                    mapUser = (Map<String, Map<String, String>>) Snapshot.child("topics").getValue();
-                                    Set<String> sUser = mapUser.keySet();
-                                    listUser = new ArrayList<>(sUser);
-                                    Log.i("sets", listUser.get(0));
-                                } catch (Exception e) {
-                                    Log.i("error user", e.getMessage());
+//              condition if the user dont have any topics in there college
+                if(!dataSnapshot.exists())
+                {
+                    Toast.makeText(getApplicationContext(),"Your college dont have any topics",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(SubscribeTopics.this,MainActivity.class));
+                    finish();
+
+                }
+                else{
+                    try {
+                        mUserRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot Snapshot) {
+                                //==================getting the list of topics subscribed by the user========================
+                                if(Snapshot.hasChild("topics")) {
+                                    try {
+                                        mapUser = (Map<String, Map<String, String>>) Snapshot.child("topics").getValue();
+                                        Set<String> sUser = mapUser.keySet();
+                                        listUser = new ArrayList<>(sUser);
+                                        Log.i("sets", listUser.get(0));
+                                    } catch (Exception e) {
+                                        Log.i("error user", e.getMessage());
+                                    }
                                 }
-                            }
-                            //==================getting the total topics provided by the college===========================
-                            try {
-                                Map<String, Map<String, String>> map = (Map<String, Map<String, String>>) dataSnapshot.getValue();
+                                //==================getting the total topics provided by the college===========================
+                                try {
+                                    Map<String, Map<String, String>> map = (Map<String, Map<String, String>>) dataSnapshot.getValue();
 
-                                Set<String> s = map.keySet();
-                                list = new ArrayList<>(s);
-                                Log.i("set", list.get(0));
+                                    Set<String> s = map.keySet();
+                                    list = new ArrayList<>(s);
+                                    Log.i("set", list.get(0));
 
-                                rows = new ArrayList<>(30);
-                                for (int i = 0; i < list.size(); i++) {
-                                    row = new Row();
-                                    row.setTitle(map.get(list.get(i)).get("title"));
-                                    row.setSubtitle(map.get(list.get(i)).get("desc"));
-                                    //=================condition for already subscribed topic============================
-                                    if(Snapshot.hasChild("topics")) {
-                                        for (int j = 0; j < listUser.size(); j++) {
-                                            if (mapUser.get(listUser.get(j)).get("title").equals(map.get(list.get(i)).get("title"))) {
-                                                row.setChecked(true);
-                                                break;
+                                    rows = new ArrayList<>(30);
+                                    for (int i = 0; i < list.size(); i++) {
+                                        row = new Row();
+                                        row.setTitle(map.get(list.get(i)).get("title"));
+                                        row.setSubtitle(map.get(list.get(i)).get("desc"));
+                                        //=================condition for already subscribed topic============================
+                                        if(Snapshot.hasChild("topics")) {
+                                            for (int j = 0; j < listUser.size(); j++) {
+                                                if (mapUser.get(listUser.get(j)).get("title").equals(map.get(list.get(i)).get("title"))) {
+                                                    row.setChecked(true);
+                                                    break;
+                                                }
                                             }
                                         }
+                                        rows.add(row);
                                     }
-                                    rows.add(row);
+                                    listView.setAdapter(new CustomArrayAdapter(SubscribeTopics.this, rows));
+
+                                } catch (Exception e) {
+                                    Log.i("error1", e.getMessage());
                                 }
-                                listView.setAdapter(new CustomArrayAdapter(SubscribeTopics.this, rows));
-
-                            } catch (Exception e) {
-                                Log.i("error1", e.getMessage());
                             }
-                        }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
 
-                        }
-                    });
-                }catch (Exception e){
-                    Log.i("error2",e.getMessage());
+                            }
+                        });
+                    }catch (Exception e){
+                        Log.i("error2",e.getMessage());
+                    }
                 }
             }
 

@@ -32,6 +32,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.admin.attention.NewsFeed.Newsfeed;
 import com.example.admin.attention.R;
 import com.example.admin.attention.Result.result;
@@ -347,7 +348,7 @@ public class SendNotification extends AppCompatActivity
             if(resultCode==RESULT_OK)
             {
                 resultUri=result.getUri();
-                Picasso.with(this).load(resultUri).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.people3).fit().into(mImage);
+                Glide.with(this).load(resultUri).into(mImage);
                 flag=true;
             }
             else if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)

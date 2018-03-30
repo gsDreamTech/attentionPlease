@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 //import com.cleveroad.fanlayoutmanager.FanLayoutManager;
 //import com.cleveroad.fanlayoutmanager.FanLayoutManagerSettings;
+import com.bumptech.glide.Glide;
 import com.example.admin.attention.R;
 import com.example.admin.attention.Result.result;
 import com.example.admin.attention.SeatAllotment.seatAllotment;
@@ -205,8 +206,7 @@ public class Newsfeed extends AppCompatActivity
 
                                     viewHolder.setNewsTitle(model.getTitle());
                                     viewHolder.setNewsInfo(model.getOne_line_desc());
-                                    Picasso p = Picasso.with(getApplicationContext());
-                                    viewHolder.setNewsImage(model.getThumb_image(), p);
+                                    viewHolder.setNewsImage(model.getThumb_image(), getApplicationContext());
                                     if (i < 5) {
                                         MainActivity.topicsSubscribed.edit().putString(String.valueOf(i), model.getThumb_image()).apply();
                                         i = i + 1;
@@ -299,26 +299,16 @@ public class Newsfeed extends AppCompatActivity
         }
 
 
-        public void setNewsImage(final String thumb_image,final Picasso picasso)
+        public void setNewsImage(final String thumb_image,final Context c)
         {
 
             final ImageView userImageView=mView.findViewById(R.id.newsImage);
             if(thumb_image.equals("default") || thumb_image.equals(""))
             {
-                picasso.load(R.drawable.notific).fit().into(userImageView);
+                Glide.with(c).load(R.drawable.notific).into(userImageView);
             }
             else{
-                picasso.load(thumb_image).networkPolicy(NetworkPolicy.OFFLINE)
-                        .placeholder(R.drawable.loading1).fit().into(userImageView, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                    }
-
-                    @Override
-                    public void onError() {
-                        picasso.load(thumb_image).placeholder(R.drawable.loading1).fit().into(userImageView);
-                    }
-                });
+                Glide.with(c).load(thumb_image).into(userImageView);
             }
         }
 

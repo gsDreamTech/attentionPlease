@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
 import com.example.admin.attention.R;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
 import com.example.admin.attention.main.MainActivity;
@@ -273,7 +274,7 @@ public class NewUser extends AppCompatActivity {
             if(resultCode==RESULT_OK)
             {
                 resultUri=result.getUri();
-                Picasso.with(this).load(resultUri).placeholder(R.drawable.people3).into(circleImageView);
+                Glide.with(this).load(resultUri).into(circleImageView);
             }
         }
     }

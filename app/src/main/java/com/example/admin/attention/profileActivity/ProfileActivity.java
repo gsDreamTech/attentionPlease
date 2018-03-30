@@ -95,7 +95,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
         mCurrentUser=FirebaseAuth.getInstance().getCurrentUser();
-        mUserDatabase=FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
+        mUserDatabase=FirebaseDatabase.getInstance().getReference().child("users").child(mCurrentUser.getUid());
         mUserDatabase.keepSynced(true);
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -180,8 +180,8 @@ public class ProfileActivity extends AppCompatActivity {
                 final String current_user_id=FirebaseAuth.getInstance().getCurrentUser().getUid();
                 final File thumb_filePath=new File(resultUri.getPath());
                 Bitmap thumb_bitmap =new Compressor(this)
-                        .setMaxWidth(200)
-                        .setMaxHeight(200)
+                        .setMaxWidth(400)
+                        .setMaxHeight(240)
                         .setQuality(75)
                         .compressToBitmap(thumb_filePath);
 

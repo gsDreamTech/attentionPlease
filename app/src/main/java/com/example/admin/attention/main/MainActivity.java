@@ -379,7 +379,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.notification_id) {
 
-
+            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
 
         } else if (id == R.id.timetable_id) {
 

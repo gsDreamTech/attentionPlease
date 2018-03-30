@@ -1,5 +1,6 @@
 package com.example.admin.attention.main;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +22,8 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.admin.attention.NewsFeed.Newsfeed;
@@ -43,6 +46,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 //import com.special.ResideMenu.ResideMenu;
@@ -57,6 +61,15 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener, View.OnClickListener  {
 
+    private DatabaseReference mSeat;
+    private List<Map<String,String>> list;
+    private SharedPreferences timeShared;
+    private EditText usnText;
+
+    private Dialog dgp,dgpp;
+
+
+
 
     private FirebaseUser mUser;
     private ProgressDialog pd;
@@ -65,8 +78,6 @@ public class MainActivity extends AppCompatActivity
     public static DatabaseReference mDatabaseRef;
     private PagerAdapter adapter;
 
-
-    private Button results_button;
 
     private UltraViewPager.Orientation gravity_indicator;
 
@@ -98,15 +109,6 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
-        results_button=findViewById(R.id.Results);
-        results_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,result_layout.class);
-                startActivity(intent);
-            }
-        });
 
 
 
@@ -181,13 +183,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, SubscribeTopics.class));
             }
         });
-        final CardView seat=findViewById(R.id.seatAllotmentCard);
-        seat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, seatAllotment.class));
-            }
-        });
 
         CardView res=findViewById(R.id.resultcard);
         res.setOnClickListener(new View.OnClickListener() {
@@ -221,62 +216,172 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-//        UltraViewPager ultraViewPager = (UltraViewPager)findViewById(R.id.ultra_viewpager);
-//        ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-//        adapter = new UltraPagerAdapter(true);
-//        ultraViewPager.setAdapter(adapter);
-//        ultraViewPager.setMultiScreen(0.6f);
-//        ultraViewPager.setItemRatio(1.0f);
-////                ultraViewPager.setRatio(2.0f);
-////                ultraViewPager.setMaxHeight(800);
-//        ultraViewPager.setAutoMeasureHeight(true);
-//        gravity_indicator = UltraViewPager.Orientation.HORIZONTAL;
-//        ultraViewPager.setPageTransformer(false, new UltraDepthScaleTransformer());
-        //initUI();
 
 
 
-//        =======  reside menu===================
-        // attach to current activity;
-//        resideMenu = new ResideMenu(this);
-//        resideMenu.setBackground(R.drawable.menu_background);
-//        resideMenu.attachToActivity(this);
-//
-//        ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
-//            @Override
-//            public void openMenu() {
-//                Toast.makeText(getApplicationContext(), "Menu is opened!", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void closeMenu() {
-//                Toast.makeText(getApplicationContext(), "Menu is closed!", Toast.LENGTH_SHORT).show();
-//            }
-//        };
-//        resideMenu.setMenuListener(menuListener);
-//        resideMenu.setScaleValue(0.7f);
-//        resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
-//        // create menu items;
-//        String titles[] = { "Home", "Profile", "Calendar", "Settings" };
-//        int icon[] = { R.drawable.icon_home, R.drawable.icon_profile, R.drawable.icon_calendar, R.drawable.icon_settings };
-//
-//        for (int i = 0; i < titles.length; i++){
-//            ResideMenuItem item = new ResideMenuItem(this, icon[i], titles[i]);
-//            item.setOnClickListener(this);
-//            resideMenu.addMenuItem(item,  ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
-//        }
 
-        //=====end reside menu======
+
+
+
+
+
+        View view=View.inflate(getApplicationContext(),R.layout.seat_allotment_usn,null);
+        dgp=new Dialog(this);
+        dgp.setContentView(view);
+
+
+
+
+
+        timeShared=this.getSharedPreferences("com.example.lenovo.seatallotment", Context.MODE_PRIVATE);
+        Button submit = view.findViewById(R.id.button);
+        usnText = view.findViewById(R.id.usnInput);
+        //tl = findViewById(R.id.table_head);
+        pd= new ProgressDialog(this);
+        pd.setTitle("Fetching data!");
+        pd.setMessage("Please wait..");
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pd.show();
+                if( usnText.getText().toString().equals("") )
+                {
+                    Toast.makeText(getApplicationContext(),"Please enter a valid data...",Toast.LENGTH_LONG).show();
+                    pd.dismiss();
+                }
+                else {
+
+                    try{
+                        mSeat= FirebaseDatabase.getInstance().getReference().child("Colleges")
+                                .child(MainActivity.topicsSubscribed.getString("CollegeCode","")).child("Seat")
+                                .child(usnText.getText().toString().toLowerCase().replace(" ",""));
+                        mSeat.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                try{
+                                    GenericTypeIndicator<List<Map<String,String>>> Generic = new GenericTypeIndicator<List<Map<String,String>>>(){};
+                                    list = dataSnapshot.getValue(Generic);
+                                    //Log.i("Data",list.get(timeShared.getInt("subnum),0).get(0));
+                                    if(list==null||list.size()==0)
+                                    {
+                                        Toast.makeText(getApplicationContext(),"USN not found",Toast.LENGTH_LONG).show();
+                                        popuperror();
+                                        pd.dismiss();
+                                    }
+                                    else{
+                                        popupdisplay();
+                                        //display();
+                                        pd.dismiss();
+                                    }
+                                }catch (Exception e)
+                                {
+                                    Log.i("err",e.getMessage());
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                pd.dismiss();
+                            }
+                        });
+                    }catch (Exception e)
+                    {
+                        Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                        pd.dismiss();
+                    }
+                }
+
+            }
+        });
+
+
+
+
+
+
+
+        final CardView seat=findViewById(R.id.seatAllotmentCard);
+        seat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dgp.show();//startActivity(new Intent(MainActivity.this, seatAllotment.class));
+            }
+        });
+
+
+
+
+
+
+
+
 
     }
 
 
 
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        return resideMenu.dispatchTouchEvent(ev);
-//    }
 
+    void popuperror(){
+        View view= View.inflate(this,R.layout.error_layout,null);
+        dgpp=new Dialog(this);
+        dgpp.setContentView(view);
+        Button bt=view.findViewById(R.id.gobackButton);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dgpp.dismiss();
+            }
+        });
+
+
+        dgpp.show();
+    }
+
+
+    void popupdisplay(){
+        View view= View.inflate(this,R.layout.pop_sub_layout,null);
+        Dialog dg=new Dialog(this);
+        dg.setContentView(view);
+        final TextView tvblock= view.findViewById(R.id.tvblock);
+        final TextView tvroom= view.findViewById(R.id.tvroom);
+        final TextView tvseat= view.findViewById(R.id.tvseat);
+        final TextView tvtime= view.findViewById(R.id.tvtime);
+        final TextView tvsub= view.findViewById(R.id.tvsubject);
+        Button button=view.findViewById(R.id.button);
+
+        tvsub.setText( list.get(timeShared.getInt("subnum",0)).get("language"));
+        tvtime.setText( list.get(timeShared.getInt("subnum",0)).get("time"));
+        tvseat.setText( list.get(timeShared.getInt("subnum",0)).get("seat"));
+        tvroom.setText( list.get(timeShared.getInt("subnum",0)).get("room"));
+        tvblock.setText( list.get(timeShared.getInt("subnum",0)).get("block"));
+
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(getApplicationContext(),"working..",Toast.LENGTH_LONG).show();
+                int num=timeShared.getInt("subnum",0);
+                if(list.size()==num+1)
+                {
+                    num=0;
+                }
+                else
+                {
+                    num++;
+                }
+                timeShared.edit().putInt("subnum",num).apply();
+                tvsub.setText( list.get(timeShared.getInt("subnum",0)).get("language"));
+                tvtime.setText( list.get(timeShared.getInt("subnum",0)).get("time"));
+                tvseat.setText( list.get(timeShared.getInt("subnum",0)).get("seat"));
+                tvroom.setText( list.get(timeShared.getInt("subnum",0)).get("room"));
+                tvblock.setText( list.get(timeShared.getInt("subnum",0)).get("block"));
+
+            }
+        });
+        dg.show();
+    }
 
     @Override
     public void onBackPressed() {
@@ -287,33 +392,6 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
-//    private void defaultUltraViewPager(){
-//        UltraViewPager ultraViewPager = (UltraViewPager)findViewById(R.id.ultra_viewpager);
-//        ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-//        //initialize UltraPagerAdapterï¼Œand add child view to UltraViewPager
-//        PagerAdapter adapter = new UltraPagerAdapter(false);
-//        ultraViewPager.setAdapter(adapter);
-//
-//        //initialize built-in indicator
-//        ultraViewPager.initIndicator();
-//        //set style of indicators
-//        ultraViewPager.getIndicator()
-//                .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
-//                .setFocusColor(Color.GREEN)
-//                .setNormalColor(Color.WHITE)
-//                .setRadius((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()));
-//        //set the alignment
-//        ultraViewPager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
-//        //construct built-in indicator, and add it to  UltraViewPager
-//        ultraViewPager.getIndicator().build();
-//
-//        //set an infinite loop
-//        ultraViewPager.setInfiniteLoop(true);
-//        //enable auto-scroll mode
-//        ultraViewPager.setAutoScroll(2000);
-//
-//    }
 
 
     @Override
@@ -404,7 +482,7 @@ public class MainActivity extends AppCompatActivity
             //finish();
         } else if (id == R.id.seatallotment_id) {
 
-            startActivity(new Intent(MainActivity.this,seatAllotment.class));
+            dgp.show();//startActivity(new Intent(MainActivity.this,seatAllotment.class));
             //finish();
         } else if (id == R.id.newsfeed_id) {
 

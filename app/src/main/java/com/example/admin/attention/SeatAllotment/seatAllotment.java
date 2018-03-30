@@ -52,7 +52,7 @@ public class seatAllotment extends AppCompatActivity {
 
         timeShared=this.getSharedPreferences("com.example.lenovo.seatallotment", Context.MODE_PRIVATE);
         Button submit = findViewById(R.id.button);
-        usnText = findViewById(R.id.usnInput);
+//        usnText = findViewById(R.id.usnInput);
         //tl = findViewById(R.id.table_head);
         pd= new ProgressDialog(this);
         pd.setTitle("Fetching data!");

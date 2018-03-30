@@ -9,20 +9,7 @@
     tools:context="com.example.admin.attention.main.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <!--Button
-        android:id="@+id/testing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" /-->
 
-
-    <Button
-        android:id="@+id/Results"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:text="Results" />
 
     <TextView
         android:id="@+id/textViewSlider"

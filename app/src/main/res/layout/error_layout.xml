@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/errorimage404" />
 
     <Button
-        android:id="@+id/goback"
+        android:id="@+id/gobackButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

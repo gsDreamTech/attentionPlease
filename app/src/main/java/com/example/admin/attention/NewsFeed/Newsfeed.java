@@ -81,49 +81,6 @@ public class Newsfeed extends AppCompatActivity
         bookmarkDepend = findViewById(R.id.bookmarkdepend);
         shareDepend = findViewById(R.id.sharedepend);
 
-//        likeDepend.setOnLikeListener(new OnLikeListener() {
-//            @Override
-//            public void liked(LikeButton likeButton) {
-//                if(likeButton.isLiked())
-//                    likeButton.setLiked(false);
-//                else
-//                    likeButton.setLiked(true);
-//            }
-//
-//            @Override
-//            public void unLiked(LikeButton likeButton) {
-//
-//            }
-//        });
-//
-//
-//        bookmarkDepend.setOnLikeListener(new OnLikeListener() {
-//            @Override
-//            public void liked(LikeButton likeButton) {
-//                if(likeButton.isLiked())
-//                    likeButton.setLiked(false);
-//                else
-//                    likeButton.setLiked(true);
-//            }
-//
-//            @Override
-//            public void unLiked(LikeButton likeButton) {
-//
-//            }
-//        });
-//
-//        shareDepend.setOnLikeListener(new OnLikeListener() {
-//            @Override
-//            public void liked(LikeButton likeButton) {
-//
-//            }
-//
-//            @Override
-//            public void unLiked(LikeButton likeButton) {
-//
-//            }
-//        });
-//
 
 
 

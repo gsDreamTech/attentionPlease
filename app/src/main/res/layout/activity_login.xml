@@ -69,10 +69,6 @@
         tools:ignore="RtlSymmetry"
         tools:targetApi="m" />
 
-
-
-
-
     <Button
         android:id="@+id/buttonLLogin"
         android:layout_width="280dp"

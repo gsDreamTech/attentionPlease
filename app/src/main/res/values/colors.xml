@@ -16,7 +16,7 @@
     <drawable name="highlight_pressed">#98dff3</drawable>
     <drawable name="highlight_focused">#b9e6f3</drawable>
     <color name="yellow">#ffe101</color>
-
+    <color name="graylight">#8e8f91</color>
 
     <color name="white">#ffffff</color>
     <color name="disabled_color">#000000</color>

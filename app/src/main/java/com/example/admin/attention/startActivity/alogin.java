@@ -80,15 +80,21 @@ public class alogin extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
 
 
-                            mUsersData= FirebaseDatabase.getInstance().getReference().child("users").child(task.getResult().getUser().getUid());
+                            mUsersData= FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid());
                             mUsersData.keepSynced(true);
                             mUsersData.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    MainActivity.topicsSubscribed.edit().putString("CollegeCode",dataSnapshot.child("ccode").getValue().toString()).apply();
-                                    MainActivity.topicsSubscribed.edit().putString("semester",dataSnapshot.child("year").getValue().toString()).apply();
-                                    MainActivity.topicsSubscribed.edit().putString("branch",dataSnapshot.child("branch").getValue().toString()).apply();
-                                    MainActivity.topicsSubscribed.edit().putString("section",dataSnapshot.child("sec").getValue().toString()).apply();
+                                    try {
+                                        MainActivity.topicsSubscribed.edit().putString("CollegeCode", dataSnapshot.child("ccode").getValue().toString()).apply();
+                                        MainActivity.topicsSubscribed.edit().putString("semester", dataSnapshot.child("year").getValue().toString()).apply();
+                                        MainActivity.topicsSubscribed.edit().putString("branch", dataSnapshot.child("branch").getValue().toString()).apply();
+                                        MainActivity.topicsSubscribed.edit().putString("section", dataSnapshot.child("sec").getValue().toString()).apply();
+                                    }catch(Exception e)
+                                    {
+                                        Log.i("login error",e.getMessage());
+                                    }
+
                                 }
 
                                 @Override
@@ -103,6 +109,7 @@ public class alogin extends AppCompatActivity {
                             Intent intent=new Intent(alogin.this, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
+                            finish();
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -120,5 +127,6 @@ public class alogin extends AppCompatActivity {
                     }
                 });
     }
+
 
 }

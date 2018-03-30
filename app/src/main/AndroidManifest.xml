@@ -44,7 +44,8 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".startActivity.NewUser" />
+        <activity android:name=".startActivity.NewUser"
+            android:theme="@style/AppTheme3"/>
         <activity android:name=".profileActivity.ProfileActivity" />
         <activity
             android:name=".Notifications.SendNotification"

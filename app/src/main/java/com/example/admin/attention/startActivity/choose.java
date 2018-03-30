@@ -75,7 +75,7 @@ public class choose extends AppCompatActivity {
                 //rv.setVisibility(View.GONE);
                 //showDiag();
                 startActivity(new Intent(choose.this, alogin.class));
-                finish();
+
             }
         });
 

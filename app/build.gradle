@@ -67,6 +67,11 @@ dependencies {
         transitive = true
     }
 
+
+
+    //like share and subscribe
+    compile 'com.github.jd-alexander:LikeButton:0.2.3'
+
     implementation 'com.android.support:design:26.1.0'
 
 }

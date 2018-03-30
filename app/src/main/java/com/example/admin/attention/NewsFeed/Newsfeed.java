@@ -46,6 +46,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -67,6 +69,7 @@ public class Newsfeed extends AppCompatActivity
     private int flag=0,i=0;
     private AutoCompleteTextView aTitle,aOneLine,aDetail,aLink;
     private TextView tt;
+    private LikeButton likeDepend,bookmarkDepend,shareDepend;
 
 
     @Override
@@ -74,17 +77,57 @@ public class Newsfeed extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsfeed);
 
-        //tt=findViewById(R.id.tvdis);
 
-//        aTitle=findViewById(R.id.editTextTitle);
-//        aOneLine=findViewById(R.id.editTextOneLine);
-//        aDetail=findViewById(R.id.editTextDetail);
-//        aLink=findViewById(R.id.editTextLinks);
+        //===========like layout====================
+        likeDepend = findViewById(R.id.likedepend);
+        bookmarkDepend = findViewById(R.id.bookmarkdepend);
+        shareDepend = findViewById(R.id.sharedepend);
+
+//        likeDepend.setOnLikeListener(new OnLikeListener() {
+//            @Override
+//            public void liked(LikeButton likeButton) {
+//                if(likeButton.isLiked())
+//                    likeButton.setLiked(false);
+//                else
+//                    likeButton.setLiked(true);
+//            }
 //
-//        aTitle.setEnabled(false);
-//        aOneLine.setEnabled(false);
-//        aDetail.setEnabled(false);
-//        aLink.setEnabled(false);
+//            @Override
+//            public void unLiked(LikeButton likeButton) {
+//
+//            }
+//        });
+//
+//
+//        bookmarkDepend.setOnLikeListener(new OnLikeListener() {
+//            @Override
+//            public void liked(LikeButton likeButton) {
+//                if(likeButton.isLiked())
+//                    likeButton.setLiked(false);
+//                else
+//                    likeButton.setLiked(true);
+//            }
+//
+//            @Override
+//            public void unLiked(LikeButton likeButton) {
+//
+//            }
+//        });
+//
+//        shareDepend.setOnLikeListener(new OnLikeListener() {
+//            @Override
+//            public void liked(LikeButton likeButton) {
+//
+//            }
+//
+//            @Override
+//            public void unLiked(LikeButton likeButton) {
+//
+//            }
+//        });
+//
+
+
 
 
         flag=0;
@@ -115,18 +158,9 @@ public class Newsfeed extends AppCompatActivity
         mNewsList=findViewById(R.id.newsList);
         mNewsList.setHasFixedSize(true);
         mNewsList.setItemAnimator(new DefaultItemAnimator());
-//        FanLayoutManagerSettings fanLayoutManagerSettings = FanLayoutManagerSettings
-//                .newBuilder(this)
-//                .withFanRadius(true)
-//                .withAngleItemBounce(5)
-//                .withViewWidthDp(140)
-//                .withViewHeightDp(190)
-//                .build();
-//
-//        FanLayoutManager fn=new FanLayoutManager(this,fanLayoutManagerSettings);
 
-//        for layout animation uncomment this and set layout manager as vg
-        //VegaLayoutManager vg=new VegaLayoutManager();
+
+
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
@@ -191,38 +225,6 @@ public class Newsfeed extends AppCompatActivity
                                             rowNewsData.edit().putString("image", model.getImage()).apply();
                                             rowNewsData.edit().putString("thumbimage", model.getThumb_image()).apply();
 
-//                                            ScrollView sl=findViewById(R.id.sview);
-//                                            sl.setScrollY(0);
-//                                            sl.setVisibility(View.VISIBLE);
-//                                            tt.setVisibility(View.GONE);
-//
-//                                            aTitle.setEnabled(false);
-//                                            aOneLine.setEnabled(false);
-//                                            aDetail.setEnabled(false);
-//                                            aLink.setEnabled(false);
-//
-//                                            aTitle.setText(model.getTitle());
-//                                            aOneLine.setText(model.getOne_line_desc());
-//                                            aDetail.setText(model.getDetail_desc());
-//                                            aLink.setText(model.getLinks());
-//                                            final ImageView imageView=findViewById(R.id.imageViewBottomSheet);
-//                                            if(model.getThumb_image().equals("default") || model.getThumb_image().equals(""))
-//                                                Picasso.with(getApplicationContext()).load(R.drawable.noti1).into(imageView);
-//                                            else {
-//                                                Picasso.with(getApplicationContext()).load(model.getThumb_image()).placeholder(R.drawable.noti1)
-//                                                        .networkPolicy(NetworkPolicy.OFFLINE).fit().into(imageView, new Callback() {
-//                                                    @Override
-//                                                    public void onSuccess() {
-//
-//                                                    }
-//
-//                                                    @Override
-//                                                    public void onError() {
-//                                                        Picasso.with(getApplicationContext()).load(model.getThumb_image())
-//                                                                .placeholder(R.drawable.noti1).fit().into(imageView);
-//                                                    }
-//                                                });
-//                                            }
 
 
                                             //===uncoment xml file in bottom sheet and comment in content_news_feed.xml===

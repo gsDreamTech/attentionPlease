@@ -2,6 +2,7 @@ package com.example.admin.attention.Result;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -90,15 +91,17 @@ public class chooseresultdata extends AppCompatActivity {
 
 
         resData=FirebaseDatabase.getInstance().getReference().child("Colleges")
-                .child(MainActivity.topicsSubscribed.getString("CollegeCode",""));
+                .child(MainActivity.topicsSubscribed.getString("CollegeCode","")).child("results");
 
-        resData.child("result_heading").addValueEventListener(new ValueEventListener() {
+        resData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 //                GenericTypeIndicator<List<String>> gs=new GenericTypeIndicator<List<String>>(){};
-                resTitle= (Map<String, String>) dataSnapshot.child("heading").getValue();
-                String[] s= resTitle.values().toArray(new String[0]);
-                ArrayAdapter<String> titleAdapter=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,s );
+                resTitle= (Map<String, String>) dataSnapshot.child("result_years").getValue();
+                List<String> list= new ArrayList<>(resTitle.values());
+
+                Log.i("title",resTitle.get(list.get(0)));
+                ArrayAdapter<String> titleAdapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,list );
                 resSpinner.setAdapter(titleAdapter);
 
             }

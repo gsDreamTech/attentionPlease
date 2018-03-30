@@ -58,10 +58,10 @@
         <activity
             android:name=".startActivity.alogin"
             android:theme="@style/AppTheme2" />
-        <!--<activity-->
-            <!--android:name=".main.MainActivity"-->
-            <!--android:label="@string/title_activity_main"-->
-            <!--android:theme="@style/AppTheme.NoActionBar" />-->
+        <!-- <activity -->
+        <!-- android:name=".main.MainActivity" -->
+        <!-- android:label="@string/title_activity_main" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
         <activity android:name=".Result.result" />
 
         <meta-data
@@ -73,7 +73,9 @@
         <activity android:name=".subadmin.SubAdmin" />
         <activity android:name=".resultsheet.result_layout" />
         <activity android:name=".resultsheet.individualResult" />
-        <activity android:name=".notificationHistory.NotificationHistory"></activity>
+        <activity android:name=".notificationHistory.NotificationHistory" />
+        <activity android:name=".parent_activity.parent"
+            android:theme="@style/AppTheme3"></activity>
     </application>
 
 </manifest>

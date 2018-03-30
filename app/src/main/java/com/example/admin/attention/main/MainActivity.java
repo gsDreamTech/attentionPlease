@@ -31,6 +31,7 @@ import com.example.admin.attention.SeatAllotment.seatAllotment;
 import com.example.admin.attention.R;
 import com.example.admin.attention.TimeTable.timeTableHome;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
+import com.example.admin.attention.parent_activity.parent;
 import com.example.admin.attention.profileActivity.ProfileActivity;
 import com.example.admin.attention.resultsheet.result_layout;
 import com.example.admin.attention.startActivity.choose;
@@ -203,6 +204,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        CardView parent_card=findViewById(R.id.ParentCard);
+        parent_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, parent.class));
+            }
+        });
 
 //        UltraViewPager ultraViewPager = (UltraViewPager)findViewById(R.id.ultra_viewpager);
 //        ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);

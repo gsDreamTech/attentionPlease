@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#0090FF</color>
-    <color name="colorPrimaryDark">#144879</color>
-    <color name="colorAccent">#18b104</color>
+    <color name="colorPrimaryDark">#276aa9</color>
+    <color name="colorAccent">#0437a4</color>
     <color name="backGroundColor">#fcfcfc</color>
     <color name="lightGray">#a8adb2</color>
     <color name="deepPurple">#7C4DFF</color>
     <color name="lightBlue">#a9cbd4</color>
     <color name="green">#00BFA5</color>
     <color name="gray">#3c3f41</color>
-    <color name="primarylight">#0f3f8d</color>
+    <color name="primarylight">#2b5daf</color>
     <color name="startBackground">#0a1d27</color>
     <color name="asset1">#e58218</color>
     <drawable name="highlight_pressed">#98dff3</drawable>
@@ -28,7 +28,7 @@
     <color name="selected_background_color">#0284fd</color>
     <color name="shadow_background_color">#0d1e20</color>
     <color name="unselected_background_color">#102729</color>
-    <color name="daystab">#034860</color>
+    <color name="daystab">#3a51e5</color>
     <color name="daystabback">#154979</color>
 
     <color name="columnHeader">#1f68a4</color>
@@ -39,7 +39,7 @@
 
 
     <color name="bg_line">#E7E7E7</color>
-    <color name="bg_color">#FF99DCD7</color>
+    <color name="bg_color">#81a2db</color>
 
     <color name="cell_background_color">#ffffff</color>
     <color name="cell_text_color">#1f1f1f</color>

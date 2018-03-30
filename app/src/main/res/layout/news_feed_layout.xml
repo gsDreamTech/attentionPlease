@@ -89,7 +89,6 @@
 
 
                         <com.like.LikeButton
-                            android:paddingLeft="30dp"
                             android:id="@+id/likedepend"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"

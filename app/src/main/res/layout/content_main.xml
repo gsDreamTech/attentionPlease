@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,18 +9,10 @@
     tools:showIn="@layout/app_bar_main">
 
 
-
-    <TextView
-        android:id="@+id/textViewSlider"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@drawable/circlebackgroundyellow" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textViewSlider"
-        android:background="@drawable/highlight_pressed">
+        android:background="@color/white">
 
         <ScrollView
             android:id="@+id/scroll"
@@ -30,57 +21,46 @@
 
             <GridLayout
                 android:id="@+id/mainGrid"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:alignmentMode="alignMargins"
                 android:columnCount="2"
                 android:columnOrderPreserved="false"
-                android:padding="14dp"
-                android:rowCount="3"
+                android:layout_gravity="center_horizontal"
+                android:rowCount="4"
                 tools:ignore="ObsoleteLayoutParam">
 
                 <!-- Row 1 -->
 
                 <!-- Column 1 -->
                 <android.support.v7.widget.CardView
-                    android:id="@+id/resultcard"
-                    android:layout_width="60dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_rowWeight="1"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    tools:ignore="UnusedAttribute">
+                    android:id="@+id/notificationListCard"
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageView
-
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:layout_gravity="center_horizontal"
-                            android:contentDescription="@string/todo"
-                            android:src="@drawable/circlebackgroundyellow" />
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/circlebackgroundgreen"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_newsfeed" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="2dp"
-                            android:text="Result"
-                            android:textAlignment="center"
-                            android:textSize="18sp"
+                            android:layout_marginTop="10dp"
+                            android:text="News Feed"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -88,91 +68,67 @@
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/sendNotificationCard"
-                    android:layout_width="60dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_rowWeight="1"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    tools:ignore="UnusedAttribute">
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageView
-
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:layout_gravity="center_horizontal"
-                            android:contentDescription="@string/todo"
-                            android:src="@drawable/circlebackgroundyellow" />
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/circlebackgroundgreen"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_tt_blue" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="2dp"
-                            android:text="Time Tables"
-                            android:textAlignment="center"
-                            android:textSize="18sp"
+                            android:layout_marginTop="10dp"
+                            android:text="Time Table"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                     </LinearLayout>
-
                 </android.support.v7.widget.CardView>
 
                 <!-- Column 2 -->
                 <android.support.v7.widget.CardView
-                    android:id="@+id/notificationListCard"
-                    android:layout_width="60dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_rowWeight="1"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    tools:ignore="UnusedAttribute">
+                    android:id="@+id/resultcard"
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageView
-
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:layout_gravity="center_horizontal"
-                            android:contentDescription="@string/todo"
-                            android:src="@drawable/circlebackgroundyellow" />
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/circlebackgroundgreen"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_result_blue" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="2dp"
-                            android:text="Notifications List"
-                            android:textAlignment="center"
-                            android:textSize="18sp"
+                            android:layout_marginTop="10dp"
+                            android:text="Results"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                     </LinearLayout>
-
                 </android.support.v7.widget.CardView>
 
 
@@ -181,87 +137,64 @@
                 <!-- Column 1 -->
                 <android.support.v7.widget.CardView
                     android:id="@+id/subscribeTopicsCard"
-                    android:layout_width="60dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_rowWeight="1"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    tools:ignore="UnusedAttribute">
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageView
-
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:layout_gravity="center_horizontal"
-                            android:contentDescription="@string/todo"
-                            android:src="@drawable/circlebackgroundyellow" />
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/circlebackgroundgreen"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_sub_blue" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="2dp"
-                            android:text="Subscribed Topics"
-                            android:textAlignment="center"
-                            android:textSize="18sp"
+                            android:layout_marginTop="10dp"
+                            android:text="Subscriptions"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                     </LinearLayout>
-
                 </android.support.v7.widget.CardView>
 
                 <!-- Column 2 -->
                 <android.support.v7.widget.CardView
                     android:id="@+id/seatAllotmentCard"
-                    android:layout_width="60dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_rowWeight="1"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    tools:ignore="UnusedAttribute">
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageView
-
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:layout_gravity="center_horizontal"
-                            android:contentDescription="@string/todo"
-                            android:src="@drawable/circlebackgroundyellow" />
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/circlebackgroundgreen"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_seat_blue" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="2dp"
-                            android:text="Seat Allotment"
-                            android:textAlignment="center"
-                            android:textSize="18sp"
+                            android:layout_marginTop="10dp"
+                            android:text="Seat Allotments"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -271,42 +204,31 @@
                 <!-- Column 1 -->
                 <android.support.v7.widget.CardView
                     android:id="@+id/subadminCard"
-                    android:layout_width="60dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_rowWeight="1"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    tools:ignore="UnusedAttribute">
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageView
-
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:layout_gravity="center_horizontal"
-                            android:contentDescription="@string/todo"
-                            android:src="@drawable/circlebackgroundyellow" />
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/circlebackgroundgreen"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_sub_blue" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="2dp"
-                            android:text="Sub admin"
-                            android:textAlignment="center"
-                            android:textSize="18sp"
+                            android:layout_marginTop="10dp"
+                            android:text="Sub Admin"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -315,89 +237,68 @@
 
                 <!-- row 4 -->
                 <!-- Column 1 -->
+
+                <!-- row 4 -->
+                <!-- Column 2-->
                 <android.support.v7.widget.CardView
                     android:id="@+id/ParentCard"
-                    android:layout_width="60dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_rowWeight="1"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    tools:ignore="UnusedAttribute">
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageView
-
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:layout_gravity="center_horizontal"
-                            android:contentDescription="@string/todo"
-                            android:src="@drawable/circlebackgroundyellow" />
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/circlebackgroundgreen"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_parent_blue" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="2dp"
-                            android:text="Parent Login"
-                            android:textAlignment="center"
-                            android:textSize="18sp"
+                            android:layout_marginTop="10dp"
+                            android:text="Parents Login"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 
-                <!-- row 4 -->
-                <!-- Column 2-->
                 <android.support.v7.widget.CardView
                     android:id="@+id/admincard"
-                    android:layout_width="60dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_rowWeight="1"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    tools:ignore="UnusedAttribute">
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageView
-
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:layout_gravity="center_horizontal"
-                            android:contentDescription="@string/todo"
-                            android:src="@drawable/circlebackgroundyellow" />
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/circlebackgroundgreen"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_admin_blue" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="2dp"
-                            android:text="Parent Login"
-                            android:textAlignment="center"
-                            android:textSize="18sp"
+                            android:layout_marginTop="10dp"
+                            android:text="Admin Info"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                     </LinearLayout>

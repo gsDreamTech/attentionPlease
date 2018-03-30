@@ -47,7 +47,7 @@ public class seatAllotment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seta_allotment);
+        setContentView(R.layout.seat_allotment_usn);
 
 
         timeShared=this.getSharedPreferences("com.example.lenovo.seatallotment", Context.MODE_PRIVATE);

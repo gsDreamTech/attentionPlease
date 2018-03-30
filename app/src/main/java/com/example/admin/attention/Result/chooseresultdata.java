@@ -42,6 +42,10 @@ public class chooseresultdata extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chooseresultdata);
 
+        resData=FirebaseDatabase.getInstance().getReference().child("Colleges")
+                .child(MainActivity.topicsSubscribed.getString("CollegeCode",""));
+
+
         String[] semester={"1","2","3","4","5","6","7","8"};
         String[] branches={"CSE","MECH","IS","EEE","EC"};
 

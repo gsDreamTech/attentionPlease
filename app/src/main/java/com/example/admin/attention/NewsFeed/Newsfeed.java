@@ -49,9 +49,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 import com.stone.vega.library.VegaLayoutManager;
 
 import java.util.List;

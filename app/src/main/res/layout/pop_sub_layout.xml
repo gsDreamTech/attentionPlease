@@ -124,7 +124,8 @@
         android:textColor="@color/graylight"
         android:textSize="28sp"
         app:layout_constraintStart_toEndOf="@+id/SubjectText"
-        app:layout_constraintTop_toBottomOf="@id/bluecoloralpha" />
+        app:layout_constraintTop_toBottomOf="@id/bluecoloralpha"
+        android:layout_marginLeft="48dp" />
 
     <TextView
         android:id="@+id/tvblock"

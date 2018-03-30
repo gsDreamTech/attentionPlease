@@ -116,7 +116,7 @@ public class NewUser extends AppCompatActivity {
         List<String> Year=Arrays.asList("Year","1st Year","2nd Year","3rd Year","4th Year");
         List<String> Degree=Arrays.asList("Degree","BE","MTECH","MSC","MBA","MCA");
         List<String> Sem=Arrays.asList("Semester","1","2","3","4","5","6","7","8");
-        List<String> Sec=Arrays.asList("Sction","A","B","C","D","E","F","G");
+        List<String> Sec=Arrays.asList("Section","A","B","C","D","E","F","G");
 
 //        List<String> Branch= Arrays.asList("Computer Science and Engineering",
 //                "Mechanical Engineering", "civil Engineering", "Electrical Engineering",

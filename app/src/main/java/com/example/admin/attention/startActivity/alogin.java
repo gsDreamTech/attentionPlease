@@ -110,6 +110,7 @@ public class alogin extends AppCompatActivity {
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("LogIn", "signInWithEmail:failure", task.getException());
@@ -126,5 +127,6 @@ public class alogin extends AppCompatActivity {
                     }
                 });
     }
+
 
 }

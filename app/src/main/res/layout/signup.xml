@@ -309,9 +309,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="50dp"
                             android:layout_marginRight="50dp"
-                            android:drawableLeft="@drawable/ic_group_work_black_24dp"
+                            android:drawableLeft="@drawable/ic_settings"
                             android:drawablePadding="10dp"
-                            android:drawableStart="@drawable/ic_group_work_black_24dp"
+                            android:drawableStart="@drawable/ic_settings"
                             android:hint="@string/branch"
                             android:textSize="19sp"
                             tools:targetApi="jelly_bean" />

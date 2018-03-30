@@ -108,6 +108,7 @@
     <string name="passstar">***********</string>
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="college_id_number">College ID Number</string>
+    <string name="name">Name</string>
 
 
 </resources>

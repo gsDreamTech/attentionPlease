@@ -31,6 +31,7 @@ import com.example.admin.attention.SeatAllotment.seatAllotment;
 import com.example.admin.attention.R;
 import com.example.admin.attention.TimeTable.timeTableHome;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
+import com.example.admin.attention.admin.admin;
 import com.example.admin.attention.parent_activity.parent;
 import com.example.admin.attention.profileActivity.ProfileActivity;
 import com.example.admin.attention.resultsheet.result_layout;
@@ -209,6 +210,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, parent.class));
+            }
+        });
+
+        CardView adminview=findViewById(R.id.admincard);
+        adminview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, admin.class));
             }
         });
 

@@ -44,8 +44,9 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".startActivity.NewUser"
-            android:theme="@style/AppTheme3"/>
+        <activity
+            android:name=".startActivity.NewUser"
+            android:theme="@style/AppTheme3" />
         <activity android:name=".profileActivity.ProfileActivity" />
         <activity
             android:name=".Notifications.SendNotification"
@@ -75,8 +76,10 @@
         <activity android:name=".resultsheet.result_layout" />
         <activity android:name=".resultsheet.individualResult" />
         <activity android:name=".notificationHistory.NotificationHistory" />
-        <activity android:name=".parent_activity.parent"
-            android:theme="@style/AppTheme3"></activity>
+        <activity
+            android:name=".parent_activity.parent"
+            android:theme="@style/AppTheme3" />
+        <activity android:name=".admin.admin"></activity>
     </application>
 
 </manifest>

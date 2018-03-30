@@ -20,7 +20,7 @@
     <string name="institution_type">Institution Type</string>
     <string name="logout">Logout</string>
     <string name="university">University</string>
-    <string name="email">Email</string>
+    <string name="email">E-mail</string>
     <string name="check_toast">Position %1$d : %2$s</string>
     <string name="subseribe_selected_topics">Subscribe Selected Topics</string>
 
@@ -104,6 +104,8 @@
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="login">LOGIN</string>
+    <string name="passstar">***********</string>
 
 
 </resources>

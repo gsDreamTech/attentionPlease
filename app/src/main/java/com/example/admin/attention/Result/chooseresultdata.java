@@ -59,6 +59,8 @@ public class chooseresultdata extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
+
+                    Log.i("cicked1",resSpinner.getSelectedItem().toString());
                     resData.child("results").child(resSpinner.getSelectedItem().toString()).child(resSemS.getSelectedItem().toString())
                             .child(resBranchS.getSelectedItem().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -100,9 +102,16 @@ public class chooseresultdata extends AppCompatActivity {
                 resTitle= (Map<String, String>) dataSnapshot.child("result_years").getValue();
                 List<String> list= new ArrayList<>(resTitle.values());
 
-                Log.i("title",resTitle.get(list.get(0)));
-                ArrayAdapter<String> titleAdapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,list );
+                Log.i("title", String.valueOf(list.get(0)));
+                String[] data=new String[list.size()];
+                for(int i=0;i<list.size();i++)
+                {
+                    data[i]=list.get(i).split("-")[0];
+                }
+                ArrayAdapter<String> titleAdapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,data );
+                resSpinner.setSelection(1);
                 resSpinner.setAdapter(titleAdapter);
+
 
             }
 

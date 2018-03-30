@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#144879</color>
     <color name="colorAccent">#18b104</color>
     <color name="backGroundColor">#fcfcfc</color>
-    <color name="lightGray">#a8adb2</color>
+    <color name="lightGray">#63676b</color>
     <color name="deepPurple">#7C4DFF</color>
     <color name="lightBlue">#a9cbd4</color>
     <color name="green">#00BFA5</color>
@@ -14,6 +14,8 @@
     <color name="asset1">#e58218</color>
     <drawable name="highlight_pressed">#98dff3</drawable>
     <drawable name="highlight_focused">#b9e6f3</drawable>
+    <color name="yellow">#ffe101</color>
+
 
     <color name="white">#ffffff</color>
     <color name="disabled_color">#000000</color>

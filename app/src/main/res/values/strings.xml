@@ -122,6 +122,8 @@
     <string name="blockb">Block</string>
     <string name="subject">Subject</string>
     <string name="go_back">Go Back</string>
+    <string name="enter_your_college_id">Enter Your College ID</string>
+    <string name="check">Check</string>
 
 
 </resources>

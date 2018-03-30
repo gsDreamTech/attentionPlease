@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lllLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -16,8 +17,8 @@
             android:id="@+id/card2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            app:cardBackgroundColor="#ffffff"
+            android:layout_margin="5dp"
+            app:cardBackgroundColor="#f5f5f5"
             app:cardCornerRadius="2dp"
             app:contentPadding="2dp">
 
@@ -42,10 +43,10 @@
                     android:paddingLeft="8dp"
                     android:paddingRight="10dp"
                     android:paddingStart="8dp"
-                    android:paddingTop="3dp"
                     android:text="Team COSMOS"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/newsImage"
@@ -63,96 +64,60 @@
                     android:id="@+id/newsDesdription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginTop="5dp"
                     android:layout_gravity="left"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@android:color/transparent"
                     android:text="Description"
                     android:textColor="#7F8A92"
                     android:textSize="16sp" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/lightGray"
                     android:orientation="vertical"
                     android:paddingTop="1dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
 
-                        android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:paddingEnd="15dp"
-                        android:paddingStart="15dp">
+                    <com.like.LikeButton
+                        android:id="@+id/bookmarkdepend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="60dp"
+                        android:layout_marginRight="60dp"
+                        android:minWidth="35dp"
+                        app:anim_scale_factor="2"
+                        app:circle_end_color="@color/yellow"
+                        app:circle_start_color="@color/yellow"
+                        app:dots_primary_color="@color/yellow"
+                        app:dots_secondary_color="@color/yellow"
+                        app:icon_size="35dp"
+                        app:icon_type="Star"
+                        app:is_enabled="true"
+                        app:like_drawable="@drawable/star_on"
+                        app:liked="false"
+                        app:unlike_drawable="@drawable/star_off"
+                        tools:ignore="ObsoleteLayoutParam" />
+
+                    <ImageButton
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="right"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@color/trans"
+                        android:src="@drawable/ic_menu_share" />
 
 
-                        <com.like.LikeButton
-                            android:id="@+id/likedepend"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:minWidth="40dp"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            app:anim_scale_factor="2"
-                            app:circle_end_color="@color/colorPrimary"
-                            app:circle_start_color="@color/colorPrimary"
-                            app:dots_primary_color="@color/colorPrimary"
-                            app:dots_secondary_color="@color/colorPrimary"
-                            app:icon_size="35dp"
-                            app:icon_type="Thumb"
-                            app:is_enabled="true"
-                            app:like_drawable="@drawable/thumb_on"
-                            app:liked="false"
-                            app:unlike_drawable="@drawable/thumb_off" />
-
-                        <com.like.LikeButton
-                            android:id="@+id/bookmarkdepend"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:layout_alignParentTop="true"
-                            android:layout_toLeftOf="@+id/sharedepend"
-                            android:layout_toStartOf="@+id/sharedepend"
-                            android:minWidth="40dp"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            app:anim_scale_factor="2"
-                            app:circle_end_color="@color/yellow"
-                            app:circle_start_color="@color/yellow"
-                            app:dots_primary_color="@color/yellow"
-                            app:dots_secondary_color="@color/yellow"
-                            app:icon_size="35dp"
-                            app:icon_type="Star"
-                            app:is_enabled="true"
-                            app:like_drawable="@drawable/star_on"
-                            app:liked="false"
-                            app:unlike_drawable="@drawable/star_off" />
-
-                        <com.like.LikeButton
-                            android:id="@+id/sharedepend"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentTop="true"
-                            android:minWidth="40dp"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            app:anim_scale_factor="2"
-                            app:circle_end_color="@color/trans"
-                            app:circle_start_color="@color/trans"
-                            app:dots_primary_color="@color/trans"
-                            app:dots_secondary_color="@color/trans"
-                            app:icon_size="35dp"
-                            app:icon_type="Star"
-                            app:is_enabled="true"
-                            app:like_drawable="@drawable/ic_menu_share"
-                            app:liked="false"
-                            app:unlike_drawable="@drawable/ic_menu_share" />
-
-                    </RelativeLayout>
-                </LinearLayout>
+                </RelativeLayout>
 
             </LinearLayout>
 

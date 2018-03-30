@@ -77,9 +77,9 @@ public class Newsfeed extends AppCompatActivity
 
 
         //===========like layout====================
-        likeDepend = findViewById(R.id.likedepend);
+        //likeDepend = findViewById(R.id.likedepend);
         bookmarkDepend = findViewById(R.id.bookmarkdepend);
-        shareDepend = findViewById(R.id.sharedepend);
+        //shareDepend = findViewById(R.id.sharedepend);
 
 
 

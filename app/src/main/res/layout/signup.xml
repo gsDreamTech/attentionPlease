@@ -13,30 +13,34 @@
         tools:ignore="UselessParent">
 
 
-<ScrollView android:id="@+id/signup_form"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:ignore="UselessParent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <ScrollView android:id="@+id/signup_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
 
             <LinearLayout
                 android:id="@+id/email_login_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/backgroundwhite"
+                android:background="@color/colorPrimary"
                 android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/trans">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profileImage"
                         android:layout_width="match_parent"
                         android:layout_height="240dp"
-                        android:background="@color/startBackground"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@color/trans"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
                         android:src="@drawable/people3" />
@@ -53,7 +57,7 @@
                         android:layout_marginRight="83dp"
                         android:clickable="true"
                         android:focusable="true"
-                        app:backgroundTint="@color/asset1"
+                        app:backgroundTint="@color/white"
                         app:fabSize="normal"
                         app:srcCompat="@drawable/ic_menu_camera"
                         tools:ignore="RelativeOverlap,VectorDrawableCompat" />
@@ -75,18 +79,17 @@
                             android:id="@+id/editTextUserName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
                             android:drawableLeft="@drawable/ic_person_black_24dp"
-                            android:drawablePadding="5dp"
+                            android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_person_black_24dp"
-                            android:fontFamily="serif"
                             android:hint="@string/user_name"
                             android:inputType="textCapWords"
                             android:maxLines="1"
                             android:singleLine="true"
                             android:textColorLink="@color/colorAccent"
-                            android:textSize="22sp"
+                            android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -106,15 +109,14 @@
                             android:id="@+id/editTextEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
                             android:drawableLeft="@drawable/ic_email_black_24dp"
-                            android:drawablePadding="5dp"
+                            android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_email_black_24dp"
-                            android:fontFamily="serif"
                             android:hint="@string/email"
                             android:inputType="textEmailAddress"
-                            android:textSize="22sp"
+                            android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -135,14 +137,13 @@
                             android:id="@+id/editTextPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
                             android:drawableLeft="@drawable/ic_lock_black_24dp"
-                            android:drawablePadding="5dp"
+                            android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_lock_black_24dp"
-                            android:fontFamily="serif"
                             android:hint="@string/password"
-                            android:textSize="22sp"
+                            android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -163,15 +164,14 @@
                             android:id="@+id/editTextPhone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
                             android:drawableLeft="@drawable/ic_phone_android_black_24dp"
-                            android:drawablePadding="5dp"
+                            android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_phone_android_black_24dp"
-                            android:fontFamily="serif"
                             android:hint="@string/phone"
                             android:inputType="phone"
-                            android:textSize="22sp"
+                            android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -183,7 +183,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="3dp"
                     android:layout_marginTop="2dp"
-
                     android:orientation="vertical">
 
 
@@ -195,14 +194,13 @@
                             android:id="@+id/editTextUsn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
                             android:drawableLeft="@drawable/ic_assignment_black_24dp"
-                            android:drawablePadding="5dp"
+                            android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_assignment_black_24dp"
-                            android:fontFamily="serif"
-                            android:hint="@string/usn"
-                            android:textSize="22sp"
+                            android:hint="@string/college_id_number"
+                            android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -225,14 +223,13 @@
                             android:id="@+id/editTextState"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
                             android:drawableLeft="@drawable/ic_state_black_24dp"
-                            android:drawablePadding="5dp"
+                            android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_state_black_24dp"
-                            android:fontFamily="serif"
                             android:hint="@string/state"
-                            android:textSize="22sp"
+                            android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -254,14 +251,13 @@
                             android:id="@+id/editTextCity"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
                             android:drawableLeft="@drawable/ic_location_city_black_24dp"
-                            android:drawablePadding="5dp"
+                            android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_location_city_black_24dp"
-                            android:fontFamily="serif"
                             android:hint="@string/city"
-                            android:textSize="22sp"
+                            android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -283,14 +279,13 @@
                             android:id="@+id/editTextCollege"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
                             android:drawableLeft="@drawable/ic_school_black_24dp"
-                            android:drawablePadding="5dp"
+                            android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_school_black_24dp"
-                            android:fontFamily="serif"
                             android:hint="@string/college"
-                            android:textSize="22sp"
+                            android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -312,14 +307,13 @@
                             android:id="@+id/editTextBranch"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
                             android:drawableLeft="@drawable/ic_group_work_black_24dp"
-                            android:drawablePadding="5dp"
+                            android:drawablePadding="10dp"
                             android:drawableStart="@drawable/ic_group_work_black_24dp"
-                            android:fontFamily="serif"
                             android:hint="@string/branch"
-                            android:textSize="22sp"
+                            android:textSize="19sp"
                             tools:targetApi="jelly_bean" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -328,6 +322,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
                     android:layout_marginBottom="3dp"
                     android:layout_marginTop="2dp"
                     android:orientation="horizontal">
@@ -336,13 +332,17 @@
                         android:id="@+id/Year"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_weight="1" />
+                        android:backgroundTint="@color/white"
+                        android:layout_weight="1"
+                        tools:targetApi="lollipop" />
 
                     <Spinner
                         android:id="@+id/Degree"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_weight="1" />
+                        android:backgroundTint="@color/white"
+                        android:layout_weight="1"
+                        tools:targetApi="lollipop" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -350,47 +350,43 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="3dp"
                     android:layout_marginTop="2dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
                     android:orientation="horizontal">
 
                     <Spinner
                         android:id="@+id/Sec"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_weight="1" />
+                        android:backgroundTint="@color/white"
+                        android:layout_weight="1"
+                        tools:targetApi="lollipop" />
 
                     <Spinner
                         android:id="@+id/Sem"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_weight="1" />
+                        android:backgroundTint="@color/white"
+                        android:layout_weight="1"
+                        tools:targetApi="lollipop" />
                 </LinearLayout>
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ru.katso.livebutton.LiveButton xmlns:livebutton="http://schemas.android.com/apk/res-auto"
+                    <Button
                         android:id="@+id/buttonCreateAccount"
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="20dp"
+                        android:layout_width="280dp"
+                        android:layout_height="44dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
-                        android:foregroundGravity="fill_horizontal"
-                        android:paddingBottom="10dp"
-                        android:paddingLeft="10dp"
-                        android:paddingStart="10dp"
-                        android:text="  Create Account "
-                        android:textColor="@android:color/white"
-                        android:textSize="30sp"
-                        android:textStyle="bold"
-                        livebutton:backgroundColor="@color/colorPrimary"
-                        livebutton:shadowColor="@color/primarylight"
-                        tools:ignore="RtlSymmetry" />
-                </LinearLayout>
+                        android:layout_gravity="center_horizontal"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:background="@drawable/whitebutton"
+                        android:text="@string/create_account"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="19sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
 
 
             </LinearLayout>

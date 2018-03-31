@@ -67,6 +67,40 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
+                    android:id="@+id/forumcard"
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/circlebackgroundgreen"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_admin_blue"
+                            app:srcCompat="@drawable/ic_forum"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Forum"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
                     android:id="@+id/sendNotificationCard"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
@@ -154,7 +188,9 @@
                             android:layout_marginTop="10dp"
                             android:background="@drawable/circlebackgroundgreen"
                             android:padding="10dp"
-                            android:src="@drawable/ic_sub_blue" />
+                            android:src="@drawable/ic_sub_blue"
+                            app:srcCompat="@drawable/ic_subs_blue"
+                            tools:ignore="VectorDrawableCompat" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -241,7 +277,7 @@
                 <!-- row 4 -->
                 <!-- Column 2-->
                 <android.support.v7.widget.CardView
-                    android:id="@+id/ParentCard"
+                    android:id="@+id/placementcard"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
                     android:layout_margin="10dp">
@@ -259,13 +295,15 @@
                             android:layout_marginTop="10dp"
                             android:background="@drawable/circlebackgroundgreen"
                             android:padding="10dp"
-                            android:src="@drawable/ic_parent_blue" />
+                            android:src="@drawable/ic_parent_blue"
+                            app:srcCompat="@drawable/ic_placement"
+                            tools:ignore="VectorDrawableCompat" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Parents Login"
+                            android:text="Placement Portal"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
 
@@ -298,6 +336,42 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="Admin Info"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/qrcard"
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/circlebackgroundgreen"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_admin_blue"
+                            app:srcCompat="@drawable/ic_qrcode"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="QR Code Scanner"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
 

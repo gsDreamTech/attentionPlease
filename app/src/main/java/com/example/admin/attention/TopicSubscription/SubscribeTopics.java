@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class SubscribeTopics extends AppCompatActivity implements ProgressGenerator.OnCompleteListener{
+public class   SubscribeTopics extends AppCompatActivity implements ProgressGenerator.OnCompleteListener{
     private ArrayList<Row> rows;
     private DatabaseReference mUserRef;
     private ListView listView;

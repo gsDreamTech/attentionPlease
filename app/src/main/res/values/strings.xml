@@ -124,6 +124,18 @@
     <string name="go_back">Go Back</string>
     <string name="enter_your_college_id">Enter Your College ID</string>
     <string name="check">Check</string>
+    <string name="title_activity_forum">Forum</string>
+    <string name="title_activity_admin_info">Admin Info</string>
+    <string name="title_activity_parent">Parents</string>
+    <string name="title_activity_">Notifications</string>
+    <string name="title_activity_results">Results</string>
+    <string name="title_activity_subadmin">Sub Admin</string>
+    <string name="title_activity_seat">Seat Allotment</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_timetable">Time Table</string>
+    <string name="title_activity_register">Registeration</string>
+    <string name="title_activity_subscribe">Subscriptions</string>
+    <string name="qrgenerate">Get QR</string>
 
 
 </resources>

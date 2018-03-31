@@ -17,6 +17,6 @@ private WebView mWebView;
         mWebView = findViewById(R.id.wv);
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        mWebView.loadUrl("www.sit.ac.in");
+        mWebView.loadUrl("www.google.com");
     }
 }

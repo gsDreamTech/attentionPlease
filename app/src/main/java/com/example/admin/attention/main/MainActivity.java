@@ -23,9 +23,11 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.admin.attention.NewsFeed.Newsfeed;
 import com.example.admin.attention.Notifications.SendNotification;
 import com.example.admin.attention.Result.chooseresultdata;
@@ -38,6 +40,7 @@ import com.example.admin.attention.admin.admin;
 import com.example.admin.attention.forum.forum_history;
 import com.example.admin.attention.parent_activity.parent;
 import com.example.admin.attention.profileActivity.ProfileActivity;
+import com.example.admin.attention.qrcode.qrCodeGeneration;
 import com.example.admin.attention.resultsheet.result_layout;
 import com.example.admin.attention.startActivity.choose;
 import com.example.admin.attention.subadmin.SubAdmin;
@@ -106,6 +109,30 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+//        ============nav image==================
+//        final View headLayout=navigationView.inflateHeaderView(R.layout.nav_header_main);
+//        final ImageView im=headLayout.findViewById(R.id.navImage);
+//
+//        FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid())
+//                .addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(final DataSnapshot dataSnapshot) {
+//
+//                    if(dataSnapshot.child("image").getValue().toString().equals("default") || dataSnapshot.child("image").getValue().toString().equals(""))
+//                        Glide.with(headLayout).load(R.drawable.people3).into(im);
+//                    else
+//                    {
+//                        Glide.with(headLayout).load(dataSnapshot.child("image").getValue().toString()).into(im);
+//                    }
+//
+//            }
+
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
 
@@ -202,19 +229,27 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        CardView parent_card=findViewById(R.id.ParentCard);
-        parent_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, parent.class));
-            }
-        });
+//        CardView parent_card=findViewById(R.id.ParentCard);
+//        parent_card.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, parent.class));
+//            }
+//        });
 
         CardView adminview=findViewById(R.id.admincard);
         adminview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, admin.class));
+            }
+        });
+
+        CardView qrcode=findViewById(R.id.qrcard);
+        qrcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, qrCodeGeneration.class));
             }
         });
 
@@ -501,6 +536,10 @@ public class MainActivity extends AppCompatActivity
             Intent intent=new Intent(MainActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+            //finish();
+        }else if (id == R.id.qr_generate) {
+
+            startActivity(new Intent(MainActivity.this, qrCodeGeneration.class));
             //finish();
         }
 

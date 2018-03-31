@@ -34,6 +34,11 @@
             android:title="@string/settings"
             android:id="@+id/settings_id"
             android:icon="@drawable/ic_settings"/>
+
+        <item
+            android:title="@string/qrgenerate"
+            android:id="@+id/qr_generate"
+            android:icon="@drawable/ic_settings"/>
     </group>
 
 

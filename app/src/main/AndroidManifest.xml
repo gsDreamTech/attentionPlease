@@ -40,47 +40,62 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".TopicSubscription.SubscribeTopics" />
+        <activity android:name=".TopicSubscription.SubscribeTopics"
+            android:label="@string/title_activity_subscribe"/>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".startActivity.NewUser"
+            android:label="@string/title_activity_register"
             android:theme="@style/AppTheme3" />
         <activity android:name=".profileActivity.ProfileActivity" />
         <activity
             android:name=".Notifications.SendNotification"
-            android:label="@string/title_activity_send_notification"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewsFeed.Newsfeed"
             android:label="@string/title_activity_news_feed"
             android:theme="@style/AppTheme3" />
-        <activity android:name=".TimeTable.timeTableHome" />
+        <activity android:name=".TimeTable.timeTableHome"
+            android:label="@string/title_activity_timetable"/>
         <activity
             android:name=".startActivity.alogin"
+            android:label="@string/title_activity_login"
             android:theme="@style/AppTheme2" />
         <!-- <activity -->
         <!-- android:name=".main.MainActivity" -->
         <!-- android:label="@string/title_activity_main" -->
         <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
-        <activity android:name=".Result.result" />
+        <activity android:name=".Result.result"
+            android:label="@string/title_activity_results"/>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".SeatAllotment.seatAllotment" />
-        <activity android:name=".Result.chooseresultdata" />
-        <activity android:name=".subadmin.SubAdmin" />
-        <activity android:name=".resultsheet.result_layout" />
-        <activity android:name=".resultsheet.individualResult" />
-        <activity android:name=".notificationHistory.NotificationHistory" />
+        <activity android:name=".SeatAllotment.seatAllotment"
+            android:label="@string/title_activity_seat"/>
+        <activity android:name=".Result.chooseresultdata"
+            android:label="@string/title_activity_results"/>
+        <activity android:name=".subadmin.SubAdmin"
+            android:label="@string/title_activity_subadmin"/>
+        <activity android:name=".resultsheet.result_layout"
+            android:label="@string/title_activity_results"/>
+        <activity android:name=".resultsheet.individualResult"
+            android:label="@string/title_activity_results"/>
+        <activity android:name=".notificationHistory.NotificationHistory"
+            android:label="@string/title_activity_"/>
         <activity
             android:name=".parent_activity.parent"
+            android:label="@string/title_activity_parent"
             android:theme="@style/AppTheme3" />
-        <activity android:name=".admin.admin" />
-        <activity android:name=".forum.forum_history"></activity>
+        <activity android:name=".admin.admin"
+            android:label="@string/title_activity_admin_info"/>
+
+        <activity android:name=".forum.forum_history"
+            android:label="@string/title_activity_forum"/>
+        <activity android:name=".qrcode.qrCodeGeneration"></activity>
     </application>
 
 </manifest>

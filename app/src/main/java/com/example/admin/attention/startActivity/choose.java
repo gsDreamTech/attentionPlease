@@ -17,11 +17,13 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.admin.attention.R;
+import com.example.admin.attention.admin.admin;
 import com.example.admin.attention.main.MainActivity;
+import com.example.admin.attention.parent_activity.parent;
+import com.example.admin.attention.profileActivity.ProfileActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -54,20 +56,19 @@ public class choose extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
 
-        ap=new AlphaAnimation(1f,0.5f);
+        ap = new AlphaAnimation(1f, 0.5f);
 
-        pd=new ProgressDialog(this);
+        pd = new ProgressDialog(this);
 
         pd.setCanceledOnTouchOutside(false);
 
         mAuth = FirebaseAuth.getInstance();
-        mRootRef=FirebaseDatabase.getInstance().getReference();
-        mCurrentUser=FirebaseAuth.getInstance().getCurrentUser();
+        mRootRef = FirebaseDatabase.getInstance().getReference();
+        mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
-
-        rv=findViewById(R.id.layoutChoose);
-        fab =  findViewById(R.id.buttonLogIn);
+        rv = findViewById(R.id.layoutChoose);
+        fab = findViewById(R.id.buttonLogIn);
         fab.setAnimation(ap);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +80,35 @@ public class choose extends AppCompatActivity {
             }
         });
 
-        fab1 =  findViewById(R.id.buttonNewUser);
-        fab1.setAnimation(ap);
+
+        fab1 = findViewById(R.id.buttonparentType);
+        final View v = View.inflate(choose.this, R.layout.user_type, null);
+        final Dialog dg = new Dialog(choose.this);
+        dg.setContentView(v);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
 
-                Intent intent=new Intent(choose.this, NewUser.class);
-                startActivity(intent);
+                dg.show();
+
+
+                Button bp = v.findViewById(R.id.buttonparentType);
+                bp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(choose.this, parent.class));
+                    }
+                });
+
+                Button bs = v.findViewById(R.id.buttonstudentType);
+                bs.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(choose.this, NewUser.class));
+                    }
+                });
+
+
 
             }
         });

@@ -211,7 +211,7 @@ public class NotificationHistory extends AppCompatActivity {
             final ImageView userImageView=mView.findViewById(R.id.newsImage);
             if(thumb_image.equals("default") || thumb_image.equals(""))
             {
-                Glide.with(c).load(R.drawable.notific).into(userImageView);
+                Glide.with(c).load(R.drawable.imgnot).into(userImageView);
             }
             else{
                 Glide.with(c).load(thumb_image).into(userImageView);

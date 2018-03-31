@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,7 +57,7 @@ public class forum_history extends AppCompatActivity {
                 View v=View.inflate(forum_history.this,R.layout.forum_question,null);
                 final Dialog dg=new Dialog(forum_history.this);
                 dg.setContentView(v);
-                final TextInputEditText tet=v.findViewById(R.id.editTextQuestion);
+                final EditText tet=v.findViewById(R.id.editTextQuestion);
                 Button but=v.findViewById(R.id.postQuesionButton);
                 but.setOnClickListener(new View.OnClickListener() {
                     @Override

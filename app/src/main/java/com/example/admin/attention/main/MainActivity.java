@@ -35,6 +35,7 @@ import com.example.admin.attention.R;
 import com.example.admin.attention.TimeTable.timeTableHome;
 import com.example.admin.attention.TopicSubscription.SubscribeTopics;
 import com.example.admin.attention.admin.admin;
+import com.example.admin.attention.forum.forum_history;
 import com.example.admin.attention.parent_activity.parent;
 import com.example.admin.attention.profileActivity.ProfileActivity;
 import com.example.admin.attention.resultsheet.result_layout;
@@ -475,12 +476,12 @@ public class MainActivity extends AppCompatActivity
             //finish();
 
         } else if (id == R.id.settings_id) {
-
+            startActivity(new Intent(MainActivity.this, forum_history.class));
 
         } else if (id == R.id.results_id) {
 
             startActivity(new Intent(MainActivity.this,result.class));
-            //finish();
+            //finish();\
         } else if (id == R.id.seatallotment_id) {
 
             dgp.show();//startActivity(new Intent(MainActivity.this,seatAllotment.class));

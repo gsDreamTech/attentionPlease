@@ -79,7 +79,8 @@
         <activity
             android:name=".parent_activity.parent"
             android:theme="@style/AppTheme3" />
-        <activity android:name=".admin.admin"></activity>
+        <activity android:name=".admin.admin" />
+        <activity android:name=".forum.forum_history"></activity>
     </application>
 
 </manifest>

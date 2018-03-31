@@ -78,7 +78,7 @@ public class bottomSheet extends BottomSheetDialogFragment {
         aDetail.setText(Newsfeed.rowNewsData.getString("detail",""));
         aLink.setText(Newsfeed.rowNewsData.getString("links",""));
         if(Newsfeed.rowNewsData.getString("thumbimage","").equals("default") || Newsfeed.rowNewsData.getString("thumbimage","").equals(""))
-            Glide.with(this).load(R.drawable.notific).into(imageView);
+            Glide.with(this).load(R.drawable.imgnot).into(imageView);
         else {
             Glide.with(getContext()).load(Newsfeed.rowNewsData.getString("image", ""))
                     .into(imageView);

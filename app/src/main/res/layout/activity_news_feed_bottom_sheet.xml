@@ -41,7 +41,7 @@
                 android:id="@+id/imageViewBottomSheet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/notific" />
+                android:src="@drawable/imgnot" />
 
 
             <android.support.design.widget.TextInputLayout

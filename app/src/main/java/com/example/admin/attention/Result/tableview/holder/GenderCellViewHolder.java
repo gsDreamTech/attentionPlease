@@ -35,12 +35,12 @@ public class GenderCellViewHolder extends MoodCellViewHolder {
         super(itemView);
     }
 
-    @Override
-    public void setData(Object data) {
-        int gender = (int) data;
-        Drawable genderDrawable = ContextCompat.getDrawable(itemView.getContext(), gender ==
-                MainFragment.BOY ? R.drawable.ic_male : R.drawable.ic_female);
-
-        cell_image.setImageDrawable(genderDrawable);
-    }
+//    @Override
+//    public void setData(Object data) {
+//        int gender = (int) data;
+//        Drawable genderDrawable = ContextCompat.getDrawable(itemView.getContext(), gender ==
+//                MainFragment.BOY ? R.drawable.ic_male : R.drawable.ic_female);
+//
+//        cell_image.setImageDrawable(genderDrawable);
+//    }
 }

@@ -118,11 +118,11 @@ public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHead
 
         if (holder instanceof GenderCellViewHolder) {
             GenderCellViewHolder viewHolder = (GenderCellViewHolder) holder;
-            viewHolder.setData(cell.getData());
+            //viewHolder.setData(cell.getData());
 
         } else if (holder instanceof MoodCellViewHolder) {
             MoodCellViewHolder viewHolder = (MoodCellViewHolder) holder;
-            viewHolder.setData(cell.getData());
+            //viewHolder.setData(cell.getData());
 
         } else {
             // Get the holder to update cell item text
@@ -269,10 +269,10 @@ public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHead
         // then you should fill this method to be able create different
         // type of CellViewHolder on "onCreateCellViewHolder"
         switch (column) {
-            case MainFragment.MOOD_COLUMN_INDEX:
-                return MOOD_CELL_TYPE;
-            case MainFragment.GENDER_COLUMN_INDEX:
-                return GENDER_CELL_TYPE;
+//            case MainFragment.MOOD_COLUMN_INDEX:
+//                return MOOD_CELL_TYPE;
+//            case MainFragment.GENDER_COLUMN_INDEX:
+//                return GENDER_CELL_TYPE;
             default:
                 // Default view type
                 return 0;

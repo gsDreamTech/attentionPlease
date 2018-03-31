@@ -1,5 +1,6 @@
 package com.example.admin.attention.Result;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,7 +36,7 @@ public class chooseresultdata extends AppCompatActivity {
     private Map<String,String> resTitle;
     private Button resQuery;
     public static List<String> rowHeading,colHeading;
-    public static List<List<String>> cellValue;
+    public static Map<String,List<String>> cellValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +66,29 @@ public class chooseresultdata extends AppCompatActivity {
 
 
                 resData=FirebaseDatabase.getInstance().getReference().child("Colleges")
-                        .child(MainActivity.topicsSubscribed.getString("CollegeCode","")).child("results");
+                        .child(MainActivity.topicsSubscribed.getString("CollegeCode","")).child("results")
+                        .child(resSpinner.getSelectedItem().toString()).child(resSemS.getSelectedItem().toString())
+                        .child(resBranchS.getSelectedItem().toString());
                 resData.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Log.i("map  error",dataSnapshot.getValue().toString());
+
+
+
+                        GenericTypeIndicator<List<String>> gs = new GenericTypeIndicator<List<String>>() {
+                        };
+                        colHeading = dataSnapshot.child("headings").getValue(gs);
+
+
+                        Map<String, List<String>> mapUser = (Map<String, List<String>>) dataSnapshot.child("data").getValue();
+                        rowHeading = new ArrayList<>(mapUser.keySet());
+
+
+                        cellValue = (Map<String,List<String>>)dataSnapshot.child("data").getValue();
+                        //Log.i("datas",cellValue.get(rowHeading.get(0)).get(0));
+                        startActivity(new Intent(chooseresultdata.this,result.class));
+                        finish();
                     }
 
                     @Override

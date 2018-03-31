@@ -21,7 +21,6 @@ package com.example.admin.attention.Result;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,14 +49,14 @@ import java.util.UUID;
  */
 public class MainFragment extends Fragment {
 
-    public static final int COLUMN_SIZE = 100;
-    public static final int ROW_SIZE = 100;
+//    public static final int COLUMN_SIZE = 100;
+//    public static final int ROW_SIZE = 100;
 
     private List<RowHeader> mRowHeaderList;
     private List<ColumnHeader> mColumnHeaderList;
     private List<List<Cell>> mCellList;
 
-    private AbstractTableAdapter mTableViewAdapter;
+    private AbstractTableAdapter<ColumnHeader, RowHeader, Cell> mTableViewAdapter;
     private TableView mTableView;
     private Filter mTableFilter; // This is used for filtering the table.
     private Pagination mPagination; // This is used for paginating the table.
@@ -65,8 +64,8 @@ public class MainFragment extends Fragment {
     private result mainActivity;
 
     // Columns indexes
-    public static final int MOOD_COLUMN_INDEX = 3;
-    public static final int GENDER_COLUMN_INDEX = 4;
+//    public static final int MOOD_COLUMN_INDEX = 3;
+//    public static final int GENDER_COLUMN_INDEX = 4;
 
     // Constant values for icons
     public static final int SAD = 0;
@@ -143,7 +142,7 @@ public class MainFragment extends Fragment {
         mRowHeaderList = new ArrayList<>();
         mColumnHeaderList = new ArrayList<>();
         mCellList = new ArrayList<>();
-        for (int i = 0; i < ROW_SIZE; i++) {
+        for (int i = 0; i < chooseresultdata.cellValue.size(); i++) {
             mCellList.add(new ArrayList<Cell>());
         }
     }
@@ -189,15 +188,15 @@ public class MainFragment extends Fragment {
     /**
      * This is a dummy model list test some cases.
      */
-    public static List<RowHeader> getRowHeaderList(int startIndex) {
-        List<RowHeader> list = new ArrayList<>();
-        for (int i = 0; i < ROW_SIZE; i++) {
-            RowHeader header = new RowHeader(String.valueOf(i), "row " + (startIndex + i));
-            list.add(header);
-        }
-
-        return list;
-    }
+//    public static List<RowHeader> getRowHeaderList(int startIndex) {
+//        List<RowHeader> list = new ArrayList<>();
+//        for (int i = 0; i < ROW_SIZE; i++) {
+//            RowHeader header = new RowHeader(String.valueOf(i), "row " + (startIndex + i));
+//            list.add(header);
+//        }
+//
+//        return list;
+//    }
 
 
     private List<ColumnHeader> getColumnHeaderList() {
@@ -236,99 +235,90 @@ public class MainFragment extends Fragment {
     /**
      * This is a dummy model list test some cases.
      */
-    private List<ColumnHeader> getRandomColumnHeaderList() {
-        List<ColumnHeader> list = new ArrayList<>();
-
-        for (int i = 0; i < COLUMN_SIZE; i++) {
-            String title = "column " + i;
-            int nRandom = new Random().nextInt();
-            if (nRandom % 4 == 0 || nRandom % 3 == 0 || nRandom == i) {
-                title = "large column " + i;
-            }
-
-            ColumnHeader header = new ColumnHeader(String.valueOf(i), title);
-            list.add(header);
-        }
-
-        return list;
-    }
-
-    private List<List<Cell>> getCellList() {
-        List<List<Cell>> list = new ArrayList<>();
-        for (int i = 0; i < ROW_SIZE; i++) {
-            List<Cell> cellList = new ArrayList<>();
-            for (int j = 0; j < COLUMN_SIZE; j++) {
-                String text = "cell " + j + " " + i;
-                if (j % 4 == 0 && i % 5 == 0) {
-                    text = "large cell " + j + " " + i + ".";
-                }
-                String id = j + "-" + i;
-
-                Cell cell = new Cell(id, text);
-                cellList.add(cell);
-            }
-            list.add(cellList);
-        }
-
-        return list;
-    }
+//    private List<ColumnHeader> getRandomColumnHeaderList() {
+//        List<ColumnHeader> list = new ArrayList<>();
+//
+//        for (int i = 0; i < COLUMN_SIZE; i++) {
+//            String title = "column " + i;
+//            int nRandom = new Random().nextInt();
+//            if (nRandom % 4 == 0 || nRandom % 3 == 0 || nRandom == i) {
+//                title = "large column " + i;
+//            }
+//
+//            ColumnHeader header = new ColumnHeader(String.valueOf(i), title);
+//            list.add(header);
+//        }
+//
+//        return list;
+//    }
+//
+//    private List<List<Cell>> getCellList() {
+//        List<List<Cell>> list = new ArrayList<>();
+//        for (int i = 0; i < ROW_SIZE; i++) {
+//            List<Cell> cellList = new ArrayList<>();
+//            for (int j = 0; j < COLUMN_SIZE; j++) {
+//                String text = "cell " + j + " " + i;
+//                if (j % 4 == 0 && i % 5 == 0) {
+//                    text = "large cell " + j + " " + i + ".";
+//                }
+//                String id = j + "-" + i;
+//
+//                Cell cell = new Cell(id, text);
+//                cellList.add(cell);
+//            }
+//            list.add(cellList);
+//        }
+//
+//        return list;
+//    }
 
     /**
      * This is a dummy model list test some cases.
      */
     private List<List<Cell>> getCellListForSortingTest() {
         List<List<Cell>> list = new ArrayList<>();
-        for (int i = 0; i < ROW_SIZE; i++) {
+//        for (int i = 0; i < ROW_SIZE; i++) {
+//            List<Cell> cellList = new ArrayList<>();
+//            for (int j = 0; j < COLUMN_SIZE; j++) {
+//                Object text = "cell " + j + " " + i;
+//
+//                final int random = new Random().nextInt();
+//                if (j == 0) {
+//                    text = i;
+//                } else if (j == 1) {
+//                    text = random;
+//                } else if (j == MOOD_COLUMN_INDEX) {
+//                    text = random % 2 == 0 ? HAPPY : SAD;
+//                } else if (j == GENDER_COLUMN_INDEX) {
+//                    text = random % 2 == 0 ? BOY : GIRL;
+//                }
+//
+//                // Create dummy id.
+//                String id = j + "-" + i;
+//
+//                Cell cell;
+//                if (j == 3) {
+//                    cell = new Cell(id, text, random % 2 == 0 ? "happy" : "sad");
+//                } else if (j == 4) {
+//                    // NOTE female and male keywords for filter will have conflict since "female"
+//                    // contains "male"
+//                    cell = new Cell(id, text, random % 2 == 0 ? "boy" : "girl");
+//                } else {
+//                    cell = new Cell(id, text);
+//                }
+//                cellList.add(cell);
+//            }
+//            list.add(cellList);
+//        }
+
+
+
+
+        for (int i = 0; i < chooseresultdata.cellValue.size(); i++) {
             List<Cell> cellList = new ArrayList<>();
-            for (int j = 0; j < COLUMN_SIZE; j++) {
-                Object text = "cell " + j + " " + i;
+            for (int j = 0; j < chooseresultdata.cellValue.get(chooseresultdata.rowHeading.get(i)).size(); j++) {
+                String text = String.valueOf(chooseresultdata.cellValue.get(chooseresultdata.rowHeading.get(i)).get(j));
 
-                final int random = new Random().nextInt();
-                if (j == 0) {
-                    text = i;
-                } else if (j == 1) {
-                    text = random;
-                } else if (j == MOOD_COLUMN_INDEX) {
-                    text = random % 2 == 0 ? HAPPY : SAD;
-                } else if (j == GENDER_COLUMN_INDEX) {
-                    text = random % 2 == 0 ? BOY : GIRL;
-                }
-
-                // Create dummy id.
-                String id = j + "-" + i;
-
-                Cell cell;
-                if (j == 3) {
-                    cell = new Cell(id, text, random % 2 == 0 ? "happy" : "sad");
-                } else if (j == 4) {
-                    // NOTE female and male keywords for filter will have conflict since "female"
-                    // contains "male"
-                    cell = new Cell(id, text, random % 2 == 0 ? "boy" : "girl");
-                } else {
-                    cell = new Cell(id, text);
-                }
-                cellList.add(cell);
-            }
-            list.add(cellList);
-        }
-
-        return list;
-    }
-
-    /**
-     * This is a dummy model list test some cases.
-     */
-    private List<List<Cell>> getRandomCellList() {
-        List<List<Cell>> list = new ArrayList<>();
-        for (int i = 0; i < ROW_SIZE; i++) {
-            List<Cell> cellList = new ArrayList<>();
-            list.add(cellList);
-            for (int j = 0; j < COLUMN_SIZE; j++) {
-                String text = "cell " + j + " " + i;
-                int random = new Random().nextInt();
-                if (random % 2 == 0 || random % 5 == 0 || random == j) {
-                    text = "large cell  " + j + " " + i + getRandomString() + ".";
-                }
 
                 // Create dummy id.
                 String id = j + "-" + i;
@@ -336,10 +326,41 @@ public class MainFragment extends Fragment {
                 Cell cell = new Cell(id, text);
                 cellList.add(cell);
             }
+            list.add(cellList);
         }
+
+
+
+
 
         return list;
     }
+
+    /**
+     * This is a dummy model list test some cases.
+     */
+//    private List<List<Cell>> getRandomCellList() {
+//        List<List<Cell>> list = new ArrayList<>();
+//        for (int i = 0; i < ROW_SIZE; i++) {
+//            List<Cell> cellList = new ArrayList<>();
+//            list.add(cellList);
+//            for (int j = 0; j < COLUMN_SIZE; j++) {
+//                String text = "cell " + j + " " + i;
+//                int random = new Random().nextInt();
+//                if (random % 2 == 0 || random % 5 == 0 || random == j) {
+//                    text = "large cell  " + j + " " + i + getRandomString() + ".";
+//                }
+//
+//                // Create dummy id.
+//                String id = j + "-" + i;
+//
+//                Cell cell = new Cell(id, text);
+//                cellList.add(cell);
+//            }
+//        }
+//
+//        return list;
+//    }
 
 
     private static String getRealRandomString() {

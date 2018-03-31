@@ -480,8 +480,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.results_id) {
 
-            startActivity(new Intent(MainActivity.this,result.class));
-            //finish();\
+            startActivity(new Intent(MainActivity.this,chooseresultdata.class));
+            //finish();
         } else if (id == R.id.seatallotment_id) {
 
             dgp.show();//startActivity(new Intent(MainActivity.this,seatAllotment.class));

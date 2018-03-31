@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:background="@android:color/white"
+            android:background="@color/colorPrimary"
             android:orientation="vertical">
 
             <TextView
@@ -30,13 +30,14 @@
                 android:layout_weight="1"
                 android:text="Year"
                 android:textAlignment="center"
-                android:textColor="@color/tableheader"
+                android:textColor="@color/white"
                 tools:ignore="NestedWeights" />
 
             <Spinner
                 android:id="@+id/spinnerYear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:layout_weight="1"
                 android:spinnerMode="dialog" />
         </LinearLayout>
@@ -46,7 +47,7 @@
         android:layout_height="match_parent"
         android:layout_margin="1dp"
         android:layout_weight="1"
-        android:background="@android:color/white"
+        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
             <TextView
@@ -56,13 +57,14 @@
             android:layout_weight="1"
             android:text="Branch"
             android:textAlignment="center"
-            android:textColor="@color/tableheader"
+            android:textColor="@color/white"
                 tools:ignore="NestedWeights" />
 
             <Spinner
             android:id="@+id/spinnerBranch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             android:layout_weight="1"
             android:spinnerMode="dialog" />
         </LinearLayout>
@@ -72,7 +74,7 @@
         android:layout_height="match_parent"
         android:layout_margin="1dp"
         android:layout_weight="1"
-        android:background="@android:color/white"
+        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
             <TextView
@@ -82,13 +84,14 @@
             android:layout_weight="1"
             android:text="Section"
             android:textAlignment="center"
-            android:textColor="@color/tableheader"
+            android:textColor="@color/white"
                 tools:ignore="NestedWeights" />
 
             <Spinner
             android:id="@+id/spinnerSection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             android:layout_weight="1"
             android:spinnerMode="dialog" />
         </LinearLayout>
